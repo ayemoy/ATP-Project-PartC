@@ -1,0 +1,47 @@
+.root{
+    -fx-background-image: url("/pictures/mainScreen.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-effect: drophead(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#NewGameButton, #ExitButton {
+    -fx-display:block;
+    -fx-height: 300px;
+    -fx-width: 300px;
+    -fx-border-radius: 50%;
+    -fx-border: 1px solid red;
+    /*-fx-background-color: Transparent;
+    -fx-background-repeat:no-repeat;
+    -fx-cursor:pointer;
+    -fx-overflow: hidden;
+    -fx-outline:none;
+
+    -fx-background-position: center center;
+    -fx-border: black;
+    -fx-width: 12px;
+    -fx-height: 12px;
+    -fx-text-fill: black;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-effect: drophead(three-pass-box, rgba(10, 0, 0, 0.6), 5, 0.0, 0, 1);
+    -fx-cursor: pointer;*/
+}
+
+
+#MenuBar {
+    -fx-background-color: Transparent;
+    -fx-background-repeat:no-repeat;
+    -fx-cursor:pointer;
+    -fx-overflow: hidden;
+    -fx-outline:none;
+    -fx-background-position: center center;
+    -fx-border: black;
+    -fx-text-fill: black;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-effect: drophead(three-pass-box, rgba(10, 8, 5, 0.6), 5, 0.0, 9, 1);
+    -fx-cursor: pointer;
+}
+
