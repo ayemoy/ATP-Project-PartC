@@ -1,13 +1,27 @@
 .root{
     -fx-background-image: url("/pictures/mainScreen.jpg");
-    -fx-background-repeat: stretch;
     -fx-background-size: cover;
     -fx-background-position: center center;
 
 }
 
-#NewGameButton, #ExitButton {
 
+#StartGameButton {
+    -fx-background-image: url("/pictures/botbot.jpg") no-repeat;
+    -fx-background-color: transparent;
+    -fx-background-size: cover;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+    -fx-border-bottom-left-radius: 50% 25%;
+    -fx-border-bottom-right-radius: 50% 25%;
+    -fx-border-top-left-radius: 50% 25%;
+    -fx-border-top-right-radius: 50% 25%;
+
+    -fx-text-fill: Pink;
+
+
+/*
     -fx-background-color: Transparent;
     -fx-background-repeat:no-repeat;
     -fx-cursor:pointer;
@@ -21,7 +35,7 @@
     -fx-text-fill: black;
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
-    -fx-cursor: pointer;
+    -fx-cursor: pointer;*/
 }
 
 
@@ -39,28 +53,38 @@
 
     -fx-cursor: pointer;
 }
-#NewButton, #SaveButton, #LoadButton{
-    -fx-background-color: Transparent;
-    -fx-background-repeat:no-repeat;
-    -fx-cursor:pointer;
-    -fx-overflow: hidden;
-    -fx-outline:none;
-    -fx-text-fill: black;
-    -fx-font-family: "David";
-}
-#NewButton, #SaveButton, #LoadButton :hover{
-    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
-    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
-    -fx-text-fill: -fx-text-base-color;
-    -fx-alignment: CENTER;
-    -fx-content-display: LEFT;
-}
+
+
 
 #HelpButton{
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+}
 
 }
+
+
 
 #AboutButton{
 }

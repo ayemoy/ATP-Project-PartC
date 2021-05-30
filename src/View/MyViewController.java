@@ -9,23 +9,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import static javafx.geometry.Pos.CENTER;
-
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Observable;
@@ -33,17 +27,28 @@ import java.util.ResourceBundle;
 
 
 public class MyViewController implements IView , Initializable {
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+    @FXML
+    public AnchorPane anchorPane;
+    @FXML
+    public ImageView imageView;
+    @FXML
+    public MenuBar menuBar;
+    @FXML
+    public Button startGameButton;
+    @FXML
+    public Button aboutButton;
+    @FXML
+    public Button exitButton;
+    @FXML
+    public Button helpButton;
+    @FXML
+    public ToggleButton musicButton;
 
-    public MyMazeGenerator generator;
-    public TextField textField_mazeRows;
-    public TextField textField_mazeColumns;
-   //public MazeDisplayer mazeDisplayer;
-    public Label playerRow;
-    public Label playerCol;
 
 
     @Override
@@ -62,12 +67,7 @@ public class MyViewController implements IView , Initializable {
     }
 
     @Override
-    public void showErrorAlert(String message) {
-
-    }
-
-    @Override
-    public void displayMaze() {
+    public void showErrorAlert(String title, String message) {
 
     }
 }
