@@ -52,7 +52,7 @@ public class MyViewController implements IView , Initializable {
     }
 
     @Override
-    public void handleLoadAdSave(String loadOrSave, Stage stage, boolean changeScene) {
+    public void handleLoadAndSave(String loadOrSave, Stage stage, boolean changeScene) {
 
     }
 

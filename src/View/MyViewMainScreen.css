@@ -3,16 +3,12 @@
     -fx-background-repeat: stretch;
     -fx-background-size: cover;
     -fx-background-position: center center;
-    -fx-effect: drophead(three-pass-box, black, 30, 0.5, 0, 0);
+
 }
 
 #NewGameButton, #ExitButton {
-    -fx-display:block;
-    -fx-height: 300px;
-    -fx-width: 300px;
-    -fx-border-radius: 50%;
-    -fx-border: 1px solid red;
-    /*-fx-background-color: Transparent;
+
+    -fx-background-color: Transparent;
     -fx-background-repeat:no-repeat;
     -fx-cursor:pointer;
     -fx-overflow: hidden;
@@ -25,8 +21,7 @@
     -fx-text-fill: black;
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
-    -fx-effect: drophead(three-pass-box, rgba(10, 0, 0, 0.6), 5, 0.0, 0, 1);
-    -fx-cursor: pointer;*/
+    -fx-cursor: pointer;
 }
 
 
@@ -39,9 +34,36 @@
     -fx-background-position: center center;
     -fx-border: black;
     -fx-text-fill: black;
-    -fx-font-family: "Arial Narrow";
+    -fx-font-family: "David";
     -fx-font-weight: bold;
-    -fx-effect: drophead(three-pass-box, rgba(10, 8, 5, 0.6), 5, 0.0, 9, 1);
+
     -fx-cursor: pointer;
 }
+#NewButton, #SaveButton, #LoadButton{
+    -fx-background-color: Transparent;
+    -fx-background-repeat:no-repeat;
+    -fx-cursor:pointer;
+    -fx-overflow: hidden;
+    -fx-outline:none;
+    -fx-text-fill: black;
+    -fx-font-family: "David";
+}
+#NewButton, #SaveButton, #LoadButton :hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+}
 
+#HelpButton{
+
+}
+
+#AboutButton{
+}
+
+#MusicButton{
+}
