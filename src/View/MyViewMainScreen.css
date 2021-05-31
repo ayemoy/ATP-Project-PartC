@@ -1,93 +1,14 @@
 .root{
     -fx-background-image: url("/pictures/mainScreen.jpg");
+    -fx-background-repeat: stretch;
     -fx-background-size: cover;
     -fx-background-position: center center;
 
 }
+#Musicpic{
+     -fx-fitHeight:52.0;
+     -fx-fitWidth:60.0;
+     -fx-style:multiply;
+     -fx-image: url("/pictures/rednote.png");
 
-
-#StartGameButton {
-    -fx-background-image: url("/pictures/botbot.jpg") no-repeat;
-    -fx-background-color: transparent;
-    -fx-background-size: cover;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-font-size: 15;
-    -fx-border-bottom-left-radius: 50% 25%;
-    -fx-border-bottom-right-radius: 50% 25%;
-    -fx-border-top-left-radius: 50% 25%;
-    -fx-border-top-right-radius: 50% 25%;
-
-    -fx-text-fill: Pink;
-
-
-/*
-    -fx-background-color: Transparent;
-    -fx-background-repeat:no-repeat;
-    -fx-cursor:pointer;
-    -fx-overflow: hidden;
-    -fx-outline:none;
-
-    -fx-background-position: center center;
-    -fx-border: black;
-    -fx-width: 12px;
-    -fx-height: 12px;
-    -fx-text-fill: black;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-weight: bold;
-    -fx-cursor: pointer;*/
-}
-
-
-#MenuBar {
-    -fx-background-color: Transparent;
-    -fx-background-repeat:no-repeat;
-    -fx-cursor:pointer;
-    -fx-overflow: hidden;
-    -fx-outline:none;
-    -fx-background-position: center center;
-    -fx-border: black;
-    -fx-text-fill: black;
-    -fx-font-family: "David";
-    -fx-font-weight: bold;
-
-    -fx-cursor: pointer;
-}
-
-
-
-#HelpButton{
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-}
-
-}
-
-
-
-#AboutButton{
-}
-
-#MusicButton{
 }

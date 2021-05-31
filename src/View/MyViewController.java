@@ -26,29 +26,16 @@ import java.util.Observable;
 import java.util.ResourceBundle;
 
 
+//do all function of the maze play screen
+//like: init, displayMaze, Zoom, solveMaze, generateMaze.......
+
 public class MyViewController implements IView , Initializable {
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
 
     }
-    @FXML
-    public AnchorPane anchorPane;
-    @FXML
-    public ImageView imageView;
-    @FXML
-    public MenuBar menuBar;
-    @FXML
-    public Button startGameButton;
-    @FXML
-    public Button aboutButton;
-    @FXML
-    public Button exitButton;
-    @FXML
-    public Button helpButton;
-    @FXML
-    public ToggleButton musicButton;
-
 
 
     @Override
