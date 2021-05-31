@@ -50,12 +50,12 @@
                         <Font name="Agency FB Bold" size="23.0" />
                     </font>
                 </Button>
-                <Button id="helpButton" layoutX="518.0" layoutY="160.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="77.0" style="-fx-background-color: lavenderblush; -fx-background-radius: 100px/50px;" text="Help" textFill="#c06861">
+                <Button id="helpButton" layoutX="518.0" layoutY="160.0" mnemonicParsing="false" onAction="#switchHelpScene" prefHeight="39.0" prefWidth="77.0" style="-fx-background-color: lavenderblush; -fx-background-radius: 100px/50px;" text="Help" textFill="#c06861">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Button>
-                <Button id="exitButton" layoutX="521.0" layoutY="338.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="71.0" style="-fx-background-color: lavenderblush; -fx-background-radius: 100px/50px;" text="Exit" textFill="#c06861">
+                <Button id="exitButton" layoutX="521.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="39.0" prefWidth="71.0" style="-fx-background-color: lavenderblush; -fx-background-radius: 100px/50px;" text="Exit" textFill="#c06861">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>

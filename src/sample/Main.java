@@ -20,7 +20,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../View/MainScreen.fxml"));
         //Scene wellcomeScene = new Scene(root);
         primaryStage.setTitle("Hello To SpongeBob World");
-        primaryStage.setScene(new Scene(root, 500, 375));
+        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
     public static void main(String[] args) {
