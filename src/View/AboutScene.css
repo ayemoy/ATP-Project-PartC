@@ -1,0 +1,15 @@
+.root{
+    -fx-background-image: url("/pictures/boutUs.jpeg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+#Musicpic{
+     -fx-fitHeight:52.0;
+     -fx-fitWidth:60.0;
+     -fx-style:multiply;
+     -fx-image: url("/pictures/rednote.png");
+}
+
+
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="596.0" stylesheets="@HelpScene.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.HelpSceneController">
+   <children>
+      <ImageView fitHeight="338.0" fitWidth="618.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Resources/pictures/helpp.jpg" />
+         </image>
+      </ImageView>
+      <Button id="BackButton" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#switchMainScreen" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 100px/50px; -fx-padding: -5;" styleClass="C:\Users\97252\Desktop\לימודים\שנה ב סמסטר ב\נושאים מתקדמים בתכנות\פרוייקט המבוך\ATP-Project-PartC\Resources\pictures\about.jpg" text="Back" textAlignment="CENTER">
+         <font>
+            <Font name="Agency FB Bold" size="25.0" />
+         </font>
+         <effect>
+            <Glow level="0.0">
+               <input>
+                  <InnerShadow />
+               </input>
+            </Glow>
+         </effect>
+      </Button>
+      <Label layoutY="2.0" prefHeight="25.0" prefWidth="435.0" text="Here at  Krusty Krab we serve delicious Krabby Patties every day." textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="16.6" />
+         </font>
+      </Label>
+      <Label layoutY="27.0" prefHeight="25.0" prefWidth="343.0" text="Help SpongeBob get to the Krusty Krab safely!" textFill="#fff6f6">
+         <font>
+            <Font name="Agency FB Bold" size="21.5" />
+         </font>
+      </Label>
+      <Label layoutY="67.0" prefHeight="20.0" prefWidth="313.0" text="To move RIGHT - press 6. To move LEFT - press 4. " textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="18.3" />
+         </font>
+      </Label>
+      <Label layoutY="89.0" prefHeight="21.0" prefWidth="300.0" text="To move UP - press 8. To move DOWN - press 2." textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="247.0" prefHeight="21.0" prefWidth="343.0" text="To move diagonally: UP RIGHT - press 9,  UP LEFT - press 7" textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="268.0" prefHeight="22.0" prefWidth="363.0" text=" DOWN RIGHT - press 3, DOWN LEFT - press 1" textFill="WHITE">
+         <font>
+            <Font name="Agency FB Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="204.0" layoutY="292.0" prefHeight="38.0" prefWidth="187.0" text="GOOD LUCK!" textFill="#ffff02">
+         <font>
+            <Font name="Agency FB Bold" size="40.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

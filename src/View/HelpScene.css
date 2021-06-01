@@ -1,0 +1,13 @@
+.root{
+    -fx-background-image: url("/pictures/helpp.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+#MusicButton{
+     -fx-fitHeight:52.0;
+     -fx-fitWidth:60.0;
+     -fx-style:multiply;
+     -fx-image: url("/pictures/rednote.png");
+}
