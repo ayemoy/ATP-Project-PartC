@@ -1,40 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="322.0" prefWidth="591.0" stylesheets="@AboutScene.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AboutSceneController">
-   <children>
-      <ImageView fitHeight="336.0" fitWidth="604.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Resources/pictures/boutUs.jpeg" />
-         </image>
-      </ImageView>
-      <TabPane id="AboutTab" prefHeight="334.0" prefWidth="591.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab style="-fx-background: clear;" text="About Us">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+<TabPane id="TabPane" fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AboutSceneController">
+  <tabs>
+    <Tab fx:id="aboutTab" text="About US">
+         <content>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+              <content>
+                <AnchorPane id="AboutPic" minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="600.0">
                      <children>
-                        <Button layoutX="6.0" layoutY="239.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
+                        <ImageView fitHeight="348.0" fitWidth="600.0" layoutY="-2.0" style="-fx-opacity: 0.4;">
+                           <image>
+                              <Image url="@../../Resources/pictures/boutUs.jpeg" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="7.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Algorithms">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              </content>
+            </ScrollPane>
+         </content>
+    </Tab>
+    <Tab fx:id="algoTab" text="Algorithms">
+         <content>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <AnchorPane id="AlgoPic" prefHeight="345.0" prefWidth="595.0">
                      <children>
-                        <Button layoutY="247.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
+                        <ImageView fitHeight="344.0" fitWidth="600.0" layoutX="-3.0" layoutY="-7.0" style="-fx-opacity: 0.3;">
+                           <image>
+                              <Image url="@../../Resources/pictures/algo.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="8.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-   </children>
-</AnchorPane>
+               </content>
+            </ScrollPane>
+         </content>
+    </Tab>
+  </tabs>
+</TabPane>

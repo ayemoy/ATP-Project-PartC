@@ -1,7 +1,9 @@
 package View;
 
 import ViewModel.MyViewModel;
+import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
+import algorithms.search.Solution;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -36,16 +38,64 @@ import java.util.ResourceBundle;
 
 public class MyViewController implements IView , Initializable {
 
-    private Stage mainStage;
+    private MyViewModel viewModel;
+    @FXML
+
+    public MazeDisplayer mazeDisplayerCanvas;
+    private Solution solution;
+    private Scene gameScene;
     private Scene mainScene;
+    @FXML
+    private Stage mainStage;
     private Parent root;
 
+    @FXML
+    private SplitPane splitPane;
+
+    @FXML
+    private AnchorPane leftSide;
+    @FXML
+    private Button play;
+    @FXML
+    private Button back;
+    @FXML
+    private Button save;
+    @FXML
+    private Button solve;
+    @FXML
+    private ToggleButton music;
+    @FXML
+    private TextField RowField;
+    @FXML
+    private TextField ColField;
+    @FXML
+    public MenuBar menuBar;
+
+
+    @FXML
+    private AnchorPane rightSide;
+    @FXML
+    private Pane gamePane;
+    @FXML
+    private GridPane theGamePane;
+
+    private StringProperty updatePlayerPositionRow = new SimpleStringProperty();
+    private StringProperty updatePlayerPositionCol = new SimpleStringProperty();
+
+//________________________________________
+/*
+    @FXML
+    public Label ValidNumberLabel;
+    public boolean showSolution;
+    private Maze maze;
+*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
     }
-    public void switchMainScreen(javafx.event.ActionEvent event) throws IOException {
+    //this function is controll the back button
+        public void switchMainScreen(javafx.event.ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
@@ -55,12 +105,15 @@ public class MyViewController implements IView , Initializable {
 
 
 
+    //________________getters & setters____________________
 
 
+    public String getUpdatePlayerPositionRow() { return updatePlayerPositionRow.get(); }
+    public StringProperty updatePlayerPositionRowProperty() { return updatePlayerPositionRow; }
+    public void setUpdatePlayerPositionRow(String updatePlayerPositionRow) { this.updatePlayerPositionRow.set(updatePlayerPositionRow); }
+    public String getUpdatePlayerPositionCol() { return updatePlayerPositionCol.get(); }
+    public StringProperty updatePlayerPositionColProperty() { return updatePlayerPositionCol; }
+    public void setUpdatePlayerPositionCol(String updatePlayerPositionCol) { this.updatePlayerPositionCol.set(updatePlayerPositionCol); }
 
-
-
-
-
-
+    //__________________________________________________________________________________
 }
