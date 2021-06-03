@@ -21,7 +21,7 @@ every scene need to handle Error and Message alerts
 */
 
 public abstract class Controller implements IView, Observer {
-
+/*
     @Override
     //in this func we change every scene with a path that give, new stage and window title
     public void changeScene(String newSceneFXMLPath, Stage newStage, String WindowTitle)

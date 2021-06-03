@@ -4,10 +4,13 @@ import ViewModel.MyViewModel;
 import algorithms.mazeGenerators.MyMazeGenerator;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -20,6 +23,8 @@ import javafx.scene.media.Media;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import static javafx.geometry.Pos.CENTER;
+
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Observable;
@@ -31,30 +36,31 @@ import java.util.ResourceBundle;
 
 public class MyViewController implements IView , Initializable {
 
+    private Stage mainStage;
+    private Scene mainScene;
+    private Parent root;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
 
     }
-
-
-    @Override
-    public void changeScene(String fxmlPath, Stage stage, String title) {
-
+    public void switchMainScreen(javafx.event.ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainScene = new Scene(root);
+        mainStage.setScene(mainScene);
+        mainStage.show();
     }
 
-    @Override
-    public void handleLoadAndSave(String loadOrSave, Stage stage, boolean changeScene) {
 
-    }
 
-    @Override
-    public void showAlert(String title, String message) {
 
-    }
 
-    @Override
-    public void showErrorAlert(String title, String message) {
 
-    }
+
+
+
+
+
 }

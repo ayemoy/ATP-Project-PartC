@@ -20,6 +20,7 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import ViewModel.MyViewModel;
@@ -54,7 +55,7 @@ public class MainScreenController extends Controller implements Initializable {
     MyViewModel viewModel = new MyViewModel(model);
 
 
-    public void switchAboutScene(javafx.event.ActionEvent event) throws IOException {
+    public void switchAboutScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("AboutScene.fxml"));
         mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
@@ -63,7 +64,7 @@ public class MainScreenController extends Controller implements Initializable {
     }
 
 
-    public void switchHelpScene(javafx.event.ActionEvent event) throws IOException {
+    public void switchHelpScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HelpScene.fxml"));
         mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
@@ -71,7 +72,15 @@ public class MainScreenController extends Controller implements Initializable {
         mainStage.show();
     }
 
-    public void handleExit(javafx.event.ActionEvent event) throws IOException {
+    public void switchMazeScene(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
+        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        mainScene = new Scene(root);
+        mainStage.setScene(mainScene);
+        mainStage.show();
+    }
+
+    public void handleExit(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) { //want to exit the game
@@ -79,6 +88,11 @@ public class MainScreenController extends Controller implements Initializable {
             Window welcome = exitButton.getScene().getWindow();
             ((Stage) welcome).close();
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
 
