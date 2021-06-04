@@ -5,14 +5,16 @@
 
 }
 
-#RightSideScreen{
+#rightSide{
     -fx-background-image: url("/pictures/maze3.jpg" );
     -fx-background-size: cover;
     -fx-background-position: center center;
+    -fx-opacity: 0.4;
 }
 
-#LeftSideScreen{
+#leftSide{
     -fx-background-image: url("/pictures/together.jpg" );
     -fx-background-size: cover;
     -fx-background-position: center center;
+
 }

@@ -15,12 +15,24 @@ import java.util.Observer;
 import ViewModel.MyViewModel;
 
 /*this class implement IView and observer
+it is like Aview of rotem in the tirgul
 in this class we will write function that every controller in every other class will need to lemamesh.
 every class need to lemamesh the function : change the scene, load and save maze cuz the menu go with us during all scenes.
 every scene need to handle Error and Message alerts
 */
 
 public abstract class Controller implements IView, Observer {
+
+    @Override
+    //in every scene we want be able show alert to user so we do it here
+    //in every scene we can choose later what to write to the user
+    public void showErrorAlert(String titleWindow, String ErrorToShow)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titleWindow);
+        alert.setContentText(ErrorToShow);
+        alert.show();
+    }
 
 
 

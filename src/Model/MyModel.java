@@ -27,9 +27,47 @@ import java.util.ArrayList;
 
 
 public class MyModel implements IModel, Observable {
-    @Override
-    public void generateMaze(int row, int col) {
 
+
+    //private static MyModel myModel;
+    private Server mazeGeneratingServer;
+    private Server solveSearchProblemServer;
+    private Maze maze;
+    private int[][] intMazeArray;
+    private int playerRow;
+    private int playerCol;
+    //private int goalPosRow;
+    //private int goalPosCol;
+    //private boolean wonGame;
+    private ArrayList<AState> mazeSolutionSteps;
+    private ArrayList<int[]> finalSolution;
+    //public MediaPlayer mediaPlayer;
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void generateMaze(int row, int col)
+    {
+     CommunicateWithServer_MazeGenerating(row, col);
+     initMaze(maze);
+     //LOG.info("A new maze has been created. Maze dimensions - " + row + " X " + col);
+     setChanged();
+     notifyObservers("generate");
+
+    }
+
+    @Override
+    public int[][] getMaze() {
+        return new int[0][];
     }
 
     @Override
@@ -73,4 +111,51 @@ public class MyModel implements IModel, Observable {
     }
 
 
+
+ private void CommunicateWithServer_MazeGenerating(int row, int col) {
+  try {
+   Client client = new Client(InetAddress.getLocalHost(), 5400, (IClientStrategy) (inFromServer, outToServer) -> {
+    try {
+     //LOG.info("User info " + InetAddress.getLocalHost() + "requests to generate a maze");
+     //LOG.info("A maze creation request was accepted! Generating maze using " +
+             //Server.getConfigurations("MazeGenerator"));
+     ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
+     ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
+     toServer.flush();
+     int[] mazeDimensions = new int[]{row, col};
+     toServer.writeObject(mazeDimensions);
+     toServer.flush();
+     byte[] compressedMaze = (byte[])fromServer.readObject();
+     InputStream is = new MyDecompressorInputStream(new ByteArrayInputStream(compressedMaze));
+     byte[] decompressedMaze = new byte[(row*col)+24];
+     is.read(decompressedMaze);
+     maze = new Maze(decompressedMaze);
+    } catch (Exception e) {
+     //LOG.error("Exception: ", e);
+     e.printStackTrace();
+    }
+   });
+   client.communicateWithServer();
+  } catch (UnknownHostException e) {
+   //LOG.error("Unknown Host Exception: ", e);
+   e.printStackTrace();
+  }
+ }
+
+
+
+    //_________________________ SETTERS & GETTERS _____________________________________________________
+
+
+    public void setMaze(Maze maze) { this.maze = maze; }
+    public int[][] getInMazeArray() { return intMazeArray; }
+    public void setInMazeArray(int[][] inMazeArray) { this.intMazeArray = inMazeArray; }
+    public int getPlayerRow() { return playerRow; }
+    public void setPlayerRow(int playerRow) { this.playerRow = playerRow; }
+    public int getPlayerCol() { return playerCol; }
+    public void setPlayerCol(int playerCol) { this.playerCol = playerCol; }
+    public ArrayList<AState> getMazeSolutionSteps() { return mazeSolutionSteps; }
+    public void setMazeSolutionSteps(ArrayList<AState> mazeSolutionSteps) { this.mazeSolutionSteps = mazeSolutionSteps; }
+    public ArrayList<int[]> getFinalSolution() { return finalSolution; }
+    public void setFinalSolution(ArrayList<int[]> finalSolution) { this.finalSolution = finalSolution; }
 }

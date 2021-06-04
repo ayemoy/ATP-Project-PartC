@@ -65,7 +65,7 @@ public class MazeDisplayer extends Canvas {
         draw();
     }
 
-    private void draw() {
+    void draw() {
         if(maze != null){
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();

@@ -11,29 +11,27 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="splitPane" dividerPositions="0.3270089285714286" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="View.MyViewController">
+<SplitPane fx:id="splitPane" dividerPositions="0.34375000000000006" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MyViewMaze.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
   <items>
     <AnchorPane fx:id="leftSide" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <ImageView fitHeight="397.0" fitWidth="192.0" layoutX="-2.0" style="-fx-opacity: 0.5;">
+            <ImageView fitHeight="397.0" fitWidth="202.0" layoutX="-2.0" style="-fx-opacity: 0.5;">
                <image>
                   <Image url="@../../Resources/pictures/together.jpg" />
                </image>
             </ImageView>
             <TextField fx:id="RowField" layoutX="102.0" layoutY="44.0" prefHeight="25.0" prefWidth="73.0" />
             <TextField fx:id="ColField" layoutX="102.0" layoutY="69.0" prefHeight="25.0" prefWidth="73.0" />
-            <Label layoutX="2.0" layoutY="40.0" prefHeight="34.0" prefWidth="81.0" text="Rows:">
+            <Label fx:id="labelPlayerRow" layoutX="2.0" layoutY="40.0" prefHeight="34.0" prefWidth="81.0" text="Rows:">
                <font>
                   <Font name="Agency FB Bold" size="28.0" />
                </font>
             </Label>
-            <Label layoutX="2.0" layoutY="73.0" prefHeight="29.0" prefWidth="99.0" text="Columns:">
+            <Label fx:id="labelPlayerCol" layoutX="2.0" layoutY="73.0" prefHeight="29.0" prefWidth="99.0" text="Columns:">
                <font>
                   <Font name="Agency FB Bold" size="27.0" />
                </font>
@@ -43,7 +41,7 @@
             <Button fx:id="play" layoutX="61.0" layoutY="123.0" mnemonicParsing="false" text="PLAY!" />
             <Button fx:id="back" layoutX="14.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
             <ToggleButton fx:id="music" layoutX="112.0" layoutY="358.0" mnemonicParsing="false" text="Music" />
-            <MenuBar layoutX="1.0" layoutY="1.0" prefHeight="25.0" prefWidth="192.0">
+            <MenuBar layoutX="1.0" layoutY="1.0" prefHeight="25.0" prefWidth="202.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
@@ -82,21 +80,11 @@
                   <Image url="@../../Resources/pictures/maze3.jpg" />
                </image>
             </ImageView>
-            <Pane fx:id="gamePane" layoutX="9.0" layoutY="9.0" prefHeight="377.0" prefWidth="398.0">
-               <children>
-                  <GridPane fx:id="theGamePane" layoutX="3.0" layoutY="3.0" prefHeight="370.0" prefWidth="392.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
-                    </rowConstraints>
-                  </GridPane>
-               </children>
-            </Pane>
+            <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="3.0" prefHeight="390.0" prefWidth="381.0">
+               <center>
+                  <Pane fx:id="pane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
          </children></AnchorPane>
   </items>
 </SplitPane>
