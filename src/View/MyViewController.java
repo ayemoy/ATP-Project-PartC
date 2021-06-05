@@ -98,9 +98,12 @@ public class MyViewController extends Controller implements IView , Initializabl
     //this function do all updates so when the maze window open, the function run and do all we need
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        RowField.clear();
+        ColField.clear();
+
         labelPlayerRow.textProperty().bind(updatePlayerPositionRow);
         labelPlayerCol.textProperty().bind(updatePlayerPositionCol);
-        adjustDisplaySizes();
+        fitDisplaySizes();
         viewModel.pauseMusic();
         try{
             viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobNice.mp3").toURI().toString())),200);
@@ -112,7 +115,7 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
     //this func adjusts the sizes of the pane to GridPane
-    private void adjustDisplaySizes() {
+    private void fitDisplaySizes() {
         borderPane.widthProperty().addListener((obs, oldVal, newVal) -> {
             pane.setMinWidth(borderPane.getWidth()-200);
             if (viewModel.getIntMazeArray() != null)
@@ -170,8 +173,8 @@ public class MyViewController extends Controller implements IView , Initializabl
             viewModel.generateMaze(intRows, intCols);
 
             //ShowSolution.setDisable(false);
-           // mazeDisplayer.setSolution(null);
-            //mazeDisplayer.setSolved(false);
+            mazeDisplayer.setSolution(null);
+            mazeDisplayer.setSolved(false);
 
         }
         else
