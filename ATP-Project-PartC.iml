@@ -14,7 +14,9 @@
           <root url="jar://$MODULE_DIR$/../ATP-Project-PartB/out/artifacts/ATP_Project_PartB_jar/ATP-Project-PartB.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../ATP-Project-PartB/out/artifacts/ATP_Project_PartB_jar/ATP-Project-PartB.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="library" name="lib" level="project" />

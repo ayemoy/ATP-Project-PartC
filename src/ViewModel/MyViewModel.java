@@ -1,13 +1,8 @@
 package ViewModel;
-import Model.IModel;
 import Model.MyModel;
-import javafx.scene.control.Alert;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -15,7 +10,7 @@ import java.util.Observer;
 public class MyViewModel extends Observable implements Observer {
 
     private static MyViewModel myViewModel;
-    private MyModel model;
+    private static MyModel model;
     private int[][] intMazeArray;
     private int goalRow;
     private int goalCol;
@@ -28,13 +23,13 @@ public class MyViewModel extends Observable implements Observer {
 
 
 
-    public MyViewModel() { model = MyModel.getInstance(); }
+    public MyViewModel(MyModel model) { this.model = MyModel.getInstance(); }
 
     // this function do the singleton
     public static MyViewModel getInstance()
     {
         if (myViewModel == null) {
-            myViewModel = new MyViewModel();
+            myViewModel = new MyViewModel(model);
         }
         return myViewModel;
     }

@@ -88,12 +88,7 @@ public class MyViewController extends Controller implements IView , Initializabl
     private StringProperty updatePlayerPositionCol = new SimpleStringProperty();
 
 //________________________________________
-/*
-    @FXML
-    public Label ValidNumberLabel;
-    public boolean showSolution;
-    private Maze maze;
-*/
+
     @Override
     //this function do all updates so when the maze window open, the function run and do all we need
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -104,12 +99,15 @@ public class MyViewController extends Controller implements IView , Initializabl
         labelPlayerRow.textProperty().bind(updatePlayerPositionRow);
         labelPlayerCol.textProperty().bind(updatePlayerPositionCol);
         fitDisplaySizes();
-        viewModel.pauseMusic();
-        try{
-            viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobNice.mp3").toURI().toString())),200);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        //viewModel.pauseMusic();
+        //try
+        //{
+
+            //viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobNice.mp3").toURI().toString())),200);
+        //}
+        //catch (URISyntaxException e) {
+            //e.printStackTrace();
+        //}
     }
 
 
@@ -174,7 +172,7 @@ public class MyViewController extends Controller implements IView , Initializabl
 
             //ShowSolution.setDisable(false);
             mazeDisplayer.setSolution(null);
-            mazeDisplayer.setSolved(false);
+            mazeDisplayer.setIfMazeSolved(false);
 
         }
         else

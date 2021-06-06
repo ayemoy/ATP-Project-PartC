@@ -16,9 +16,7 @@ import java.util.ArrayList;
 public class MazeDisplayer extends Canvas {
 
 
-    private ArrayList<int[]> solution;
-
-    private int[][] maze;
+    private int[][] intMaze;
     private int playerRow;
     private int playerCol;
     private int playerGoalRow;
@@ -38,10 +36,8 @@ public class MazeDisplayer extends Canvas {
 //__________________________________GETTERS & SETTERS______________________________________________________
 
 
-    public ArrayList<int[]> getSolution() { return solution; }
-    public void setSolution(ArrayList<int[]> solution) { this.solution = solution; }
-    public int[][] getMaze() { return maze; }
-    public void setMaze(int[][] maze) { this.maze = maze; }
+    public int[][] getIntMaze() { return intMaze; }
+    public void setIntMaze(int[][] intMaze) { this.intMaze = intMaze; }
     public int getPlayerRow() { return playerRow; }
     public void setPlayerRow(int playerRow) { this.playerRow = playerRow; }
     public int getPlayerCol() { return playerCol; }
@@ -54,7 +50,6 @@ public class MazeDisplayer extends Canvas {
     public void setMazeSolution(ArrayList<int[]> mazeSolution) { this.mazeSolution = mazeSolution; }
     public boolean isIfMazeSolved() { return ifMazeSolved; }
     public void setIfMazeSolved(boolean ifMazeSolved) { this.ifMazeSolved = ifMazeSolved; }
-    public String getImageFileNameWall() { return wallPic.get(); }
 
     public String getWallPic() { return wallPic.get(); }
     public StringProperty wallPicProperty() { return wallPic; }
@@ -76,12 +71,12 @@ public class MazeDisplayer extends Canvas {
     //this function draw the maze itself, the walls and the player
     void draw()
     {
-        if(maze != null)
+        if(intMaze != null)
         {
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();
-            int row = maze.length;
-            int col = maze[0].length;
+            int row = intMaze.length;
+            int col = intMaze[0].length;
             double cellHeight = canvasHeight/row;
             double cellWidth = canvasWidth/col;
             GraphicsContext graphicsContext = getGraphicsContext2D();
@@ -95,7 +90,7 @@ public class MazeDisplayer extends Canvas {
             //draw the maze
             Image wallImage = null;
             try {
-                wallImage = new Image(new FileInputStream(getImageFileNameWall()));
+                wallImage = new Image(new FileInputStream(getWallPic()));
             } catch (FileNotFoundException e) {
                 System.out.println("There is no wallPic in here");
             }
@@ -103,7 +98,7 @@ public class MazeDisplayer extends Canvas {
             {
                 for(int j=0;j<col;j++)
                 {
-                    if(maze[i][j] == 1) //Wall
+                    if(intMaze[i][j] == 1) //Wall
                     {
                         h = i * cellHeight;
                         w = j * cellWidth;
@@ -126,9 +121,9 @@ public class MazeDisplayer extends Canvas {
                     System.out.println("There is no solPathPic in here");
                 }
                 double hSol,wSol;
-                for (int i=1; i<solution.size()-1; i++) {
-                    hSol = solution.get(i)[0] * cellHeight;
-                    wSol = solution.get(i)[1] * cellWidth;
+                for (int i=1; i<mazeSolution.size()-1; i++) {
+                    hSol = mazeSolution.get(i)[0] * cellHeight;
+                    wSol = mazeSolution.get(i)[1] * cellWidth;
                     if (solImage == null)
                         graphicsContext.fillRect(wSol, hSol, cellWidth, cellHeight);
                     else
@@ -162,7 +157,7 @@ public class MazeDisplayer extends Canvas {
     //this function chek if we have not solv the maze yet, so we draw it
     public void drawMaze(int [][] maze)
     {
-        this.maze = maze;
+        this.intMaze = maze;
         ifMazeSolved = false;
         draw();
     }

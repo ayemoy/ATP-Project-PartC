@@ -2,7 +2,6 @@ package Model;
 
 import ViewModel.MyViewModel;
 
-
 import Client.Client;
 import Client.IClientStrategy;
 import IO.MyDecompressorInputStream;
@@ -13,8 +12,27 @@ import ViewModel.MyViewModel;
 import algorithms.mazeGenerators.Maze;
 import algorithms.search.AState;
 import algorithms.search.Solution;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
+import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Observable;
+import Client.Client;
+import Client.IClientStrategy;
+import Server.*;
+import Server.Server;
+import Server.ServerStrategyGenerateMaze;
+import Server.ServerStrategySolveSearchProblem;
+import ViewModel.MyViewModel;
+import algorithms.mazeGenerators.Maze;
+import algorithms.search.AState;
+import algorithms.search.Solution;
 import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+//import javafx.beans.Observable;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 //import javafx.beans.*;
@@ -23,10 +41,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 //import java.util.Observable;
-import javafx.beans.Observable;
 
 
-public class MyModel implements IModel, Observable {
+
+public class MyModel extends Observable implements IModel {
 
     private static MyModel myModel;
     private Server generateServer;
@@ -46,11 +64,14 @@ public class MyModel implements IModel, Observable {
 
 
 
-    private MyModel() //constructor
+
+
+    public MyModel() //constructor
     {
-        Server.Configuration("MazeGenerator","MyMazeGenerator");
-        Server.Configuration("SearchingAlgorithm","Depth First Search");
-        Server.Configuration("ThreadPoolSize","3");
+        Configurations.setMazeAlgorithm("MyMazeGenerator");
+        Configurations.setSearchingAlgorithm("Depth First Search");
+        Configurations.setThread(5);
+
         generateServer = new Server(5400, 1000, new ServerStrategyGenerateMaze());
         solveServer = new Server(5401, 1000, new ServerStrategySolveSearchProblem());
         generateServer.start();
@@ -72,13 +93,31 @@ public class MyModel implements IModel, Observable {
 
     @Override
     public void generateMaze(int row, int col) {
-        CommunicateWithServer_MazeGenerating(row, col);
-        //initMaze(maze);
+        CommunicateWithServer(row, col);
+        initMaze(maze);
         //LOG.info("A new maze has been created. Maze dimensions - " + row + " X " + col);
-       // setChanged();
-        //notifyObservers("generate");
+        setChanged();
+        notifyObservers("generate");
 
     }
+
+
+    private void initMaze(Maze newMaze)
+    {
+        intMazeArray = maze.getIntMaze();
+        playerRow = maze.getStartPosition().getRowIndex();
+        playerCol = maze.getStartPosition().getColumnIndex();
+        goalRow = maze.getGoalPosition().getRowIndex();
+        goalCol = maze.getGoalPosition().getColumnIndex();
+        ifwonGame = false;
+        mazeSolutionSteps = null;
+        finalSolution = null;
+    }
+
+
+
+
+
 
     @Override
     public int[][] getMaze() {
@@ -115,19 +154,9 @@ public class MyModel implements IModel, Observable {
 
     }
 
-    @Override
-    public void addListener(InvalidationListener invalidationListener) {
-
-    }
-
-    @Override
-    public void removeListener(InvalidationListener invalidationListener) {
-
-    }
-
 
     //this function given in part B
-    private void CommunicateWithServer_MazeGenerating(int row, int col) {
+    private void CommunicateWithServer(int row, int col) {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5400, (IClientStrategy) (inFromServer, outToServer) -> {
                 try {
@@ -161,6 +190,8 @@ public class MyModel implements IModel, Observable {
 
 
 
+
+
     //_________________________ SETTERS & GETTERS _____________________________________________________
 
 
@@ -185,3 +216,4 @@ public class MyModel implements IModel, Observable {
     public boolean mazeSolution() { return ifwonGame;}
     public ArrayList<int[]> getMazeSolution() { return finalSolution;}
 }
+
