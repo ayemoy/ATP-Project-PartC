@@ -52,7 +52,7 @@ public class MainScreenController extends Controller implements Initializable {
     @FXML
     private Button exitButton;
     MyModel model = new MyModel();
-    MyViewModel viewModel = new MyViewModel(model);
+    MyViewModel viewModel = new MyViewModel();
 
 
     public void switchAboutScene(ActionEvent event) throws IOException {

@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+
 <SplitPane fx:id="splitPane" dividerPositions="0.34375000000000006" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MyViewMaze.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
   <items>
     <AnchorPane fx:id="leftSide" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -38,7 +39,7 @@
             </Label>
             <Button fx:id="save" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="Save" />
             <Button fx:id="solve" layoutX="112.0" layoutY="168.0" mnemonicParsing="false" text="Solve" />
-            <Button fx:id="play" layoutX="61.0" layoutY="123.0" mnemonicParsing="false" text="PLAY!" />
+            <Button fx:id="play" layoutX="61.0" layoutY="123.0" mnemonicParsing="false" onAction="#generateMaze" text="PLAY!" />
             <Button fx:id="back" layoutX="14.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
             <ToggleButton fx:id="music" layoutX="112.0" layoutY="358.0" mnemonicParsing="false" text="Music" />
             <MenuBar layoutX="1.0" layoutY="1.0" prefHeight="25.0" prefWidth="202.0">
