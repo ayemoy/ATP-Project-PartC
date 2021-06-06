@@ -1,5 +1,6 @@
 package View;
-
+import Model.MyModel;
+import ViewModel.*;
 import ViewModel.MyViewModel;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
@@ -38,10 +39,13 @@ import java.util.ResourceBundle;
 
 public class MyViewController extends Controller implements IView , Initializable {
 
-    private MyViewModel viewModel; //save object of viewModel like we need to do in MVVM
+    //private MyViewModel viewModel; //save object of viewModel like we need to do in MVVM
     public boolean showSolution; //boolean that help us know in we need to show the solution
+    @FXML
     public MazeDisplayer mazeDisplayer;
+    @FXML
     private Solution solution;
+
 
     private Scene gameScene;
     private Scene mainScene;
@@ -86,6 +90,8 @@ public class MyViewController extends Controller implements IView , Initializabl
 
     private StringProperty updatePlayerPositionRow = new SimpleStringProperty();
     private StringProperty updatePlayerPositionCol = new SimpleStringProperty();
+
+    MyViewModel viewModel = new MyViewModel();
 
 //________________________________________
 
@@ -171,8 +177,8 @@ public class MyViewController extends Controller implements IView , Initializabl
             viewModel.generateMaze(intRows, intCols);
 
             //ShowSolution.setDisable(false);
-            mazeDisplayer.setSolution(null);
-            mazeDisplayer.setIfMazeSolved(false);
+            //mazeDisplayer.setMazeSolution(null);
+            //mazeDisplayer.setIfMazeSolved(false);
 
         }
         else

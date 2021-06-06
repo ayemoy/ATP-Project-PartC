@@ -10,7 +10,7 @@ import java.util.Observer;
 public class MyViewModel extends Observable implements Observer {
 
     private static MyViewModel myViewModel;
-    private static MyModel model;
+    private MyModel model;
     private int[][] intMazeArray;
     private int goalRow;
     private int goalCol;
@@ -23,13 +23,13 @@ public class MyViewModel extends Observable implements Observer {
 
 
 
-    public MyViewModel(MyModel model) { this.model = MyModel.getInstance(); }
+    public MyViewModel() { this.model = MyModel.getInstance(); } //constructor
 
     // this function do the singleton
     public static MyViewModel getInstance()
     {
         if (myViewModel == null) {
-            myViewModel = new MyViewModel(model);
+            myViewModel = new MyViewModel();
         }
         return myViewModel;
     }
@@ -60,7 +60,7 @@ public class MyViewModel extends Observable implements Observer {
             else if (arg == "move") {
                 currentRow = model.getCurrentRow();
                 currentCol = model.getCurrentCol();
-                ifWonTheGame = model.mazeSolution();
+                ifWonTheGame = model.ifWonGame();
                 setChanged();
                 notifyObservers("move");
             }
@@ -85,10 +85,6 @@ public class MyViewModel extends Observable implements Observer {
         mazeSolution = null;
         model.generateMaze(row, col);
     }
-
-
-
-
 
     public void exit() {
         model.stopServers();

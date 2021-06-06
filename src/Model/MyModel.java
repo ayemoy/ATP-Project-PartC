@@ -59,9 +59,7 @@ public class MyModel extends Observable implements IModel {
     private ArrayList<AState> mazeSolutionSteps;
     private ArrayList<int[]> finalSolution;
     //public MediaPlayer mediaPlayer;
-
-
-
+    //_____________________________________________________________
 
 
 
@@ -116,14 +114,6 @@ public class MyModel extends Observable implements IModel {
 
 
 
-
-
-
-    @Override
-    public int[][] getMaze() {
-        return new int[0][];
-    }
-
     @Override
     public void solveMaze() {
 
@@ -150,9 +140,7 @@ public class MyModel extends Observable implements IModel {
     }
 
     @Override
-    public void addObserver(MyViewModel viewModel) {
-
-    }
+    public void addObserver(MyViewModel viewModel) { super.addObserver(viewModel); }
 
 
     //this function given in part B
@@ -213,7 +201,7 @@ public class MyModel extends Observable implements IModel {
     public int getCurrentCol() { return playerCol;}
     public int getGoalRow() { return goalRow; }
     public int getGoalCol() { return goalCol;}
-    public boolean mazeSolution() { return ifwonGame;}
+    public boolean ifWonGame() { return ifwonGame;}
     public ArrayList<int[]> getMazeSolution() { return finalSolution;}
 }
 
