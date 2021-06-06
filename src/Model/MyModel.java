@@ -23,11 +23,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 //import java.util.Observable;
-//import javafx.beans.Observable;
+import javafx.beans.Observable;
 
 
 public class MyModel implements IModel, Observable {
-
 
     private static MyModel myModel;
     private Server generateServer;
