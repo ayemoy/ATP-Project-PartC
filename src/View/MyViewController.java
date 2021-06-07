@@ -1,11 +1,6 @@
 package View;
-import Model.MyModel;
-import ViewModel.*;
 import ViewModel.MyViewModel;
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.MyMazeGenerator;
 import algorithms.search.Solution;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,19 +11,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import static javafx.geometry.Pos.CENTER;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -91,14 +78,12 @@ public class MyViewController extends Controller implements IView , Initializabl
     private StringProperty updatePlayerPositionRow = new SimpleStringProperty();
     private StringProperty updatePlayerPositionCol = new SimpleStringProperty();
 
-    MyViewModel viewModel = new MyViewModel();
 
 //________________________________________
 
     @Override
     //this function do all updates so when the maze window open, the function run and do all we need
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         RowField.clear();
         ColField.clear();
 
@@ -109,46 +94,43 @@ public class MyViewController extends Controller implements IView , Initializabl
         //try
         //{
 
-            //viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobNice.mp3").toURI().toString())),200);
+        //viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobNice.mp3").toURI().toString())),200);
         //}
         //catch (URISyntaxException e) {
-            //e.printStackTrace();
+        //e.printStackTrace();
         //}
     }
-
 
 
     //this func adjusts the sizes of the pane to GridPane
     private void fitDisplaySizes() {
         borderPane.widthProperty().addListener((obs, oldVal, newVal) -> {
-            pane.setMinWidth(borderPane.getWidth()-200);
-            if (viewModel.getIntMazeArray() != null)
+            pane.setMinWidth(borderPane.getWidth() - 200);
+            if (viewModel.getIntMazeArrayMVM() != null)
                 mazeDisplayer.draw();
         });
         borderPane.heightProperty().addListener((obs, oldVal, newVal) -> {
             pane.setMinHeight(borderPane.getHeight());
-            if (viewModel.getIntMazeArray() != null)
+            if (viewModel.getIntMazeArrayMVM() != null)
                 mazeDisplayer.draw();
         });
         //adjusts the size of the maze displayer to pane
         pane.widthProperty().addListener((obs, oldVal, newVal) -> {
             mazeDisplayer.setWidth(pane.getWidth());
-            if (viewModel.getIntMazeArray() != null)
+            if (viewModel.getIntMazeArrayMVM() != null)
                 mazeDisplayer.draw();
         });
         pane.heightProperty().addListener((obs, oldVal, newVal) -> {
-            mazeDisplayer.setHeight(pane.getHeight()-40);
-            if (viewModel.getIntMazeArray() != null)
+            mazeDisplayer.setHeight(pane.getHeight() - 40);
+            if (viewModel.getIntMazeArrayMVM() != null)
                 mazeDisplayer.draw();
         });
 
     }
 
 
-
     //this function chek if the number of roes and number of columns that the uset insert to the text field is valid
-    private boolean chekIfValidRowsCols(String userNumStr)
-    {
+    private boolean checkIfValidRowsCols(String userNumStr) {
         String regex = "\\d+";
         if (userNumStr.matches(regex)) {
             int val = Integer.valueOf(userNumStr);
@@ -159,16 +141,13 @@ public class MyViewController extends Controller implements IView , Initializabl
     }
 
 
-
-
-    public void generateMaze()
-    {
+    public void generateMaze() {
         showSolution = false;
         //get from user the size of maze that he want set
         String userStrRows = RowField.getText();
         String userStrCols = ColField.getText();
 
-        if (chekIfValidRowsCols(userStrRows) && chekIfValidRowsCols(userStrCols))
+        if (checkIfValidRowsCols(userStrRows) && checkIfValidRowsCols(userStrCols))
         //if number as str is valid, we replace the str in int so we can create the int maze in the right size
         {
             int intRows = Integer.valueOf(userStrRows); //replace the str in int
@@ -180,19 +159,15 @@ public class MyViewController extends Controller implements IView , Initializabl
             //mazeDisplayer.setMazeSolution(null);
             //mazeDisplayer.setIfMazeSolved(false);
 
-        }
-        else
-        {
-            showErrorAlert("Invalid Input" , "Invalid Number!/n" + "Please enter numbers between 3 to 500");
+        } else {
+            showErrorAlert("Invalid Input", "Invalid Number!/n" + "Please enter numbers between 3 to 500");
         }
     }
 
 
-
-
     //______________________handlerssssssss_______________________________________________
     //this function is controll the back button
-        public void switchMainScreen(javafx.event.ActionEvent event) throws IOException {
+    public void switchMainScreen(javafx.event.ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
@@ -204,17 +179,124 @@ public class MyViewController extends Controller implements IView , Initializabl
     //________________getters & setters____________________
 
 
-    public String getUpdatePlayerPositionRow() { return updatePlayerPositionRow.get(); }
-    public StringProperty updatePlayerPositionRowProperty() { return updatePlayerPositionRow; }
-    public void setUpdatePlayerPositionRow(String updatePlayerPositionRow) { this.updatePlayerPositionRow.set(updatePlayerPositionRow); }
-    public String getUpdatePlayerPositionCol() { return updatePlayerPositionCol.get(); }
-    public StringProperty updatePlayerPositionColProperty() { return updatePlayerPositionCol; }
-    public void setUpdatePlayerPositionCol(String updatePlayerPositionCol) { this.updatePlayerPositionCol.set(updatePlayerPositionCol); }
+    public String getUpdatePlayerPositionRow() {
+        return updatePlayerPositionRow.get();
+    }
+
+    public StringProperty updatePlayerPositionRowProperty() {
+        return updatePlayerPositionRow;
+    }
+
+    public void setUpdatePlayerPositionRow(String updatePlayerPositionRow) {
+        this.updatePlayerPositionRow.set(updatePlayerPositionRow);
+    }
+
+    public String getUpdatePlayerPositionCol() {
+        return updatePlayerPositionCol.get();
+    }
+
+    public StringProperty updatePlayerPositionColProperty() {
+        return updatePlayerPositionCol;
+    }
+
+    public void setUpdatePlayerPositionCol(String updatePlayerPositionCol) {
+        this.updatePlayerPositionCol.set(updatePlayerPositionCol);
+    }
 
     @Override
     public void update(Observable o, Object arg) {
+        if (o instanceof MyViewModel) {
+            if (arg == "update") {
+                mazeDisplayer.setMazeSolution(null);
+                mazeDisplayer.setIfMazeSolved(false);
+                mazeDisplayer.setIntMazeArray(viewModel.getIntMazeArrayMVM());
+                mazeDisplayer.setGoalPosition(viewModel.getGoalRow(), viewModel.getGoalCol());
+                mazeDisplayer.setPlayerPosition(viewModel.getCurrentRow(), viewModel.getCurrentCol());
+                mazeDisplayer.drawMaze(mazeDisplayer.getIntMazeArray());
 
+                setUpdatePlayerPositionRow(viewModel.getCurrentRow() + "");
+                setUpdatePlayerPositionCol(viewModel.getCurrentCol() + "");
+                this.zoom(mazeDisplayer);
+
+                //ShowSolution.setDisable(false);
+                //HideSolution.setDisable(true);
+
+            }
+            else if (arg == "load incorrect file type")
+            {
+                //showErrorAlert("You tried to upload an unsuitable file type or a file that does not contain a maze. Please reload a file with .maze extension only.");
+            }
+            else if (arg == "move") {
+                if (viewModel.isIfWonTheGame())
+                {
+                   // viewModel.pauseMusic();
+                    Stage stage = new Stage();
+                    stage.setTitle("C O N G R A T U L A T I O N S ! ! !");
+                    VBox layout = new VBox();
+                    HBox H = new HBox(5);
+                    //H.setAlignment(CENTER);
+                    //layout.setAlignment(CENTER);
+                    Button close = new Button();
+                    close.setText("CLOSE");
+                    H.getChildren().add(close);
+                    layout.spacingProperty().setValue(10);
+                   // Image im = new Image("/Images/giphy.gif");
+                    //ImageView image = new ImageView(im);
+                    //layout.getChildren().add(image);
+                    layout.getChildren().add(H);
+                    Scene scene = new Scene(layout, 494, 365);
+                    scene.getStylesheets().add(getClass().getResource("/View/MainStyle.css").toExternalForm());
+                    stage.setScene(scene);
+                    //stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
+                    stage.show();
+                    //close button
+                    //close.setOnAction(new EventHandler<ActionEvent>() {
+                        //@Override
+                        //public void handle(ActionEvent event) {
+                            //stage.close();
+                        //}
+                    //});
+                   // try{
+                        //viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobFlute.mp3").toURI().toString())),200);
+                   // } catch (URISyntaxException e) {
+                       // e.printStackTrace();
+                   // }
+                }
+                else {
+                    mazeDisplayer.setPlayerPosition(viewModel.getCurrentRow(), viewModel.getCurrentCol());
+                    setUpdatePlayerPositionRow(viewModel.getCurrentRow() + "");
+                    setUpdatePlayerPositionCol(viewModel.getCurrentCol() + "");
+                }
+            }
+            else if (arg == "solve") {
+                mazeDisplayer.drawSolution(viewModel.getMazeSolution());
+            }
+            else if (arg == "save") {
+               // showAlert("Save Maze", "Your maze was successfully saved");
+            }
+
+        }
     }
 
-    //__________________________________________________________________________________
+
+
+    private void zoom(MazeDisplayer pane) {
+        pane.setOnScroll(
+                new EventHandler<ScrollEvent>() {
+                    @Override
+                    public void handle(ScrollEvent event) {
+                        if (event.isControlDown()) {
+                            double zoomFactor = 1.05;
+                            double deltaY = event.getDeltaY();
+
+                            if (deltaY < 0) {
+                                zoomFactor = 0.95;
+                            }
+                            pane.setScaleX(pane.getScaleX() * zoomFactor);
+                            pane.setScaleY(pane.getScaleY() * zoomFactor);
+                            event.consume();
+                        }
+                    }
+                });
+    }
 }

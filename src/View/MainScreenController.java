@@ -73,7 +73,10 @@ public class MainScreenController extends Controller implements Initializable {
     }
 
     public void switchMazeScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyView.fxml"));
+        root = fxmlLoader.load();
+        viewModel.addObserver(fxmlLoader.getController());
         mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
         mainStage.setScene(mainScene);

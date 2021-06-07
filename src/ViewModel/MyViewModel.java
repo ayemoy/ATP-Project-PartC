@@ -23,7 +23,11 @@ public class MyViewModel extends Observable implements Observer {
 
 
 
-    public MyViewModel() { this.model = MyModel.getInstance(); } //constructor
+    public MyViewModel()
+    {
+        this.model = MyModel.getInstance();
+        this.model.addObserver(this);
+    } //constructor
 
     // this function do the singleton
     public static MyViewModel getInstance()
@@ -41,8 +45,8 @@ public class MyViewModel extends Observable implements Observer {
     {
         if (o instanceof MyModel) {
             if (arg == "generate" || arg == "load") {
-                intMazeArray = model.getMazeArray();
-                currentRow = model.getCurrentRow();
+                this.intMazeArray = model.getMazeArray();
+                this.currentRow = model.getCurrentRow();
                 currentCol = model.getCurrentCol();
                 goalCol = model.getGoalRow();
                 goalCol = model.getGoalCol();
@@ -98,7 +102,7 @@ public class MyViewModel extends Observable implements Observer {
 
     public MyModel getModel() { return model; }
     public void setModel(MyModel model) { this.model = model; }
-    public int[][] getIntMazeArray() { return intMazeArray; }
+    public int[][] getIntMazeArrayMVM() { return intMazeArray; }
     public void setIntMazeArray(int[][] mazeArray) { this.intMazeArray = mazeArray; }
     public int getGoalRow() { return goalRow; }
     public void setGoalRow(int goalRow) { this.goalRow = goalRow; }

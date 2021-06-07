@@ -23,6 +23,9 @@ every scene need to handle Error and Message alerts
 
 public abstract class Controller implements IView, Observer {
 
+
+    MyViewModel viewModel = MyViewModel.getInstance();
+
     @Override
     //in every scene we want be able show alert to user so we do it here
     //in every scene we can choose later what to write to the user

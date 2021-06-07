@@ -1,7 +1,6 @@
 package View;
 
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.Canvas;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 public class MazeDisplayer extends Canvas {
 
 
-    private int[][] intMaze;
+    private int[][] intMazeArray;
     private int playerRow;
     private int playerCol;
     private int playerGoalRow;
@@ -36,20 +35,37 @@ public class MazeDisplayer extends Canvas {
 //__________________________________GETTERS & SETTERS______________________________________________________
 
 
-    public int[][] getIntMaze() { return intMaze; }
-    public void setIntMaze(int[][] intMaze) { this.intMaze = intMaze; }
-    public int getPlayerRow() { return playerRow; }
-    public void setPlayerRow(int playerRow) { this.playerRow = playerRow; }
-    public int getPlayerCol() { return playerCol; }
-    public void setPlayerCol(int playerCol) { this.playerCol = playerCol; }
-    public int getPlayerGoalRow() { return playerGoalRow; }
-    public void setPlayerGoalRow(int playerGoalRow) { this.playerGoalRow = playerGoalRow; }
-    public int getPlayerGoalCol() { return playerGoalCol; }
-    public void setPlayerGoalCol(int playerGoalCol) { this.playerGoalCol = playerGoalCol; }
+    public void setIfMazeSolved(Boolean solved) { this.ifMazeSolved = solved; }
     public ArrayList<int[]> getMazeSolution() { return mazeSolution; }
-    public void setMazeSolution(ArrayList<int[]> mazeSolution) { this.mazeSolution = mazeSolution; }
+    public void setMazeSolution(ArrayList<int[]> solution) { this.mazeSolution = solution; }
     public boolean isIfMazeSolved() { return ifMazeSolved; }
-    public void setIfMazeSolved(boolean ifMazeSolved) { this.ifMazeSolved = ifMazeSolved; }
+
+
+    public int getPlayerRow() { return playerRow; }
+    public int getPlayerCol() { return playerCol; }
+    public void setPlayerPosition(int row, int col)
+    {
+        this.playerRow = row;
+        this.playerCol = col;
+        draw();
+    }
+    public int getPlayerGoalRow() { return playerGoalRow; }
+    public int getPlayerGoalCol() { return playerGoalCol; }
+    public void setGoalPosition(int row, int col)
+    {
+        this.playerGoalRow = row;
+        this.playerGoalCol = col;
+    }
+    public int[][] getIntMazeArray() { return intMazeArray; }
+    public void setIntMazeArray(int[][] intMaze) { this.intMazeArray = intMaze; }
+
+
+    public void setPlayerRow(int playerRow) { this.playerRow = playerRow; }
+    public void setPlayerCol(int playerCol) { this.playerCol = playerCol; }
+    public void setPlayerGoalRow(int playerGoalRow) { this.playerGoalRow = playerGoalRow; }
+    public void setPlayerGoalCol(int playerGoalCol) { this.playerGoalCol = playerGoalCol; }
+
+
 
     public String getWallPic() { return wallPic.get(); }
     public StringProperty wallPicProperty() { return wallPic; }
@@ -71,12 +87,12 @@ public class MazeDisplayer extends Canvas {
     //this function draw the maze itself, the walls and the player
     void draw()
     {
-        if(intMaze != null)
+        if(intMazeArray != null)
         {
             double canvasHeight = getHeight();
             double canvasWidth = getWidth();
-            int row = intMaze.length;
-            int col = intMaze[0].length;
+            int row = intMazeArray.length;
+            int col = intMazeArray[0].length;
             double cellHeight = canvasHeight/row;
             double cellWidth = canvasWidth/col;
             GraphicsContext graphicsContext = getGraphicsContext2D();
@@ -98,7 +114,7 @@ public class MazeDisplayer extends Canvas {
             {
                 for(int j=0;j<col;j++)
                 {
-                    if(intMaze[i][j] == 1) //Wall
+                    if(intMazeArray[i][j] == 1) //Wall
                     {
                         h = i * cellHeight;
                         w = j * cellWidth;
@@ -157,8 +173,15 @@ public class MazeDisplayer extends Canvas {
     //this function chek if we have not solv the maze yet, so we draw it
     public void drawMaze(int [][] maze)
     {
-        this.intMaze = maze;
+        this.intMazeArray = maze;
         ifMazeSolved = false;
+        draw();
+    }
+
+    public void drawSolution(ArrayList<int[]> solution)
+    {
+        ifMazeSolved = true;
+        mazeSolution = solution;
         draw();
     }
 
