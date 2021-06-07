@@ -85,7 +85,7 @@
             <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="3.0" prefHeight="390.0" prefWidth="381.0">
                <center>
                   <Pane fx:id="pane" prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
-                    <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" startPosPic="./resources/pictures/house.png" playerPic="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krysty.png" wallPic="./resources/pictures/jellyfish.png" ></MazeDisplayer>
+                    <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" startPosPic="./resources/pictures/house.png" playerPic="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png" ></MazeDisplayer>
                   </Pane>
                </center>
             </BorderPane>

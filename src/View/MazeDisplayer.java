@@ -166,6 +166,7 @@ public class MazeDisplayer extends Canvas {
                 System.out.println("There is no goalPic in here");
             }
             graphicsContext.drawImage(targetImage, w_target, h_target, cellWidth, cellHeight);
+
         }
     }
 
