@@ -58,7 +58,6 @@ public class MyModel extends Observable implements IModel {
     private boolean ifwonGame;
     private ArrayList<AState> mazeSolutionSteps;
     private ArrayList<int[]> finalSolution;
-    //public MediaPlayer mediaPlayer;
     //_____________________________________________________________
 
 
@@ -85,8 +84,6 @@ public class MyModel extends Observable implements IModel {
         }
         return myModel;
     }
-
-
 
 
     @Override

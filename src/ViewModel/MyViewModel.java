@@ -47,11 +47,11 @@ public class MyViewModel extends Observable implements Observer {
             if (arg == "generate" || arg == "load") {
                 this.intMazeArray = model.getMazeArray();
                 this.currentRow = model.getCurrentRow();
-                currentCol = model.getCurrentCol();
-                goalCol = model.getGoalRow();
-                goalCol = model.getGoalCol();
+                this.currentCol = model.getCurrentCol();
+                this.goalRow = model.getGoalRow();
+                this.goalCol = model.getGoalCol();
                 //
-                mazeSolution = null;
+                this.mazeSolution = null;
 
                 setChanged();
                 notifyObservers("update");

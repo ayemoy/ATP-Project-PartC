@@ -16,5 +16,8 @@
     -fx-background-image: url("/pictures/together.jpg" );
     -fx-background-size: cover;
     -fx-background-position: center center;
+}
+
+#MazeDisplayer{
 
 }
