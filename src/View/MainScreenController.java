@@ -45,7 +45,6 @@ public class MainScreenController extends Controller implements Initializable {
 
     }
 
-
     private Stage mainStage;
     private Scene mainScene;
     private Parent root;

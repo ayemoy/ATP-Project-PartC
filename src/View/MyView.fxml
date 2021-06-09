@@ -7,33 +7,31 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import View.MazeDisplayer?>
 
+<!--<?import View.MazeDisplayer?>-->
 
-<SplitPane fx:id="splitPane" dividerPositions="0.34375000000000006" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MyViewMaze.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<SplitPane fx:id="splitPane" dividerPositions="0.3956473214285715" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MyViewMaze.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
   <items>
     <AnchorPane fx:id="leftSide" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <ImageView fitHeight="397.0" fitWidth="202.0" layoutX="-2.0" style="-fx-opacity: 0.5;">
+            <ImageView fitHeight="397.0" fitWidth="233.0" layoutX="-2.0">
                <image>
                   <Image url="@../../Resources/pictures/together.jpg" />
                </image>
             </ImageView>
             <TextField fx:id="RowField" layoutX="102.0" layoutY="44.0" prefHeight="25.0" prefWidth="73.0" />
             <TextField fx:id="ColField" layoutX="102.0" layoutY="69.0" prefHeight="25.0" prefWidth="73.0" />
-            <Label fx:id="labelPlayerRow" layoutX="2.0" layoutY="40.0" prefHeight="34.0" prefWidth="81.0" text="Rows:">
+            <Label layoutX="2.0" layoutY="40.0" prefHeight="34.0" prefWidth="81.0" text="Rows:">
                <font>
                   <Font name="Agency FB Bold" size="28.0" />
                </font>
             </Label>
-            <Label fx:id="labelPlayerCol" layoutX="2.0" layoutY="73.0" prefHeight="29.0" prefWidth="99.0" text="Columns:">
+            <Label layoutX="2.0" layoutY="73.0" prefHeight="29.0" prefWidth="99.0" text="Columns:">
                <font>
                   <Font name="Agency FB Bold" size="27.0" />
                </font>
@@ -41,35 +39,35 @@
             <Button fx:id="save" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="Save" />
             <Button fx:id="solve" layoutX="112.0" layoutY="168.0" mnemonicParsing="false" text="Solve" />
             <Button fx:id="play" layoutX="61.0" layoutY="123.0" mnemonicParsing="false" onAction="#generateMaze" text="PLAY!" />
-            <Button fx:id="back" layoutX="14.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
-            <ToggleButton fx:id="music" layoutX="112.0" layoutY="358.0" mnemonicParsing="false" text="Music" />
-            <MenuBar layoutX="1.0" layoutY="1.0" prefHeight="25.0" prefWidth="202.0">
+            <Button fx:id="back" layoutX="2.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
+            <Button fx:id="music" layoutX="150.0" layoutY="371.0" mnemonicParsing="false" text="Music" />
+            <MenuBar fx:id="menuBar" layoutX="1.0" layoutY="8.0" prefHeight="23.0" prefWidth="227.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Load" />
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="save" mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="load" mnemonicParsing="false" text="Close" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Options">
+                <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Properties" />
+                    <MenuItem fx:id="properties" mnemonicParsing="false" text="Delete" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="help" mnemonicParsing="false" text="About" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="About">
+                  <Menu mnemonicParsing="false" text="Help">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Exit">
+                  <Menu mnemonicParsing="false" text="Help">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem fx:id="exit" mnemonicParsing="false" text="About" />
                      </items>
                   </Menu>
               </menus>
@@ -82,13 +80,13 @@
                   <Image url="@../../Resources/pictures/maze3.jpg" />
                </image>
             </ImageView>
-            <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="3.0" prefHeight="390.0" prefWidth="381.0">
-               <center>
-                  <Pane fx:id="pane" prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
-                    <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" startPosPic="./resources/pictures/house.png" playerPic="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png" ></MazeDisplayer>
-                  </Pane>
-               </center>
-            </BorderPane>
+            <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="3.0" prefHeight="390.0" prefWidth="381.0" />
+<!--               <center>-->
+<!--                  <Pane fx:id="pane" prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">-->
+<!--                    <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" startPosPic="./resources/pictures/house.png" playerPic="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png" ></MazeDisplayer>-->
+<!--                  </Pane>-->
+<!--               </center>-->
+<!--            </BorderPane>-->
          </children>
     </AnchorPane>
   </items>

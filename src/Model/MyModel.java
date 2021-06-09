@@ -8,12 +8,9 @@ import IO.MyDecompressorInputStream;
 import Server.Server;
 import Server.ServerStrategyGenerateMaze;
 import Server.ServerStrategySolveSearchProblem;
-import ViewModel.MyViewModel;
 import algorithms.mazeGenerators.Maze;
+import algorithms.mazeGenerators.Position;
 import algorithms.search.AState;
-import algorithms.search.Solution;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 import java.io.*;
@@ -21,25 +18,14 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Observable;
-import Client.Client;
-import Client.IClientStrategy;
+
 import Server.*;
-import Server.Server;
-import Server.ServerStrategyGenerateMaze;
-import Server.ServerStrategySolveSearchProblem;
-import ViewModel.MyViewModel;
-import algorithms.mazeGenerators.Maze;
-import algorithms.search.AState;
 import algorithms.search.Solution;
-import javafx.beans.InvalidationListener;
 //import javafx.beans.Observable;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 //import javafx.beans.*;
-import java.io.*;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
+
 //import java.util.Observable;
 
 
@@ -58,7 +44,9 @@ public class MyModel extends Observable implements IModel {
     private boolean ifwonGame;
     private ArrayList<AState> mazeSolutionSteps;
     private ArrayList<int[]> finalSolution;
+    private Position currentPosition;
     //_____________________________________________________________
+
 
 
 
@@ -78,7 +66,8 @@ public class MyModel extends Observable implements IModel {
     }
 
     //singleton
-    public static MyModel getInstance() {
+    public static MyModel getInstance()
+    {
         if (myModel == null) {
             myModel = new MyModel();
         }
@@ -87,8 +76,9 @@ public class MyModel extends Observable implements IModel {
 
 
     @Override
-    public void generateMaze(int row, int col) {
-        CommunicateWithServer(row, col);
+    public void generateMaze(int row, int col)
+    {
+        GenerateAndCommunicateWithServer(row, col);
         initMaze(maze);
         //LOG.info("A new maze has been created. Maze dimensions - " + row + " X " + col);
         setChanged();
@@ -112,7 +102,23 @@ public class MyModel extends Observable implements IModel {
 
 
     @Override
-    public void solveMaze() {
+    public void solveMaze()
+    {
+        finalSolution = new ArrayList<>();
+        SolveAndCommunicateWithServer();
+        //updates sol
+        for (AState state:mazeSolutionSteps)
+        {
+            int[] currPosState = new int[2];
+            currPosState[0] = state.getRowState();
+            mazeSolutionS
+            currPosState[1] = state.getColState();
+            finalSolution.add(currPosState);
+        }
+        //LOG.info("A solution for the maze was created. Solution number of steps - " + mazeSolutionSteps.size());
+        setChanged();
+        notifyObservers("solve");
+    }
 
     }
 
@@ -141,7 +147,7 @@ public class MyModel extends Observable implements IModel {
 
 
     //this function given in part B
-    private void CommunicateWithServer(int row, int col) {
+    private void GenerateAndCommunicateWithServer(int row, int col) {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5400, (IClientStrategy) (inFromServer, outToServer) -> {
                 try {
@@ -174,12 +180,47 @@ public class MyModel extends Observable implements IModel {
 
 
 
+    private void SolveAndCommunicateWithServer()
+    {
+        try {
+            Client client = new Client(InetAddress.getLocalHost(), 5401, (IClientStrategy) (inFromServer, outToServer) -> {
+                try {
+                    //LOG.info("User info " + InetAddress.getLocalHost() + "requests to solve a maze");
+                    //LOG.info("A maze resolution request was accepted! Solving maze using " +
+                    Configurations.getSearchingAlgorithm();
+                    ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
+                    ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
+                    toServer.flush();
+                    maze.setStartPosition(currentPosition);
+                    toServer.writeObject(maze);
+                    toServer.flush();
+                    Solution mazeSolution = (Solution)fromServer.readObject();
+                    mazeSolutionSteps = mazeSolution.getSolutionPath();
+                } catch (Exception e) {
+                    //LOG.error("Exception: ", e);
+                    e.printStackTrace();
+                }
+            });
+            client.communicateWithServer();
+        } catch (UnknownHostException e) {
+            //LOG.error("Unknown Host Exception: ", e);
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
 
 
     //_________________________ SETTERS & GETTERS _____________________________________________________
 
-
+    public void setPlayerCurrentPosition()
+    {
+        this.currentPosition.setRowIndex(this.playerRow);
+        this.currentPosition.setColIndex(this.playerCol);
+    }
     public void setMaze(Maze maze) { this.maze = maze; }
     public int[][] getInMazeArray() { return intMazeArray; }
     public void setInMazeArray(int[][] inMazeArray) { this.intMazeArray = inMazeArray; }

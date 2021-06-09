@@ -32,58 +32,6 @@ public class MazeDisplayer extends Canvas {
     private StringProperty solPathPic= new SimpleStringProperty("pictures/burger3.png");
 
 
-//__________________________________GETTERS & SETTERS______________________________________________________
-
-
-    public void setIfMazeSolved(Boolean solved) { this.ifMazeSolved = solved; }
-    public ArrayList<int[]> getMazeSolution() { return mazeSolution; }
-    public void setMazeSolution(ArrayList<int[]> solution) { this.mazeSolution = solution; }
-    public boolean isIfMazeSolved() { return ifMazeSolved; }
-
-
-    public int getPlayerRow() { return playerRow; }
-    public int getPlayerCol() { return playerCol; }
-    public void setPlayerPosition(int row, int col)
-    {
-        this.playerRow = row;
-        this.playerCol = col;
-        draw();
-    }
-    public int getPlayerGoalRow() { return playerGoalRow; }
-    public int getPlayerGoalCol() { return playerGoalCol; }
-    public void setGoalPosition(int row, int col)
-    {
-        this.playerGoalRow = row;
-        this.playerGoalCol = col;
-    }
-    public int[][] getIntMazeArray() { return intMazeArray; }
-    public void setIntMazeArray(int[][] intMaze) { this.intMazeArray = intMaze; }
-
-
-    public void setPlayerRow(int playerRow) { this.playerRow = playerRow; }
-    public void setPlayerCol(int playerCol) { this.playerCol = playerCol; }
-    public void setPlayerGoalRow(int playerGoalRow) { this.playerGoalRow = playerGoalRow; }
-    public void setPlayerGoalCol(int playerGoalCol) { this.playerGoalCol = playerGoalCol; }
-
-
-
-    public String getWallPic() { return wallPic.get(); }
-    public StringProperty wallPicProperty() { return wallPic; }
-    public void setWallPic(String wallPic) { this.wallPic.set(wallPic); }
-    public String getPlayerPic() { return playerPic.get(); }
-    public StringProperty playerPicProperty() { return playerPic; }
-    public void setPlayerPic(String playerPic) { this.playerPic.set(playerPic); }
-    public String getStartPosPic() { return startPosPic.get(); }
-    public StringProperty startPosPicProperty() { return startPosPic; }
-    public void setStartPosPic(String startPosPic) { this.startPosPic.set(startPosPic); }
-    public String getGoalPosPic() { return goalPosPic.get(); }
-    public StringProperty goalPosPicProperty() { return goalPosPic; }
-    public void setGoalPosPic(String goalPosPic) { this.goalPosPic.set(goalPosPic); }
-    public String getSolPathPic() { return solPathPic.get(); }
-    public StringProperty solPathPicProperty() { return solPathPic; }
-    public void setSolPathPic(String solPathPic) { this.solPathPic.set(solPathPic); }
-//______________________________________________________________________________________________________
-
     //this function draw the maze itself, the walls and the player
     void draw()
     {
@@ -185,5 +133,85 @@ public class MazeDisplayer extends Canvas {
         mazeSolution = solution;
         draw();
     }
+
+
+    //this function is print the solution path and then desolve ddddddddddddddddddddddddddddddddd
+    private void printSolution() {
+        canvasHeight = getHeight();
+        canvasWidth = getWidth();
+        cellHeight = canvasHeight/arrMaze.length;
+        cellWidth = canvasWidth/arrMaze[0].length;
+        Image characterImage = new Image(Main.getViewModel().getCharacterPicPath());
+        Image trophy = new Image("/Images/trophy.png");
+        GraphicsContext graphicsContext = getGraphicsContext2D();
+        int pathSize = solution.getSolutionPath().size();
+        for(int index = 0; index < pathSize; index++) {
+            int rowIndex,colIndex;
+            rowIndex = ((MazeState)solution.getSolutionPath().get(index)).getMyState().getRowIndex();
+            colIndex = ((MazeState)solution.getSolutionPath().get(index)).getMyState().getColumnIndex();
+            graphicsContext.drawImage(index < pathSize-1 ?characterImage:trophy ,colIndex*cellWidth,rowIndex*cellHeight,cellWidth,cellWidth);
+        }
+    }
+
+
+
+
+
+
+
+
+
+//__________________________________GETTERS & SETTERS______________________________________________________
+
+
+    public void setIfMazeSolved(Boolean solved) { this.ifMazeSolved = solved; }
+    public ArrayList<int[]> getMazeSolution() { return mazeSolution; }
+    public void setMazeSolution(ArrayList<int[]> solution) { this.mazeSolution = solution; }
+    public boolean isIfMazeSolved() { return ifMazeSolved; }
+
+
+    public int getPlayerRow() { return playerRow; }
+    public int getPlayerCol() { return playerCol; }
+    public void setPlayerPosition(int row, int col)
+    {
+        this.playerRow = row;
+        this.playerCol = col;
+        draw();
+    }
+    public int getPlayerGoalRow() { return playerGoalRow; }
+    public int getPlayerGoalCol() { return playerGoalCol; }
+    public void setGoalPosition(int row, int col)
+    {
+        this.playerGoalRow = row;
+        this.playerGoalCol = col;
+    }
+    public int[][] getIntMazeArray() { return intMazeArray; }
+    public void setIntMazeArray(int[][] intMaze) { this.intMazeArray = intMaze; }
+
+
+    public void setPlayerRow(int playerRow) { this.playerRow = playerRow; }
+    public void setPlayerCol(int playerCol) { this.playerCol = playerCol; }
+    public void setPlayerGoalRow(int playerGoalRow) { this.playerGoalRow = playerGoalRow; }
+    public void setPlayerGoalCol(int playerGoalCol) { this.playerGoalCol = playerGoalCol; }
+
+
+
+    public String getWallPic() { return wallPic.get(); }
+    public StringProperty wallPicProperty() { return wallPic; }
+    public void setWallPic(String wallPic) { this.wallPic.set(wallPic); }
+    public String getPlayerPic() { return playerPic.get(); }
+    public StringProperty playerPicProperty() { return playerPic; }
+    public void setPlayerPic(String playerPic) { this.playerPic.set(playerPic); }
+    public String getStartPosPic() { return startPosPic.get(); }
+    public StringProperty startPosPicProperty() { return startPosPic; }
+    public void setStartPosPic(String startPosPic) { this.startPosPic.set(startPosPic); }
+    public String getGoalPosPic() { return goalPosPic.get(); }
+    public StringProperty goalPosPicProperty() { return goalPosPic; }
+    public void setGoalPosPic(String goalPosPic) { this.goalPosPic.set(goalPosPic); }
+    public String getSolPathPic() { return solPathPic.get(); }
+    public StringProperty solPathPicProperty() { return solPathPic; }
+    public void setSolPathPic(String solPathPic) { this.solPathPic.set(solPathPic); }
+//______________________________________________________________________________________________________
+
 
 }

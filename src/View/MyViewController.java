@@ -53,13 +53,11 @@ public class MyViewController extends Controller implements IView , Initializabl
     @FXML
     private Button solve;
     @FXML
-    private ToggleButton music;
-    @FXML
     private TextField RowField;
     @FXML
     private TextField ColField;
     @FXML
-    public MenuBar menuBar;
+    public MenuBarController menuBar;
 
 
     @FXML
@@ -141,7 +139,8 @@ public class MyViewController extends Controller implements IView , Initializabl
     }
 
 
-    public void generateMaze() {
+    public void generateMaze()
+    {
         showSolution = false;
         //get from user the size of maze that he want set
         String userStrRows = RowField.getText();
@@ -175,33 +174,6 @@ public class MyViewController extends Controller implements IView , Initializabl
         mainStage.show();
     }
 
-
-    //________________getters & setters____________________
-
-
-    public String getUpdatePlayerPositionRow() {
-        return updatePlayerPositionRow.get();
-    }
-
-    public StringProperty updatePlayerPositionRowProperty() {
-        return updatePlayerPositionRow;
-    }
-
-    public void setUpdatePlayerPositionRow(String updatePlayerPositionRow) {
-        this.updatePlayerPositionRow.set(updatePlayerPositionRow);
-    }
-
-    public String getUpdatePlayerPositionCol() {
-        return updatePlayerPositionCol.get();
-    }
-
-    public StringProperty updatePlayerPositionColProperty() {
-        return updatePlayerPositionCol;
-    }
-
-    public void setUpdatePlayerPositionCol(String updatePlayerPositionCol) {
-        this.updatePlayerPositionCol.set(updatePlayerPositionCol);
-    }
 
     @Override
     public void update(Observable o, Object arg) {
@@ -299,4 +271,73 @@ public class MyViewController extends Controller implements IView , Initializabl
                     }
                 });
     }
+
+
+    public void solveMaze()
+    {
+        viewModel.solve();
+        HideSolution.setDisable(false);
+        ShowSolution.setDisable(true);
+    }
+
+    public void hideSolution() {
+        mazeDisplayer.drawMaze(mazeDisplayer.getMaze());
+        HideSolution.setDisable(true);
+        ShowSolution.setDisable(false);
+    }
+
+    //move character
+    public void keyPressed(KeyEvent keyEvent) {
+        viewModel.moveCharacter(keyEvent);
+        keyEvent.consume();
+    }
+
+    public void mouseClicked(MouseEvent mouseEvent) {
+        mazeDisplayer.requestFocus();
+    }
+
+
+
+    public void soundOn() throws URISyntaxException {
+        viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobNice.mp3").toURI().toString())),200);
+        soundOn.setDisable(true);
+        soundOff.setDisable(false);
+    }
+
+    public void soundOff(){
+        viewModel.pauseMusic();
+        soundOn.setDisable(false);
+        soundOff.setDisable(true);
+    }
+
+
+
+
+    //________________getters & setters____________________
+
+
+    public String getUpdatePlayerPositionRow() {
+        return updatePlayerPositionRow.get();
+    }
+
+    public StringProperty updatePlayerPositionRowProperty() {
+        return updatePlayerPositionRow;
+    }
+
+    public void setUpdatePlayerPositionRow(String updatePlayerPositionRow) {
+        this.updatePlayerPositionRow.set(updatePlayerPositionRow);
+    }
+
+    public String getUpdatePlayerPositionCol() {
+        return updatePlayerPositionCol.get();
+    }
+
+    public StringProperty updatePlayerPositionColProperty() {
+        return updatePlayerPositionCol;
+    }
+
+    public void setUpdatePlayerPositionCol(String updatePlayerPositionCol) {
+        this.updatePlayerPositionCol.set(updatePlayerPositionCol);
+    }
+
 }
