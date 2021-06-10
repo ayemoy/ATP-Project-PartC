@@ -110,7 +110,9 @@ public class MyModel extends Observable implements IModel {
         for (AState state:mazeSolutionSteps)
         {
             int[] currPosState = new int[2];
-            currPosState[0] = state.getRowState();
+            String x = state.getStateName();
+            x.
+            currPosState[0] = state.getStateName();
             mazeSolutionS
             currPosState[1] = state.getColState();
             finalSolution.add(currPosState);
