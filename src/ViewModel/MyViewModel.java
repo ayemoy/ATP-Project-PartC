@@ -1,8 +1,11 @@
 package ViewModel;
 import Model.MyModel;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,6 +22,8 @@ public class MyViewModel extends Observable implements Observer {
     private boolean ifWonTheGame;
     private ArrayList<int[]> mazeSolution;
     private MediaPlayer playMusic;
+
+
 
 
 
@@ -44,7 +49,7 @@ public class MyViewModel extends Observable implements Observer {
     public void update(Observable o, Object arg)
     {
         if (o instanceof MyModel) {
-            if (arg == "generate" || arg == "load") {
+            if (arg == "Generate" || arg == "Load") {
                 this.intMazeArray = model.getMazeArray();
                 this.currentRow = model.getCurrentRow();
                 this.currentCol = model.getCurrentCol();
@@ -54,28 +59,28 @@ public class MyViewModel extends Observable implements Observer {
                 this.mazeSolution = null;
 
                 setChanged();
-                notifyObservers("update");
+                notifyObservers("Update");
             }
-            else if (arg == "load incorrect file type")
+            else if (arg == "Load incorrect file type")
             {
                 setChanged();
-                notifyObservers("load incorrect file type");
+                notifyObservers("Load incorrect file type");
             }
-            else if (arg == "move") {
+            else if (arg == "Move") {
                 currentRow = model.getCurrentRow();
                 currentCol = model.getCurrentCol();
                 ifWonTheGame = model.ifWonGame();
                 setChanged();
-                notifyObservers("move");
+                notifyObservers("Move");
             }
-            else if (arg == "solve") {
+            else if (arg == "Solve") {
                 mazeSolution = model.getMazeSolution();
                 setChanged();
-                notifyObservers("solve");
+                notifyObservers("Solve");
             }
-            else if (arg == "save") {
+            else if (arg == "Save") {
                 setChanged();
-                notifyObservers("save");
+                notifyObservers("Save");
             }
         }
 
@@ -94,6 +99,87 @@ public class MyViewModel extends Observable implements Observer {
         model.stopServers();
     }
 
+
+
+    //this function get notify from VIEW that the user want to save the maze and pass it to MYMODEL to save it
+    public void saveMaze(String path) {
+        if (path != null)
+            model.saveTheUserMazeToFile(path);
+    }
+
+    //load maze
+    public void loadMaze(String path) {
+        if (path != null)
+            model.loadUserMaze(path);
+    }
+
+
+    //move character
+    public void moveCharacter(KeyEvent keyEvent) {
+        int characterMovePress = -1;
+        switch (keyEvent.getCode()) {
+            case UP:
+                characterMovePress = 1;
+                break;
+            case DIGIT8:
+                characterMovePress = 1;
+                break;
+            case DOWN:
+                characterMovePress = 2;
+                break;
+            case DIGIT2:
+                characterMovePress = 2;
+                break;
+            case LEFT:
+                characterMovePress = 3;
+                break;
+            case DIGIT4:
+                characterMovePress = 3;
+                break;
+            case RIGHT:
+                characterMovePress = 4;
+                break;
+            case DIGIT6:
+                characterMovePress = 4;
+                break;
+            //Diagonal steps
+            case DIGIT7:
+                characterMovePress = 5;
+                break;
+            case DIGIT9:
+                characterMovePress = 6;
+                break;
+            case DIGIT1:
+                characterMovePress = 7;
+                break;
+            case DIGIT3:
+                characterMovePress = 8;
+                break;
+        }
+        model.updateTheCharacterLocation(characterMovePress);
+    }
+
+
+    public void solve()
+    {
+        model.solveTheGameMaze();
+    }
+
+
+    public boolean play(String path)
+    {//natasha
+
+        Media music = new Media( new File(path).toURI().toString());
+        playMusic = new MediaPlayer(music);
+        playMusic.setVolume(220);
+        playMusic.play();
+        return false;
+
+    }
+    public void stopPlay()
+    {
+        playMusic.stop();
+    }//natasha
 
 
 

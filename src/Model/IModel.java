@@ -7,7 +7,6 @@ import javafx.beans.Observable;
 public interface IModel {
 
     void generateMaze(int rows, int cols);
-    //int[][] getMaze();
     void solveTheGameMaze();
     void updateTheCharacterLocation(int direction);
     void stopServers();
