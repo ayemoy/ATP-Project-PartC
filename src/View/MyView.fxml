@@ -15,7 +15,7 @@
 
 <!--<?import View.MazeDisplayer?>-->
 
-<SplitPane fx:id="splitPane" dividerPositions="0.3956473214285715" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MyViewMaze.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+<SplitPane fx:id="splitPane" dividerPositions="0.3889508928571429" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MyViewMaze.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
   <items>
     <AnchorPane fx:id="leftSide" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -37,41 +37,30 @@
                </font>
             </Label>
             <Button fx:id="save" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="Save" />
-            <Button fx:id="solve" layoutX="112.0" layoutY="168.0" mnemonicParsing="false" text="Solve" />
+            <Button fx:id="solve" layoutX="88.0" layoutY="168.0" mnemonicParsing="false" text="Solve" />
             <Button fx:id="play" layoutX="61.0" layoutY="123.0" mnemonicParsing="false" onAction="#generateMaze" text="PLAY!" />
             <Button fx:id="back" layoutX="2.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
             <Button fx:id="music" layoutX="150.0" layoutY="371.0" mnemonicParsing="false" text="Music" />
             <MenuBar fx:id="menuBar" layoutX="1.0" layoutY="8.0" prefHeight="23.0" prefWidth="227.0">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                        <MenuItem fx:id="save" mnemonicParsing="false" text="Close" />
-                        <MenuItem fx:id="load" mnemonicParsing="false" text="Close" />
+                    <MenuItem fx:id="newMenu" mnemonicParsing="false" text="New" />
+                        <MenuItem fx:id="saveMenu" mnemonicParsing="false" text="Save" />
+                        <MenuItem fx:id="loadMenu" mnemonicParsing="false" text="Load" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu fx:id="optionsMenu" mnemonicParsing="false" text="Options">
                   <items>
                     <MenuItem fx:id="properties" mnemonicParsing="false" text="Delete" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem fx:id="help" mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                        <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                        <MenuItem fx:id="exit" mnemonicParsing="false" text="About" />
-                     </items>
-                  </Menu>
+                <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help" />
+                  <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About" />
+                  <Menu fx:id="exitMenu" mnemonicParsing="false" text="Exit" />
               </menus>
             </MenuBar>
+            <Button fx:id="hide" layoutX="161.0" layoutY="168.0" mnemonicParsing="false" onAction="#hideSolution" text="Hide " />
          </children></AnchorPane>
     <AnchorPane fx:id="rightSide" minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="413.0">
          <children>

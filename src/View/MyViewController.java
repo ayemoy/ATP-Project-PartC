@@ -12,11 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -39,6 +41,9 @@ public class MyViewController extends Controller implements IView , Initializabl
     private Scene mainScene;
     private Stage mainStage;
     private Parent root;
+    private boolean sound=true;//natasha
+
+
 
     @FXML
     private SplitPane splitPane;
@@ -53,6 +58,8 @@ public class MyViewController extends Controller implements IView , Initializabl
     private Button save;
     @FXML
     private Button solve;
+    @FXML
+    private Button hide;
     @FXML
     private TextField RowField;
     @FXML
@@ -277,14 +284,14 @@ public class MyViewController extends Controller implements IView , Initializabl
     public void solveMaze()
     {
         viewModel.solve();
-        HideSolution.setDisable(false);
-        ShowSolution.setDisable(true);
+        hide.setDisable(false);
+        solve.setDisable(true);
     }
 
     public void hideSolution() {
-        mazeDisplayer.drawMaze(mazeDisplayer.getMaze());
-        HideSolution.setDisable(true);
-        ShowSolution.setDisable(false);
+        mazeDisplayer.drawMaze(mazeDisplayer.getIntMazeArray());
+        hide.setDisable(true);
+        solve.setDisable(false);
     }
 
     //move character
@@ -299,16 +306,18 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
 
-    public void soundOn() throws URISyntaxException {
-        viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobNice.mp3").toURI().toString())),200);
-        soundOn.setDisable(true);
-        soundOff.setDisable(false);
-    }
-
-    public void soundOff(){
-        viewModel.pauseMusic();
-        soundOn.setDisable(false);
-        soundOff.setDisable(true);
+    public void turnMusicOn()// natasha
+    {
+        if(sound)
+        {
+            String path = "Resources/Music/remix.mp3";
+            viewModel.playTheMusic(path);
+            this.sound=false;
+        }
+        else{
+            viewModel.stopPlayTheMusic();
+            this.sound=true;
+        }
     }
 
 

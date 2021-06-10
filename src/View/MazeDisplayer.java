@@ -136,22 +136,22 @@ public class MazeDisplayer extends Canvas {
 
 
     //this function is print the solution path and then desolve ddddddddddddddddddddddddddddddddd
-    private void printSolution() {
-        canvasHeight = getHeight();
-        canvasWidth = getWidth();
-        cellHeight = canvasHeight/arrMaze.length;
-        cellWidth = canvasWidth/arrMaze[0].length;
-        Image characterImage = new Image(Main.getViewModel().getCharacterPicPath());
-        Image trophy = new Image("/Images/trophy.png");
-        GraphicsContext graphicsContext = getGraphicsContext2D();
-        int pathSize = solution.getSolutionPath().size();
-        for(int index = 0; index < pathSize; index++) {
-            int rowIndex,colIndex;
-            rowIndex = ((MazeState)solution.getSolutionPath().get(index)).getMyState().getRowIndex();
-            colIndex = ((MazeState)solution.getSolutionPath().get(index)).getMyState().getColumnIndex();
-            graphicsContext.drawImage(index < pathSize-1 ?characterImage:trophy ,colIndex*cellWidth,rowIndex*cellHeight,cellWidth,cellWidth);
-        }
-    }
+//    private void printSolution() {
+//        canvasHeight = getHeight();
+//        canvasWidth = getWidth();
+//        cellHeight = canvasHeight/arrMaze.length;
+//        cellWidth = canvasWidth/arrMaze[0].length;
+//        Image characterImage = new Image(Main.getViewModel().getCharacterPicPath());
+//        Image trophy = new Image("/Images/trophy.png");
+//        GraphicsContext graphicsContext = getGraphicsContext2D();
+//        int pathSize = solution.getSolutionPath().size();
+//        for(int index = 0; index < pathSize; index++) {
+//            int rowIndex,colIndex;
+//            rowIndex = ((MazeState)solution.getSolutionPath().get(index)).getMyState().getRowIndex();
+//            colIndex = ((MazeState)solution.getSolutionPath().get(index)).getMyState().getColumnIndex();
+//            graphicsContext.drawImage(index < pathSize-1 ?characterImage:trophy ,colIndex*cellWidth,rowIndex*cellHeight,cellWidth,cellWidth);
+//        }
+//    }
 
 
 

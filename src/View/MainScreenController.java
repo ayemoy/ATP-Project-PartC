@@ -45,6 +45,9 @@ public class MainScreenController extends Controller implements Initializable {
 
     }
 
+    private boolean sound=true;//natasha
+
+
     private Stage mainStage;
     private Scene mainScene;
     private Parent root;
@@ -92,18 +95,26 @@ public class MainScreenController extends Controller implements Initializable {
         }
     }
 
+
+    public void turnMusicOn()// natasha
+    {
+        if(sound)
+        {
+            String path = "Resources/Music/remix.mp3";
+            viewModel.playTheMusic(path);
+            this.sound=false;
+        }
+        else{
+            viewModel.stopPlayTheMusic();
+            this.sound=true;
+        }
+    }
+
+
+
     @Override
     public void update(Observable o, Object arg) {
 
     }
 }
-
-
-
-/*
-    public void about()
-    {
-        handleAboutButton();
-    }
-*/
 

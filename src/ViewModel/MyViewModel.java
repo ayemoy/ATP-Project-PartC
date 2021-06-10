@@ -166,7 +166,7 @@ public class MyViewModel extends Observable implements Observer {
     }
 
 
-    public boolean play(String path)
+    public boolean playTheMusic(String path)
     {//natasha
 
         Media music = new Media( new File(path).toURI().toString());
@@ -176,7 +176,7 @@ public class MyViewModel extends Observable implements Observer {
         return false;
 
     }
-    public void stopPlay()
+    public void stopPlayTheMusic()
     {
         playMusic.stop();
     }//natasha
