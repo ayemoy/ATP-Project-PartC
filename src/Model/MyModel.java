@@ -21,6 +21,8 @@ import java.util.Observable;
 
 import Server.*;
 import algorithms.search.Solution;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 //import javafx.beans.Observable;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
@@ -48,15 +50,11 @@ public class MyModel extends Observable implements IModel {
     //_____________________________________________________________
 
 
-
-
-
     public MyModel() //constructor
     {
         Configurations.setMazeAlgorithm("MyMazeGenerator");
         Configurations.setSearchingAlgorithm("Depth First Search");
         Configurations.setThread(5);
-
         generateServer = new Server(5400, 1000, new ServerStrategyGenerateMaze());
         solveServer = new Server(5401, 1000, new ServerStrategySolveSearchProblem());
         generateServer.start();
@@ -76,10 +74,10 @@ public class MyModel extends Observable implements IModel {
 
 
     @Override
-    public void generateMaze(int row, int col)
+    public void generateMaze(int row, int col) //this function will generate the maze and send it to my view model and then to Myviewcontroller
     {
         GenerateAndCommunicateWithServer(row, col);
-        initMaze(maze);
+        initTheMaze(maze);
         //LOG.info("A new maze has been created. Maze dimensions - " + row + " X " + col);
         setChanged();
         notifyObservers("generate");
@@ -87,14 +85,20 @@ public class MyModel extends Observable implements IModel {
     }
 
 
-    private void initMaze(Maze newMaze)
+    private void initTheMaze(Maze newMaze) //get all the information about the maze and init it
     {
-        intMazeArray = maze.getIntMaze();
-        playerRow = maze.getStartPosition().getRowIndex();
-        playerCol = maze.getStartPosition().getColumnIndex();
+        ifwonGame = false;
+
         goalRow = maze.getGoalPosition().getRowIndex();
         goalCol = maze.getGoalPosition().getColumnIndex();
-        ifwonGame = false;
+
+
+        intMazeArray = maze.getIntMaze();
+
+        playerRow = maze.getStartPosition().getRowIndex();
+        playerCol = maze.getStartPosition().getColumnIndex();
+
+
         mazeSolutionSteps = null;
         finalSolution = null;
     }
@@ -102,45 +106,186 @@ public class MyModel extends Observable implements IModel {
 
 
     @Override
-    public void solveMaze()
+    public void solveTheGameMaze()
     {
         finalSolution = new ArrayList<>();
-        SolveAndCommunicateWithServer();
-        //updates sol
-        for (AState state:mazeSolutionSteps)
-        {
+        SolveAndCommunicateWithServer(); //call the server that handle with maze solving and communicate with it
+        // after connect to the server , we updates the solution
+        for (AState state:mazeSolutionSteps) {
             int[] currPosState = new int[2];
-            String x = state.getStateName();
-            x.
-            currPosState[0] = state.getStateName();
-            mazeSolutionS
-            currPosState[1] = state.getColState();
+            int indexRow = state.getStateName().indexOf(",");
+            int indexCol = state.getStateName().indexOf(",");
+
+            currPosState[0] = Integer.parseInt(state.getStateName().substring(0,indexRow));
+            currPosState[1] = Integer.parseInt(state.getStateName().substring(indexCol+1));
             finalSolution.add(currPosState);
         }
         //LOG.info("A solution for the maze was created. Solution number of steps - " + mazeSolutionSteps.size());
         setChanged();
-        notifyObservers("solve");
+        notifyObservers("Solve");
     }
 
+
+
+    /*
+      wherePlayerMove = 1 -> Up
+       wherePlayerMove = 2 -> Down
+       wherePlayerMove = 3 -> Left
+       wherePlayerMove = 4 -> Right
+        wherePlayerMove = 5 -> Up Left
+        wherePlayerMove = 6 -> Up Right
+       wherePlayerMove = 7 -> Down Left
+       wherePlayerMove = 8 -> Down Right
+             */
+    @Override
+    public void updateTheCharacterLocation(int wherePlayerMove) //this function update all the time the cuurent location of the character player and keep updating the new location that user move to
+    {
+
+        switch(wherePlayerMove) {
+            case 1: //if the character move up
+                if (ifCharacterCanMove(playerRow-1, playerCol))
+                    playerRow--;
+                else
+                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                break;
+            case 2: //if the character move down
+                if (ifCharacterCanMove(playerRow+1, playerCol))
+                    playerRow++;
+                else
+                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                break;
+            case 3: //if the character move left
+                if (ifCharacterCanMove(playerRow, playerCol-1))
+                    playerCol--;
+                else
+                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                break;
+            case 4: //if the character move right
+                if (ifCharacterCanMove(playerRow, playerCol+1))
+                    playerCol++;
+                else
+                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                break;
+            case 5: //if the character move up left
+                if (ifCharacterCanMove(playerRow-1, playerCol-1))
+                {
+                    playerRow--;
+                    playerCol--;
+                }
+                else
+                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                break;
+            case 6: //if the character move up right
+                if (ifCharacterCanMove(playerRow-1, playerCol+1))
+                {
+                    playerRow--;
+                    playerCol++;
+                }
+                else
+                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                break;
+            case 7: // if the character move down left
+                if (ifCharacterCanMove(playerRow+1, playerCol-1))
+                {
+                    playerRow++;
+                    playerCol--;
+                }
+                else
+                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                break;
+            case 8: // if the character move down right
+                if (ifCharacterCanMove(playerRow+1, playerCol+1))
+                {
+                    playerRow++;
+                    playerCol++;
+                }
+                else
+                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                break;
+        }
+        // now we check if the character get to the goal position and if the user won the game
+        if (playerRow == goalRow && playerCol == goalCol)
+        {
+            ifwonGame = true;
+            //LOG.info("The user won the game");
+        }
+        //now we notify to observer that the user move the character and set the changes that it makes in the game
+        setChanged();
+        notifyObservers("Move");
+    }
+
+
+
+
+    //this function check if the player can move to any side
+    private boolean ifCharacterCanMove(int rowUserWantToMove, int colUserWantToMove) {
+        if (rowUserWantToMove < 0 || rowUserWantToMove >= intMazeArray.length ||
+                colUserWantToMove < 0 || colUserWantToMove >= intMazeArray[0].length || intMazeArray[rowUserWantToMove][colUserWantToMove] == 1)
+            return false;
+        return true;
+    }
+
+    //the user hear this sound when the character do invalid step in the maze
+    protected void playMusicWhenPlayerCantMove(String pathOfMusic) {
+        String musicFile = pathOfMusic;
+        Media sound = new Media(new java.io.File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+    }
+
+
+
+    @Override
+    public void stopServers() //this function stop the communication with the server and user
+    {
+        generateServer.stop();
+        //LOG.info("Generate maze server stopped");
+        solveServer.stop();
+        //LOG.info("Solve maze server stopped");
+    }
+
+
+    //when user want to save the maze in the game into a file, he click on Save Button and save it
+    @Override
+    public void saveTheUserMazeToFile(String filePath)
+    {
+        try {
+            FileOutputStream file = new FileOutputStream(filePath);
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            output.writeObject(maze);
+            output.flush();
+            output.close();
+            file.close();
+           //LOG.info("The maze has been successfully saved to the disk");
+            setChanged();
+            notifyObservers("Save");
+        }
+        catch (IOException e)
+        {
+            //LOG.error("IO Exception: ", e);
+        }
     }
 
     @Override
-    public void updateCharacterLocation(int direction) {
-
-    }
-
-    @Override
-    public void stopServers() {
-
-    }
-
-    @Override
-    public void saveMazeToFile(String filePath) {
-
-    }
-
-    @Override
-    public void loadUserMaze(String filePath) {
+    public void loadUserMaze(String filePath)
+    {
+        try {
+            FileInputStream file = new FileInputStream(filePath);
+            ObjectInputStream input = new ObjectInputStream(file);
+            maze = (Maze)input.readObject();
+            initTheMaze(maze);
+            //LOG.info("A maze has been successfully uploaded from the disk");
+            setChanged();
+            notifyObservers("Load");
+            file.close();
+        }
+        catch (IOException|ClassNotFoundException e)
+        {
+            setChanged();
+            notifyObservers("Load incorrect file type");
+            //LOG.error("IO/Class Not Found Exception : Not a maze file");
+            //e.printStackTrace();
+        }
 
     }
 
@@ -209,10 +354,6 @@ public class MyModel extends Observable implements IModel {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 
 

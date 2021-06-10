@@ -8,10 +8,10 @@ public interface IModel {
 
     void generateMaze(int rows, int cols);
     //int[][] getMaze();
-    void solveMaze();
-    void updateCharacterLocation(int direction);
+    void solveTheGameMaze();
+    void updateTheCharacterLocation(int direction);
     void stopServers();
-    void saveMazeToFile(String filePath);
+    void saveTheUserMazeToFile(String filePath);
     void loadUserMaze (String filePath);
     void addObserver(MyViewModel viewModel);
 
