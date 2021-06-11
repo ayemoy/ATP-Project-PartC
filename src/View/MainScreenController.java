@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Optional;
@@ -96,7 +97,7 @@ public class MainScreenController extends Controller implements Initializable {
     }
 
 
-    public void turnMusicOn()// natasha
+    public void turnMusicOn() throws URISyntaxException// natasha
     {
         if(sound)
         {

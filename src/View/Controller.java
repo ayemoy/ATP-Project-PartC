@@ -46,6 +46,8 @@ public abstract class Controller implements IView, Observer {
     }
 
 
+
+
     public void switchAboutScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("AboutScene.fxml"));
         primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -64,7 +66,7 @@ public abstract class Controller implements IView, Observer {
     }
 
     public void switchPropertiesScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("HelpScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("PropertiesScene.fxml"));
         primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
@@ -83,36 +85,7 @@ public abstract class Controller implements IView, Observer {
 
 
 
-    public void SaveButtonHandle(ActionEvent actionEvent) {
-        SaveFileChooser.setInitialDirectory(new File(""));
-        Window stage = SolveMazeButton.getScene().getWindow();
-        SaveFileChooser.setTitle("Save Your Maze");
-        SaveFileChooser.setInitialFileName("MyMaze");
-        SaveFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
-        File file = SaveFileChooser.showSaveDialog(stage);
-        viewModel.SaveMaze(file);
 
-    }
-    public void LoadButtonHandle(ActionEvent actionEvent) {
-        LoadFileChooser.setInitialDirectory(new File("C:\\Users\\tomer\\IdeaProjects\\ATP-Project-PartC\\src\\Sources\\SavedMaze"));
-        Window stage = SolveMazeButton.getScene().getWindow();
-        LoadFileChooser.setTitle("Load Your Maze");
-        LoadFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
-        File file = LoadFileChooser.showOpenDialog(stage);
-        viewModel.LoadMaze(file);
-
-    }
-    public void NewButtonHandle(ActionEvent actionEvent) {
-        if(mazeDisplayerCanvas.getMaze() != null){
-            mazeDisplayerCanvas.ClearAllCanvas();
-        }
-        TextFieldRow.clear();
-        TextFieldCol.clear();
-        SolveMazeButton.setDisable(true);
-        ValidNumberLabel.setVisible(false);
-        SaveMazeButton.setVisible(false);
-        SolveMazeButton.setText("Solve Maze");
-    }
 
 
 

@@ -6,6 +6,7 @@ import javafx.scene.media.MediaPlayer;
 
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -22,8 +23,6 @@ public class MyViewModel extends Observable implements Observer {
     private boolean ifWonTheGame;
     private ArrayList<int[]> mazeSolution;
     private MediaPlayer playMusic;
-
-
 
 
 
@@ -166,7 +165,7 @@ public class MyViewModel extends Observable implements Observer {
     }
 
 
-    public boolean playTheMusic(String path)
+    public boolean playTheMusic(String path) throws URISyntaxException
     {//natasha
 
         Media music = new Media( new File(path).toURI().toString());

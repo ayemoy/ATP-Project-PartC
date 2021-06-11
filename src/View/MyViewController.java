@@ -1,6 +1,7 @@
 package View;
 import ViewModel.MyViewModel;
 import algorithms.search.Solution;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,12 +12,21 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import static javafx.geometry.Pos.CENTER;
 
+import javax.swing.text.Element;
+import javax.swing.text.html.ImageView;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -96,15 +106,15 @@ public class MyViewController extends Controller implements IView , Initializabl
         labelPlayerRow.textProperty().bind(updatePlayerPositionRow);
         labelPlayerCol.textProperty().bind(updatePlayerPositionCol);
         fitDisplaySizes();
-        //viewModel.pauseMusic();
-        //try
-        //{
-
-        //viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobNice.mp3").toURI().toString())),200);
-        //}
-        //catch (URISyntaxException e) {
-        //e.printStackTrace();
-        //}
+        viewModel.stopPlayTheMusic();
+        try
+        {
+        viewModel.playTheMusic("Resources/Music/mazeScreenMusic.mpeg");
+        }
+        catch (URISyntaxException e)
+        {
+        e.printStackTrace();
+        }
     }
 
 
@@ -162,11 +172,13 @@ public class MyViewController extends Controller implements IView , Initializabl
 
             viewModel.generateMaze(intRows, intCols);
 
-            //ShowSolution.setDisable(false);
-            //mazeDisplayer.setMazeSolution(null);
-            //mazeDisplayer.setIfMazeSolved(false);
+            solve.setDisable(false);
+            mazeDisplayer.setMazeSolution(null);
+            mazeDisplayer.setIfMazeSolved(false);
 
-        } else {
+        }
+        else
+        {
             showErrorAlert("Invalid Input", "Invalid Number!/n" + "Please enter numbers between 3 to 500");
         }
     }
@@ -198,49 +210,48 @@ public class MyViewController extends Controller implements IView , Initializabl
                 setUpdatePlayerPositionCol(viewModel.getCurrentCol() + "");
                 this.zoom(mazeDisplayer);
 
-                //ShowSolution.setDisable(false);
-                //HideSolution.setDisable(true);
+                solve.setDisable(false);
+                hide.setDisable(true);
 
             }
             else if (arg == "load incorrect file type")
             {
-                //showErrorAlert("You tried to upload an unsuitable file type or a file that does not contain a maze. Please reload a file with .maze extension only.");
+                showErrorAlert("File Problem" ,"You tried to upload an unsuitable file type or a file that does not contain a maze. Please reload a file with .maze extension only.");
             }
             else if (arg == "move") {
                 if (viewModel.isIfWonTheGame())
                 {
-                   // viewModel.pauseMusic();
+                    viewModel.stopPlayTheMusic();
                     Stage stage = new Stage();
                     stage.setTitle("C O N G R A T U L A T I O N S ! ! !");
                     VBox layout = new VBox();
                     HBox H = new HBox(5);
-                    //H.setAlignment(CENTER);
-                    //layout.setAlignment(CENTER);
+                    H.setAlignment(CENTER);
+                    layout.setAlignment(CENTER);
                     Button close = new Button();
                     close.setText("CLOSE");
                     H.getChildren().add(close);
                     layout.spacingProperty().setValue(10);
-                   // Image im = new Image("/Images/giphy.gif");
-                    //ImageView image = new ImageView(im);
+                    Image im = new Image("/Images/giphy.gif");
+                    ImageView image = new ImageView((Element) im);
                     //layout.getChildren().add(image);
                     layout.getChildren().add(H);
                     Scene scene = new Scene(layout, 494, 365);
-                    scene.getStylesheets().add(getClass().getResource("/View/MainStyle.css").toExternalForm());
+                    //scene.getStylesheets().add(getClass().getResource("/View/MainStyle.css").toExternalForm());
                     stage.setScene(scene);
-                    //stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
+                    stage.initModality(Modality.APPLICATION_MODAL); //Lock the window until it closes
                     stage.show();
-                    //close button
-                    //close.setOnAction(new EventHandler<ActionEvent>() {
-                        //@Override
-                        //public void handle(ActionEvent event) {
-                            //stage.close();
-                        //}
-                    //});
-                   // try{
-                        //viewModel.playMusic((new Media(getClass().getResource("/Music/SpongeBobFlute.mp3").toURI().toString())),200);
-                   // } catch (URISyntaxException e) {
-                       // e.printStackTrace();
-                   // }
+                    close.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            stage.close();
+                        }
+                    });
+                    try{
+                        viewModel.playTheMusic("/Music/SpongeBobFlute.mp3");
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else {
                     mazeDisplayer.setPlayerPosition(viewModel.getCurrentRow(), viewModel.getCurrentCol());
@@ -306,7 +317,7 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
 
-    public void turnMusicOn()// natasha
+    public void turnMusicOn() throws URISyntaxException// natasha
     {
         if(sound)
         {
@@ -349,5 +360,52 @@ public class MyViewController extends Controller implements IView , Initializabl
     public void setUpdatePlayerPositionCol(String updatePlayerPositionCol) {
         this.updatePlayerPositionCol.set(updatePlayerPositionCol);
     }
+
+
+
+
+
+//______________________________FUNCTION FOR MENU BAR____________________________________________
+
+
+    /**
+     * this function help us to use in the menu bar buttons
+     * @param actionEvent
+     */
+
+
+    public void SaveMenuBarButton(ActionEvent actionEvent)
+    {
+        SaveFileChooser.setInitialDirectory(new File(""));
+        Window stage = solve.getScene().getWindow();
+        SaveFileChooser.setTitle("Save Your Maze");
+        SaveFileChooser.setInitialFileName("MyMaze");
+        SaveFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
+        File file = SaveFileChooser.showSaveDialog(stage);
+        viewModel.saveMaze("");
+
+    }
+    public void LoadMenuBarButton(ActionEvent actionEvent) {
+        LoadFileChooser.setInitialDirectory(new File("C:\\Users\\tomer\\IdeaProjects\\ATP-Project-PartC\\src\\Sources\\SavedMaze"));
+        Window stage = solve.getScene().getWindow();
+        LoadFileChooser.setTitle("Load Your Maze");
+        LoadFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
+        File file = LoadFileChooser.showOpenDialog(stage);
+        viewModel.loadMaze("");
+
+    }
+    public void NewMenuBarButton(ActionEvent actionEvent) {
+        if(mazeDisplayer.getIntMazeArray() != null){
+            mazeDisplayer.ClearAllCanvas();
+        }
+        RowField.clear();
+        ColField.clear();
+        solve.setDisable(true);
+        //ValidNumberLabel.setVisible(false);
+        save.setVisible(false);
+        solve.setText("Solve Maze");
+    }
+
+
 
 }

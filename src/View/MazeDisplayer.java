@@ -118,6 +118,31 @@ public class MazeDisplayer extends Canvas {
         }
     }
 
+    //----------------------------MENU BAR HELP FUNCTION--------------------------------------------
+    public void ClearAllCanvas() {
+        CanvasToBasic();
+        setPlayerCol(0);
+        setPlayerRow(0);
+        setPlayerGoalRow(0);
+        setPlayerGoalCol(0);
+        setIntMazeArray(null);
+        setMazeSolution(null);
+    }
+
+
+    public void CanvasToBasic(){
+        double HeightOfCanvas = this.getHeight();
+        double WidthOfCanvas = getWidth();
+        GraphicsContext graphicsContext = getGraphicsContext2D();
+        graphicsContext.clearRect(0,0,WidthOfCanvas,HeightOfCanvas);
+        graphicsContext.setFill(Color.GRAY);
+    }
+
+
+
+
+
+    //_____________________________________________________________________________________________________
 
     //this function chek if we have not solv the maze yet, so we draw it
     public void drawMaze(int [][] maze)
