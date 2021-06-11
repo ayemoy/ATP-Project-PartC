@@ -47,6 +47,7 @@ public class MyModel extends Observable implements IModel {
     private ArrayList<AState> mazeSolutionSteps;
     private ArrayList<int[]> finalSolution;
     private Position currentPosition;
+    public MediaPlayer playMusic;
     //_____________________________________________________________
 
 
@@ -80,7 +81,7 @@ public class MyModel extends Observable implements IModel {
         initTheMaze(maze);
         //LOG.info("A new maze has been created. Maze dimensions - " + row + " X " + col);
         setChanged();
-        notifyObservers("generate");
+        notifyObservers("Generate");
 
     }
 
@@ -229,8 +230,8 @@ public class MyModel extends Observable implements IModel {
     protected void playMusicWhenPlayerCantMove(String pathOfMusic) {
         String musicFile = pathOfMusic;
         Media sound = new Media(new java.io.File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
+        playMusic = new MediaPlayer(sound);
+        playMusic.play();
     }
 
 
@@ -354,6 +355,9 @@ public class MyModel extends Observable implements IModel {
             e.printStackTrace();
         }
     }
+
+
+
 
 
 

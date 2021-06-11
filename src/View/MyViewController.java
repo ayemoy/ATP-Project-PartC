@@ -23,7 +23,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import static javafx.geometry.Pos.CENTER;
-
+import View.*;
 import javax.swing.text.Element;
 import javax.swing.text.html.ImageView;
 import java.io.File;
@@ -56,26 +56,25 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
     @FXML
-    private SplitPane splitPane;
-
+    public SplitPane splitPane;
     @FXML
-    private AnchorPane leftSide;
+    public AnchorPane leftSide;
     @FXML
-    private Button play;
+    public Button play;
     @FXML
-    private Button back;
+    public Button back;
     @FXML
-    private Button save;
+    public Button save;
     @FXML
-    private Button solve;
+    public Button solve;
     @FXML
-    private Button hide;
+    public Button hide;
     @FXML
-    private TextField RowField;
+    public TextField RowField;
     @FXML
-    private TextField ColField;
+    public TextField ColField;
     @FXML
-    public MenuBarController menuBar;
+    public MenuBar menuBar;
 
 
     @FXML
@@ -103,17 +102,18 @@ public class MyViewController extends Controller implements IView , Initializabl
         RowField.clear();
         ColField.clear();
 
-        labelPlayerRow.textProperty().bind(updatePlayerPositionRow);
-        labelPlayerCol.textProperty().bind(updatePlayerPositionCol);
+        //labelPlayerRow.textProperty().bind(updatePlayerPositionRow);
+        //labelPlayerCol.textProperty().bind(updatePlayerPositionCol);
+
         fitDisplaySizes();
         viewModel.stopPlayTheMusic();
         try
         {
-        viewModel.playTheMusic("Resources/Music/mazeScreenMusic.mpeg");
+        viewModel.playTheMusic("Resources/Music/remix.mp3");
         }
         catch (URISyntaxException e)
         {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -175,6 +175,7 @@ public class MyViewController extends Controller implements IView , Initializabl
             solve.setDisable(false);
             mazeDisplayer.setMazeSolution(null);
             mazeDisplayer.setIfMazeSolved(false);
+            rightSide.requestFocus();
 
         }
         else
@@ -198,7 +199,7 @@ public class MyViewController extends Controller implements IView , Initializabl
     @Override
     public void update(Observable o, Object arg) {
         if (o instanceof MyViewModel) {
-            if (arg == "update") {
+            if (arg == "Update") {
                 mazeDisplayer.setMazeSolution(null);
                 mazeDisplayer.setIfMazeSolved(false);
                 mazeDisplayer.setIntMazeArray(viewModel.getIntMazeArrayMVM());
@@ -214,11 +215,11 @@ public class MyViewController extends Controller implements IView , Initializabl
                 hide.setDisable(true);
 
             }
-            else if (arg == "load incorrect file type")
+            else if (arg == "Load incorrect file type")
             {
                 showErrorAlert("File Problem" ,"You tried to upload an unsuitable file type or a file that does not contain a maze. Please reload a file with .maze extension only.");
             }
-            else if (arg == "move") {
+            else if (arg == "Move") {
                 if (viewModel.isIfWonTheGame())
                 {
                     viewModel.stopPlayTheMusic();
@@ -259,10 +260,10 @@ public class MyViewController extends Controller implements IView , Initializabl
                     setUpdatePlayerPositionCol(viewModel.getCurrentCol() + "");
                 }
             }
-            else if (arg == "solve") {
+            else if (arg == "Solve") {
                 mazeDisplayer.drawSolution(viewModel.getMazeSolution());
             }
-            else if (arg == "save") {
+            else if (arg == "Save") {
                // showAlert("Save Maze", "Your maze was successfully saved");
             }
 
@@ -366,46 +367,5 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
 //______________________________FUNCTION FOR MENU BAR____________________________________________
-
-
-    /**
-     * this function help us to use in the menu bar buttons
-     * @param actionEvent
-     */
-
-
-    public void SaveMenuBarButton(ActionEvent actionEvent)
-    {
-        SaveFileChooser.setInitialDirectory(new File(""));
-        Window stage = solve.getScene().getWindow();
-        SaveFileChooser.setTitle("Save Your Maze");
-        SaveFileChooser.setInitialFileName("MyMaze");
-        SaveFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
-        File file = SaveFileChooser.showSaveDialog(stage);
-        viewModel.saveMaze("");
-
-    }
-    public void LoadMenuBarButton(ActionEvent actionEvent) {
-        LoadFileChooser.setInitialDirectory(new File("C:\\Users\\tomer\\IdeaProjects\\ATP-Project-PartC\\src\\Sources\\SavedMaze"));
-        Window stage = solve.getScene().getWindow();
-        LoadFileChooser.setTitle("Load Your Maze");
-        LoadFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
-        File file = LoadFileChooser.showOpenDialog(stage);
-        viewModel.loadMaze("");
-
-    }
-    public void NewMenuBarButton(ActionEvent actionEvent) {
-        if(mazeDisplayer.getIntMazeArray() != null){
-            mazeDisplayer.ClearAllCanvas();
-        }
-        RowField.clear();
-        ColField.clear();
-        solve.setDisable(true);
-        //ValidNumberLabel.setVisible(false);
-        save.setVisible(false);
-        solve.setText("Solve Maze");
-    }
-
-
 
 }

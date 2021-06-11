@@ -177,7 +177,10 @@ public class MyViewModel extends Observable implements Observer {
     }
     public void stopPlayTheMusic()
     {
-        playMusic.stop();
+        if (playMusic != null)
+        {
+            playMusic.stop();
+        }
     }//natasha
 
 

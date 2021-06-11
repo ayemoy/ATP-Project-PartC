@@ -34,6 +34,7 @@ import java.net.URL;
 import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import View.*;
 
 public class MenuBarController extends Controller {
 
@@ -55,13 +56,27 @@ public class MenuBarController extends Controller {
     public MenuItem exitMenu;
 
 
+    public MenuBarController(MenuBar menuBar)
+    {
+        this.menuBar = menuBar;
+    }
 
 
 
+    public void handleNewFile(ActionEvent actionEvent) throws IOException
+    {
+        NewMenuBarButton(actionEvent);
+    }
 
+    public void handleSaveFile(ActionEvent actionEvent)
+    {
+        SaveMenuBarButton(actionEvent);
+    }
 
-    //public Label exitLabel;
-
+    public void handleLoadFile(ActionEvent actionEvent)
+    {
+        LoadMenuBarButton(actionEvent);
+    }
 
 
 
@@ -81,31 +96,16 @@ public class MenuBarController extends Controller {
     }
 
 
-    public void handleExit() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) { //want to exit the game
-            viewModel.exit();
-            Window welcome = exitLabel.getScene().getWindow();
-            ((Stage)welcome).close();
-        }
+    public void handleExitController(ActionEvent actionEvent) throws IOException
+    {
+        handleExit(actionEvent);
     }
-
-
-
-
-    public void handleSaveFile(ActionEvent actionEvent) {
-        handleLoadAdSave("save",(Stage)menuBar.getScene().getWindow(),false);
-    }
-
-    public void handleLoadFile(ActionEvent actionEvent) {
-        handleLoadAdSave("load",(Stage)menuBar.getScene().getWindow(),false);
-    }
-
 
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable o, Object arg)
+    {
+
     }
 
 }

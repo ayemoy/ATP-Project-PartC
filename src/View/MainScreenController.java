@@ -84,6 +84,7 @@ public class MainScreenController extends Controller implements Initializable {
         mainScene = new Scene(root);
         mainStage.setScene(mainScene);
         mainStage.show();
+
     }
 
     public void handleExit(ActionEvent event) throws IOException {
@@ -101,7 +102,7 @@ public class MainScreenController extends Controller implements Initializable {
     {
         if(sound)
         {
-            String path = "Resources/Music/remix.mp3";
+            String path = "Resources/Music/mainScreenMusic.mp3";
             viewModel.playTheMusic(path);
             this.sound=false;
         }

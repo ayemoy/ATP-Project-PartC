@@ -9,7 +9,6 @@
     -fx-background-image: url("/pictures/maze3.jpg" );
     -fx-background-size: cover;
     -fx-background-position: center center;
-    -fx-opacity: 0.4;
 }
 
 #leftSide{
@@ -19,5 +18,11 @@
 }
 
 #MazeDisplayer{
+
+
+}
+
+#jellyImage{
+    -fx-opacity: 0.4;
 
 }

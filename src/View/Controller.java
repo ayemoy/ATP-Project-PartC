@@ -1,6 +1,7 @@
 package View;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.util.Observer;
@@ -13,6 +14,8 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
+
 import javafx.stage.Window;
 
 /*this class implement IView and observer
@@ -73,21 +76,63 @@ public abstract class Controller implements IView, Observer {
         primaryStage.show();
     }
 
-//    public void handleExit(ActionEvent event) throws IOException {
-//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
-//        Optional<ButtonType> result = alert.showAndWait();
-//        if (result.get() == ButtonType.OK) { //want to exit the game
-//            viewModel.exit();
-//            Window welcome = exitButton.getScene().getWindow();
-//            ((Stage) welcome).close();
-//        }
+    public void handleExit(ActionEvent actionEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) { //want to exit the game
+            viewModel.exit();
+            Window stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            ((Stage)stage).close();
+        }
+    }
+
+    public void SaveMenuBarButton(ActionEvent actionEvent)
+    {
+        SaveFileChooser.setInitialDirectory(new File("Resources/LoadAndSaveMazes"));
+        Window stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        //Window stage = solve.getScene().getWindow();
+        SaveFileChooser.setTitle("Save Your Maze");
+        SaveFileChooser.setInitialFileName("MyMaze");
+        SaveFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
+        File file = SaveFileChooser.showSaveDialog(stage);
+        viewModel.saveMaze("Resources/LoadAndSaveMazes");
+
+    }
+
+
+    public void LoadMenuBarButton(ActionEvent actionEvent) {
+        LoadFileChooser.setInitialDirectory(new File("Resources/LoadAndSaveMazes"));
+        Window stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        LoadFileChooser.setTitle("Load Your Maze");
+        LoadFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
+        File file = LoadFileChooser.showOpenDialog(stage);
+        viewModel.loadMaze("Resources/LoadAndSaveMazes");
+
+    }
+
+    public void NewMenuBarButton(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
+        primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        mainScene = new Scene(root);
+        primaryStage.setScene(mainScene);
+        primaryStage.show();
+    }
+
+
+    public void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    //todo change in every class that send to the main menu the function to avoid shichpol code
+//    public void switchMainScreen(javafx.event.ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+//        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        mainScene = new Scene(root);
+//        primaryStage.setScene(mainScene);
+//        primaryStage.show();
 //    }
-
-
-
-
-
-
-
 
 }
