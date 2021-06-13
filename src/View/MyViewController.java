@@ -175,7 +175,7 @@ public class MyViewController extends Controller implements IView , Initializabl
             solve.setDisable(false);
             mazeDisplayer.setMazeSolution(null);
             mazeDisplayer.setIfMazeSolved(false);
-            rightSide.requestFocus();
+            pane.requestFocus();
 
         }
         else
@@ -187,14 +187,11 @@ public class MyViewController extends Controller implements IView , Initializabl
 
     //______________________handlerssssssss_______________________________________________
     //this function is controll the back button
-    public void switchMainScreen(javafx.event.ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        mainStage.setScene(mainScene);
-        mainStage.show();
+    public void switchToMain()
+    {
+        changeScene("MainScreen.fxml",(Stage)back.getScene().getWindow(),"A little bit about us");
     }
-
+//__________________________________________________________________________________________
 
     @Override
     public void update(Observable o, Object arg) {
@@ -367,5 +364,8 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
 //______________________________FUNCTION FOR MENU BAR____________________________________________
+
+
+
 
 }

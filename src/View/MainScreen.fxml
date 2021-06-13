@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -8,68 +7,55 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="MAIN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MainScreen.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
-    <children>
-        <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <ImageView id="stagePicture" fitHeight="410.0" fitWidth="609.0" layoutX="-1.0" layoutY="-2.0" nodeOrientation="INHERIT" pickOnBounds="true">
-                    <image>
-                        <Image url="@../../Resources/pictures/mainScreen.jpg" />
-                    </image>
-                    <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                    </cursor>
-                </ImageView>
-                <MenuBar id="MenuBar" fx:id="MenuBar" layoutY="1.0" style="-fx-background-color: transparent;">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="File">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="New" />
-                                <MenuItem mnemonicParsing="false" text="Save" />
-                                <MenuItem mnemonicParsing="false" text="Load" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Options">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Properties" />
-                            </items>
-                        </Menu>
-                  <Menu mnemonicParsing="false" text="Help" />
-                  <Menu mnemonicParsing="false" text="About" />
-                    </menus>
-                </MenuBar>
-                <Button id="aboutButton" layoutX="518.0" layoutY="102.0" mnemonicParsing="false" onAction="#switchAboutScene" style="-fx-background-color: lavenderblush; -fx-background-radius: 100px/50px;" text="About" textFill="#c06861">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Button>
-                <Button id="startGameButton" layoutX="221.0" layoutY="49.0" mnemonicParsing="false" onAction="#switchMazeScene" style="-fx-background-radius: 100px/50px; -fx-background-color: lavenderblush;" text="Start Game" textAlignment="CENTER" textFill="#a81155">
-                    <font>
-                        <Font name="Agency FB Bold" size="23.0" />
-                    </font>
-                </Button>
-                <Button id="helpButton" layoutX="518.0" layoutY="160.0" mnemonicParsing="false" onAction="#switchHelpScene" prefHeight="39.0" prefWidth="77.0" style="-fx-background-color: lavenderblush; -fx-background-radius: 100px/50px;" text="Help" textFill="#c06861">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Button>
-                <Button id="exitButton" layoutX="521.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="39.0" prefWidth="71.0" style="-fx-background-color: lavenderblush; -fx-background-radius: 100px/50px;" text="Exit" textFill="#c06861">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Button>
-                <ImageView id="Musicpic" fitHeight="52.0" fitWidth="60.0" layoutX="527.0" layoutY="12.0" style="-fx-blend-mode: multiply;">
-                    <image>
-                        <Image url="@../../Resources/pictures/rednote.png" />
-                    </image>
-                </ImageView>
-            <Button layoutX="323.0" layoutY="326.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Button" />
-            </children>
-            <cursor>
-                <Cursor fx:constant="DEFAULT" />
-            </cursor>
-        </AnchorPane>
-    </children>
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@MainScreen.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu fx:id="File" mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="New" mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="Load" mnemonicParsing="false" text="Close" />
+                  <MenuItem fx:id="Save" mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Properties" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Help" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="About">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Exit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Exit" />
+               </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane prefHeight="377.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="379.0" fitWidth="600.0">
+               <image>
+                  <Image url="@../../Resources/pictures/mainScreen.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="215.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToStartScene" prefHeight="71.0" prefWidth="118.0" text="Start" />
+            <Button layoutX="14.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#turnMusicOn" text="Music" />
+            <Button layoutX="534.0" layoutY="32.0" mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
+            <Button fx:id="aboutButton" layoutX="535.0" layoutY="80.0" mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
+            <Button layoutX="513.0" layoutY="130.0" mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
+            <Button layoutX="535.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

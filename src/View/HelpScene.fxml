@@ -16,7 +16,7 @@
             <Image url="@../../Resources/pictures/helpp.jpg" />
          </image>
       </ImageView>
-      <Button id="BackButton" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#switchMainScreen" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 100px/50px; -fx-padding: -5;" styleClass="C:\Users\97252\Desktop\לימודים\שנה ב סמסטר ב\נושאים מתקדמים בתכנות\פרוייקט המבוך\ATP-Project-PartC\Resources\pictures\about.jpg" text="Back" textAlignment="CENTER">
+      <Button id="BackButton" fx:id="backButton" layoutX="10.0" layoutY="303.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="32.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 100px/50px; -fx-padding: -5;" styleClass="C:\Users\97252\Desktop\לימודים\שנה ב סמסטר ב\נושאים מתקדמים בתכנות\פרוייקט המבוך\ATP-Project-PartC\Resources\pictures\about.jpg" text="Back" textAlignment="CENTER">
          <font>
             <Font name="Agency FB Bold" size="25.0" />
          </font>

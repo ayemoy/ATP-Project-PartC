@@ -26,7 +26,8 @@ public class MazeDisplayer extends Canvas {
     // wall and player images:
 
     private StringProperty wallPic= new SimpleStringProperty("pictures/jellyfish.png");
-    private StringProperty playerPic= new SimpleStringProperty("pictures/player.png");
+    private StringProperty playerPicLeft = new SimpleStringProperty("pictures/player.png");
+    private StringProperty playerPicRight= new SimpleStringProperty("pictures/playerRight.png");
     private StringProperty startPosPic= new SimpleStringProperty("pictures/house.png");
     private StringProperty goalPosPic= new SimpleStringProperty("pictures/krusty.png");
     private StringProperty solPathPic= new SimpleStringProperty("pictures/burger3.png");
@@ -99,7 +100,7 @@ public class MazeDisplayer extends Canvas {
             double w_player = getPlayerCol() * cellWidth;
             Image playerImage = null;
             try {
-                playerImage = new Image(new FileInputStream(getPlayerPic()));
+                playerImage = new Image(new FileInputStream(getPlayerPicLeft()));
             } catch (FileNotFoundException e) {
                 System.out.println("There is no playerPic in here");
             }
@@ -197,12 +198,28 @@ public class MazeDisplayer extends Canvas {
 
     public int getPlayerRow() { return playerRow; }
     public int getPlayerCol() { return playerCol; }
+
+    //__________________________________________________________
+
+
     public void setPlayerPosition(int row, int col)
     {
+        //left
+        if (col < playerCol) {
+            setPlayerPicLeft(playerPicLeft.get());
+        }
+        //right
+        if (col > playerCol) {
+            setPlayerPicRight(playerPicRight.get());
+        }
         this.playerRow = row;
         this.playerCol = col;
         draw();
     }
+
+
+//_____________________________________________________________________________________________________________________
+
     public int getPlayerGoalRow() { return playerGoalRow; }
     public int getPlayerGoalCol() { return playerGoalCol; }
     public void setGoalPosition(int row, int col)
@@ -224,10 +241,15 @@ public class MazeDisplayer extends Canvas {
     public String getWallPic() { return wallPic.get(); }
     public StringProperty wallPicProperty() { return wallPic; }
     public void setWallPic(String wallPic) { this.wallPic.set(wallPic); }
-    public String getPlayerPic() { return playerPic.get(); }
-    public StringProperty playerPicProperty() { return playerPic; }
-    public void setPlayerPic(String playerPic) { this.playerPic.set(playerPic); }
+    public String getPlayerPicLeft() { return playerPicLeft.get(); }
+    public StringProperty playerPicLeftProperty() { return playerPicLeft; }
+    public void setPlayerPicLeft(String playerPicLeft) { this.playerPicLeft.set(playerPicLeft); }
     public String getStartPosPic() { return startPosPic.get(); }
+    public String getPlayerPicRight() { return playerPicRight.get(); }
+    public StringProperty playerPicRightProperty() { return playerPicRight; }
+
+    public void setPlayerPicRight(String playerPicRight) { this.playerPicRight.set(playerPicRight); }
+
     public StringProperty startPosPicProperty() { return startPosPic; }
     public void setStartPosPic(String startPosPic) { this.startPosPic.set(startPosPic); }
     public String getGoalPosPic() { return goalPosPic.get(); }

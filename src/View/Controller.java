@@ -51,15 +51,33 @@ public abstract class Controller implements IView, Observer {
 
 
 
-    public void switchAboutScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AboutScene.fxml"));
-        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        primaryStage.setScene(mainScene);
-        primaryStage.show();
+    public void changeScene(String fxmlPath, Stage stage, String title)
+    {
+        Parent root;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            root = fxmlLoader.load();
+            viewModel.addObserver(fxmlLoader.getController());
+            stage.setTitle(title);
+            //stage.setScene(new Scene(root,500,900));
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            //e.printStackTrace(); //check?
+        }
     }
 
 
+
+//    public void switchAboutScene(ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("AboutScene.fxml"));
+//        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        mainScene = new Scene(root);
+//        primaryStage.setScene(mainScene);
+//        primaryStage.show();
+//    }
+
+/*
     public void switchHelpScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("HelpScene.fxml"));
         primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -135,4 +153,21 @@ public abstract class Controller implements IView, Observer {
 //        primaryStage.show();
 //    }
 
+*/
+    public void showAlert(String title, String message)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    //Alert for Confirmation
+    public void showConformationAlert(String message, Stage stage)
+    {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, message);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK)
+            stage.close();
+    }
 }

@@ -62,7 +62,7 @@ public class MenuBarController extends Controller {
     }
 
 
-
+/*
     public void handleNewFile(ActionEvent actionEvent) throws IOException
     {
         NewMenuBarButton(actionEvent);
@@ -80,10 +80,10 @@ public class MenuBarController extends Controller {
 
 
 
-    public void handleAbout(ActionEvent actionEvent) throws IOException
-    {
-        switchAboutScene(actionEvent);
-    }
+//    public void handleAbout(ActionEvent actionEvent) throws IOException
+//    {
+//        switchAboutScene(actionEvent);
+//    }
 
     public void handleHelp(ActionEvent actionEvent) throws IOException
     {
@@ -101,7 +101,7 @@ public class MenuBarController extends Controller {
         handleExit(actionEvent);
     }
 
-
+*/
     @Override
     public void update(Observable o, Object arg)
     {

@@ -1,5 +1,6 @@
 package Model;
 
+import View.MazeDisplayer;
 import ViewModel.MyViewModel;
 
 import Client.Client;
@@ -163,6 +164,7 @@ public class MyModel extends Observable implements IModel {
                 break;
             case 4: //if the character move right
                 if (ifCharacterCanMove(playerRow, playerCol+1))
+
                     playerCol++;
                 else
                     playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");

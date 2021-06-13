@@ -4,22 +4,45 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 
-<MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="242.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MenuBarController">
-  <menus>
-    <Menu mnemonicParsing="false" text="File">
-      <items>
-        <MenuItem fx:id="newMenu" mnemonicParsing="false" onAction="#handleNewFile" onMenuValidation="#handleNewFile" text="New" />
-            <MenuItem fx:id="loadMenu" mnemonicParsing="false" onAction="#handleLoadFile" onMenuValidation="#handleLoadFile" text="Load" />
-            <MenuItem fx:id="saveMenu" mnemonicParsing="false" onAction="#handleSaveFile" onMenuValidation="#handleSaveFile" text="Save" />
-      </items>
-    </Menu>
-    <Menu mnemonicParsing="false" text="Options">
-      <items>
-        <MenuItem fx:id="propMenu" mnemonicParsing="false" onAction="#handleProperties" onMenuValidation="#handleProperties" text="Properties" />
-      </items>
-    </Menu>
-    <Menu fx:id="helpMenu" mnemonicParsing="false" onAction="#handleHelp" onMenuValidation="#handleHelp" text="Help" />
-      <Menu fx:id="aboutMenu" mnemonicParsing="false" onAction="#handleAbout" onMenuValidation="#handleAbout" text="About" />
-      <Menu fx:id="exitMenu" mnemonicParsing="false" onAction="#handleExitController" onMenuValidation="#handleExitController" text="Exit" />
-  </menus>
-</MenuBar>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<AnchorPane fx:id="wPane" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MenuBarController">
+  <children>
+    <BorderPane prefHeight="660.0" prefWidth="1300.0">
+      <top>
+        <MenuBar fx:id="menuBar" prefWidth="1100.0" BorderPane.alignment="CENTER">
+          <menus>
+            <Menu mnemonicParsing="false" text="File">
+              <items>
+                <MenuItem fx:id="newMaze" mnemonicParsing="false" text="New" />
+                <MenuItem mnemonicParsing="false" text="Save" />
+                <MenuItem mnemonicParsing="false" text="Load" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Options">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Properties" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false">
+              <graphic>
+                <Label text="About" />
+              </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false">
+              <graphic>
+                <Label text="Help" />
+              </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false">
+              <graphic>
+                <Label fx:id="exitLabel" text="Exit" />
+              </graphic>
+            </Menu>
+          </menus>
+        </MenuBar>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

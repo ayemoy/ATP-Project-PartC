@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -21,7 +24,26 @@
                               <Image url="@../../Resources/pictures/boutUs.jpeg" />
                            </image>
                         </ImageView>
-                        <Button layoutX="7.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
+                        <Button fx:id="backButton" layoutX="7.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
+                        <MenuBar layoutX="8.0" layoutY="-2.0" prefHeight="23.0" prefWidth="583.0">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="New" />
+                                    <MenuItem mnemonicParsing="false" text="Save" />
+                                    <MenuItem mnemonicParsing="false" text="Load" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Options">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="Properties" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help" />
+                              <Menu mnemonicParsing="false" text="About" />
+                              <Menu mnemonicParsing="false" text="Exit" />
+                          </menus>
+                        </MenuBar>
                      </children>
                   </AnchorPane>
               </content>
@@ -39,7 +61,7 @@
                               <Image url="@../../Resources/pictures/algo.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="8.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
+                        <Button layoutX="8.0" layoutY="300.0" mnemonicParsing="false" text="Back" />
                      </children>
                   </AnchorPane>
                </content>

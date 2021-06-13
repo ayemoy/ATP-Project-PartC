@@ -2,9 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -40,27 +37,8 @@
             <Button fx:id="save" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="Save" />
             <Button fx:id="solve" layoutX="88.0" layoutY="168.0" mnemonicParsing="false" onAction="#solveMaze" text="Solve" />
             <Button fx:id="play" layoutX="88.0" layoutY="122.0" mnemonicParsing="false" onAction="#generateMaze" text="PLAY!" />
-            <Button fx:id="back" layoutX="2.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchMainScreen" text="Back" />
+            <Button fx:id="back" layoutX="2.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
             <Button fx:id="music" layoutX="150.0" layoutY="371.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />
-            <MenuBar fx:id="menuBar" layoutX="1.0" layoutY="8.0" prefHeight="23.0" prefWidth="227.0">
-              <menus>
-                <Menu fx:id="fileMenu" mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem fx:id="newMenu" mnemonicParsing="false" text="New" />
-                        <MenuItem fx:id="saveMenu" mnemonicParsing="false" text="Save" />
-                        <MenuItem fx:id="loadMenu" mnemonicParsing="false" text="Load" />
-                  </items>
-                </Menu>
-                <Menu fx:id="optionsMenu" mnemonicParsing="false" text="Options">
-                  <items>
-                    <MenuItem fx:id="properties" mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help" />
-                  <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About" />
-                  <Menu fx:id="exitMenu" mnemonicParsing="false" text="Exit" />
-              </menus>
-            </MenuBar>
             <Button fx:id="hide" layoutX="161.0" layoutY="168.0" mnemonicParsing="false" onAction="#hideSolution" text="Hide " />
          </children></AnchorPane>
     <AnchorPane fx:id="rightSide" minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="413.0">
@@ -72,8 +50,8 @@
             </ImageView>
             <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="3.0" onKeyPressed="#keyPressed" prefHeight="390.0" prefWidth="356.0">
                <center>
-                  <Pane fx:id="pane" prefHeight="390.0" prefWidth="378.0" BorderPane.alignment="CENTER">
-                   <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" startPosPic="./resources/pictures/house.png" playerPic="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png" ></MazeDisplayer>
+                  <Pane fx:id="pane" prefHeight="600.0" prefWidth="578.0" BorderPane.alignment="CENTER">
+                   <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" playerPicLeft="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png"  onKeyPressed="#keyPressed" onMouseClicked="#mouseClicked"></MazeDisplayer>
                   </Pane>
                </center>
             </BorderPane>

@@ -53,39 +53,74 @@ public class MainScreenController extends Controller implements Initializable {
     private Scene mainScene;
     private Parent root;
     @FXML
-    private Button exitButton;
+    public Button aboutButton;
+    @FXML
+    public Button exitButton;
     MyModel model = new MyModel();
     //MyViewModel viewModel = new MyViewModel();
 
 
-    public void switchAboutScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("AboutScene.fxml"));
-        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        mainStage.setScene(mainScene);
-        mainStage.show();
+
+
+    public void switchToAboutScene()
+    {
+        changeScene("AboutScene.fxml",(Stage)aboutButton.getScene().getWindow(),"A little bit about us");
+    }
+
+    public void switchToHelpScene()
+    {
+        changeScene("HelpScene.fxml",(Stage)aboutButton.getScene().getWindow(),"A little bit about us");
+    }
+
+    public void switchToPropertiesScene()
+    {
+        changeScene("PropertiesScene.fxml",(Stage)aboutButton.getScene().getWindow(),"A little bit about us");
+    }
+
+    public void switchToStartScene()
+    {
+        changeScene("MyView.fxml",(Stage)aboutButton.getScene().getWindow(),"A little bit about us");
     }
 
 
-    public void switchHelpScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("HelpScene.fxml"));
-        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        mainStage.setScene(mainScene);
-        mainStage.show();
-    }
 
-    public void switchMazeScene(ActionEvent event) throws IOException {
-        //Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyView.fxml"));
-        root = fxmlLoader.load();
-        viewModel.addObserver(fxmlLoader.getController());
-        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        mainStage.setScene(mainScene);
-        mainStage.show();
 
-    }
+//    public void switchAboutScene(ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("AboutScene.fxml"));
+//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        mainScene = new Scene(root);
+//        mainStage.setScene(mainScene);
+//        mainStage.show();
+//    }
+
+
+//    public void switchHelpScene(ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("HelpScene.fxml"));
+//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        mainScene = new Scene(root);
+//        mainStage.setScene(mainScene);
+//        mainStage.show();
+//    }
+//
+//    public void switchPropertiesScene(ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("PropertiesScene.fxml"));
+//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        mainScene = new Scene(root);
+//        mainStage.setScene(mainScene);
+//        mainStage.show();
+//    }
+//
+//    public void switchMazeScene(ActionEvent event) throws IOException {
+//        //Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyView.fxml"));
+//        root = fxmlLoader.load();
+//        viewModel.addObserver(fxmlLoader.getController());
+//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        mainScene = new Scene(root);
+//        mainStage.setScene(mainScene);
+//        mainStage.show();
+//
+//    }
 
     public void handleExit(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
