@@ -167,7 +167,7 @@ public abstract class Controller implements IView, Observer {
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, message);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK)
-            stage.close();
+        //if (result.get() == ButtonType.OK)
+            //stage.getScene().close();
     }
 }
