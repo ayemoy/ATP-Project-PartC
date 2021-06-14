@@ -54,6 +54,8 @@ public class MenuBarController extends Controller {
     public MenuItem aboutMenu;
     @FXML
     public MenuItem exitMenu;
+    @FXML
+    public Label About;
 
 
     public MenuBarController(MenuBar menuBar)
@@ -62,46 +64,59 @@ public class MenuBarController extends Controller {
     }
 
 
-/*
-    public void handleNewFile(ActionEvent actionEvent) throws IOException
-    {
-        NewMenuBarButton(actionEvent);
+    public void handleAbout() {
+        menuBarAbout();
     }
 
-    public void handleSaveFile(ActionEvent actionEvent)
-    {
-        SaveMenuBarButton(actionEvent);
+    public void handleHelp() {
+        menuBarHelp();
     }
 
-    public void handleLoadFile(ActionEvent actionEvent)
-    {
-        LoadMenuBarButton(actionEvent);
+    public void handleProperties() {
+        menuBarProperties();
     }
 
 
 
-//    public void handleAbout(ActionEvent actionEvent) throws IOException
-//    {
-//        switchAboutScene(actionEvent);
-//    }
 
-    public void handleHelp(ActionEvent actionEvent) throws IOException
-    {
-        switchHelpScene(actionEvent);
+
+    public void handleNewFile(ActionEvent actionEvent) {
+        changeScene("MyView.fxml",(Stage)menuBar.getScene().getWindow(),"New Maze");
     }
 
-    public void handleProperties(ActionEvent actionEvent) throws IOException
-    {
-        switchPropertiesScene(actionEvent);
+    public void handleSaveFile(ActionEvent actionEvent) {
+        SaveMenuBar("save",(Stage)menuBar.getScene().getWindow(),false);
+    }
+
+    public void handleLoadFile(ActionEvent actionEvent) {
+        LoadMenuBar("load",(Stage)menuBar.getScene().getWindow(),false);
     }
 
 
-    public void handleExitController(ActionEvent actionEvent) throws IOException
-    {
-        handleExit(actionEvent);
+
+
+    public void handleExit() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to leave?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) { //want to exit the game
+            viewModel.exit();
+            Window welcome = About.getScene().getWindow();
+            ((Stage)welcome).close();
+        }
     }
 
-*/
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public void update(Observable o, Object arg)
     {

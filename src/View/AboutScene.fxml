@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <TabPane id="TabPane" fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" stylesheets="@AboutScene.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AboutSceneController">
   <tabs>
@@ -19,31 +23,78 @@
               <content>
                 <AnchorPane id="AboutPic" minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="600.0">
                      <children>
-                        <ImageView fitHeight="348.0" fitWidth="600.0" layoutY="-2.0">
+                        <ImageView id="aboutImage" fx:id="aboutImage" fitHeight="348.0" fitWidth="600.0" layoutY="-2.0" style="-fx-opacity: 0.75;">
                            <image>
                               <Image url="@../../Resources/pictures/boutUs.jpeg" />
                            </image>
+                           <effect>
+                              <BoxBlur />
+                           </effect>
                         </ImageView>
-                        <Button fx:id="backButton" layoutX="7.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
-                        <MenuBar layoutX="8.0" layoutY="-2.0" prefHeight="23.0" prefWidth="583.0">
+                        <Button fx:id="backButton" alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="7.0" layoutY="300.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="Back" textFill="#191903" textOverrun="LEADING_WORD_ELLIPSIS">
+                           <font>
+                              <Font name="Agency FB Bold" size="15.0" />
+                           </font></Button>
+                        <MenuBar layoutX="-2.0" layoutY="-2.0" prefHeight="23.0" prefWidth="600.0" style="-fx-background-color: transparent;">
                           <menus>
-                            <Menu mnemonicParsing="false" text="File">
+                            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
                               <items>
-                                <MenuItem mnemonicParsing="false" text="New" />
-                                    <MenuItem mnemonicParsing="false" text="Save" />
-                                    <MenuItem mnemonicParsing="false" text="Load" />
+                                <MenuItem mnemonicParsing="false" onAction="#handleNewFile" text="New" />
+                                    <MenuItem mnemonicParsing="false" onAction="#handleSaveFile" style="-fx-background-color: transparent;" text="Save" />
+                                    <MenuItem mnemonicParsing="false" onAction="#handleLoadFile" style="-fx-background-color: transparent;" text="Load" />
                               </items>
                             </Menu>
-                            <Menu mnemonicParsing="false" text="Options">
+                            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
                               <items>
                                 <MenuItem mnemonicParsing="false" text="Properties" />
                               </items>
                             </Menu>
-                            <Menu mnemonicParsing="false" text="Help" />
-                              <Menu mnemonicParsing="false" text="About" />
-                              <Menu mnemonicParsing="false" text="Exit" />
+                            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Help" />
+                                 </items></Menu>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="About" />
+                                 </items></Menu>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                                 </items></Menu>
                           </menus>
                         </MenuBar>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="29.0" prefHeight="53.0" prefWidth="575.0" text="Hello ! We are Ayelet Moyal and Natalia Kataev." textAlignment="CENTER">
+                           <font>
+                              <Font name="Agency FB Bold" size="35.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="17.0" layoutY="75.0" prefHeight="38.0" prefWidth="561.0" text="We are 2nd year students of software and">
+                           <font>
+                              <Font name="Agency FB Bold" size="36.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="17.0" layoutY="119.0" prefHeight="48.0" prefWidth="519.0" text=" information systems engineering.">
+                           <font>
+                              <Font name="Agency FB Bold" size="39.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="21.0" layoutY="242.0" prefHeight="44.0" prefWidth="553.0" text="Hope you will enjoy our Spongebob maze !!">
+                           <font>
+                              <Font name="Agency FB Bold" size="38.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
                      </children>
                   </AnchorPane>
               </content>
@@ -56,12 +107,90 @@
                <content>
                   <AnchorPane id="AlgoPic" prefHeight="345.0" prefWidth="595.0">
                      <children>
-                        <ImageView fitHeight="344.0" fitWidth="600.0" layoutX="-3.0" layoutY="-7.0">
+                        <ImageView fitHeight="344.0" fitWidth="600.0" layoutX="-3.0" layoutY="-7.0" style="-fx-opacity: 0.6;">
                            <image>
                               <Image url="@../../Resources/pictures/algo.png" />
                            </image>
+                           <effect>
+                              <BoxBlur />
+                           </effect>
                         </ImageView>
-                        <Button layoutX="8.0" layoutY="300.0" mnemonicParsing="false" text="Back" />
+                        <Button fx:id="backButton1" alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="-1.0" layoutY="299.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: transparent;" text="Back" textFill="#fdfdfa" textOverrun="LEADING_WORD_ELLIPSIS">
+                           <font>
+                              <Font name="Agency FB Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <MenuBar layoutX="-1.0" layoutY="2.0" prefHeight="23.0" prefWidth="600.0" style="-fx-background-color: transparent;">
+                           <menus>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#handleNewFile" text="New" />
+                                    <MenuItem mnemonicParsing="false" onAction="#handleSaveFile" style="-fx-background-color: transparent;" text="Save" />
+                                    <MenuItem mnemonicParsing="false" onAction="#handleLoadFile" style="-fx-background-color: transparent;" text="Load" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Properties" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Help" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="About" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                                 </items>
+                              </Menu>
+                           </menus>
+                        </MenuBar>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="34.0" prefHeight="34.0" prefWidth="568.0" text="We chose to generate this maze with the algorithm of Prim.">
+                           <font>
+                              <Font name="Agency FB Bold" size="28.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="79.0" prefHeight="37.0" prefWidth="575.0" text="The player can choose the algorithm that will solve the">
+                           <font>
+                              <Font name="Agency FB Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="35.0" layoutY="127.0" prefHeight="37.0" prefWidth="545.0" text="maze ( BFS / DFS / BestFS ) in the options page.">
+                           <font>
+                              <Font name="Agency FB Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="180.0" prefHeight="37.0" prefWidth="567.0" text="Check out the algorithms and see which will give the best ">
+                           <font>
+                              <Font name="Agency FB Bold" size="28.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="236.0" prefHeight="37.0" prefWidth="561.0" text=" best result and get Spongebob to Krusty Krab!">
+                           <font>
+                              <Font name="Agency FB Bold" size="30.0" />
+                           </font>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>

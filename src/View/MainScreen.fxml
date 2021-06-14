@@ -11,35 +11,32 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@MainScreen.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
    <children>
-      <MenuBar>
+      <MenuBar style="-fx-background-color: transparent;">
         <menus>
-          <Menu fx:id="File" mnemonicParsing="false" text="File">
+          <Menu fx:id="File" mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
             <items>
-              <MenuItem fx:id="New" mnemonicParsing="false" text="Close" />
-                  <MenuItem fx:id="Load" mnemonicParsing="false" text="Close" />
-                  <MenuItem fx:id="Save" mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="New" mnemonicParsing="false" onAction="#handleNewFile" text="New" />
+                  <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#handleLoadFile" text="Load" />
+                  <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#handleSaveFile" text="Save" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Options">
+          <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
             <items>
-              <MenuItem mnemonicParsing="false" text="Properties" />
+              <MenuItem mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Help" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="About">
+          <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
                <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Exit">
+                  <MenuItem mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Exit" />
-               </items>
-            </Menu>
+                  <MenuItem mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+               </items></Menu>
         </menus>
       </MenuBar>
       <AnchorPane prefHeight="377.0" prefWidth="600.0">
@@ -51,9 +48,9 @@
             </ImageView>
             <Button layoutX="215.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToStartScene" prefHeight="71.0" prefWidth="118.0" text="Start" />
             <Button layoutX="14.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#turnMusicOn" text="Music" />
-            <Button layoutX="534.0" layoutY="32.0" mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
-            <Button fx:id="aboutButton" layoutX="535.0" layoutY="80.0" mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
-            <Button layoutX="513.0" layoutY="130.0" mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
+            <Button layoutX="534.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#switchToHelpScene" text="Help" />
+            <Button fx:id="aboutButton" layoutX="535.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#switchToAboutScene" text="About" />
+            <Button layoutX="513.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#switchToPropertiesScene" text="Properties" />
             <Button layoutX="535.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
          </children>
       </AnchorPane>

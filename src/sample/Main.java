@@ -50,7 +50,7 @@ public class Main extends Application {
         viewModel.addObserver(welcomeController);
 
 //        Rectangle2D openingScene = Screen.getPrimary().getBounds();
-        primaryStage.setTitle("***SpongeBob SquarePants Maze 2020***");
+        primaryStage.setTitle("Welcome to SpongeBob's world !");
         primaryStage.setScene(new Scene(root,900,614));
         primaryStage.setResizable(true);
         primaryStage.show();

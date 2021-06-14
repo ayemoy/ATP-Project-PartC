@@ -18,9 +18,10 @@
       </ImageView>
       <MenuButton fx:id="chooseCharacter" layoutX="82.0" layoutY="118.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="26.0" prefWidth="152.0" text="Character...">
         <items>
-          <MenuItem fx:id="spongebobChar" mnemonicParsing="false" onAction="#mouseClicked" text="SpongeBob" />
-          <MenuItem fx:id="patricChar" mnemonicParsing="false" onAction="#mouseClicked" text="Patrick" />
+            <MenuItem fx:id="spongebobChar" mnemonicParsing="false" onAction="#mouseClicked" text="SpongeBob" />
+            <MenuItem fx:id="patricChar" mnemonicParsing="false" onAction="#mouseClicked" text="Patrick" />
             <MenuItem fx:id="garyChar" mnemonicParsing="false" onAction="#mouseClicked" text="Gary" />
+            <MenuItem fx:id="krabChar" mnemonicParsing="false" onAction="#mouseClicked" text="MrKrabs" />
         </items>
       </MenuButton>
       <MenuButton fx:id="chooseAlgo" layoutX="82.0" layoutY="212.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="25.0" prefWidth="152.0" text="Algorithm...">

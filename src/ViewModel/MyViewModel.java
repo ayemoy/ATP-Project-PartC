@@ -1,5 +1,8 @@
 package ViewModel;
+import Model.IModel;
 import Model.MyModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -26,12 +29,23 @@ public class MyViewModel extends Observable implements Observer {
 
 
 
+    //player choose
+    private String name;
+    public StringProperty imageString;
+    //public IModel Imodel;
 
-    public MyViewModel()
+
+
+
+    public MyViewModel()//constructor
     {
         this.model = MyModel.getInstance();
         this.model.addObserver(this);
-    } //constructor
+
+        this.imageString = new SimpleStringProperty("1");
+        name="SpongeBob";
+        this.imageString.setValue("/pictures/player.png");
+    }
 
     // this function do the singleton
     public static MyViewModel getInstance()
@@ -170,7 +184,7 @@ public class MyViewModel extends Observable implements Observer {
 
         Media music = new Media( new File(path).toURI().toString());
         playMusic = new MediaPlayer(music);
-        playMusic.setVolume(220);
+        playMusic.setVolume(10);
         playMusic.play();
         return false;
 
@@ -206,4 +220,40 @@ public class MyViewModel extends Observable implements Observer {
     public void setMazeSolution(ArrayList<int[]> mazeSolution) { this.mazeSolution = mazeSolution; }
     public MediaPlayer getPlayMusic() { return playMusic; }
     public void setPlayMusic(MediaPlayer playMusic) { this.playMusic = playMusic; }
+
+
+
+
+    //______________________function for choosing player_________________________________________
+
+    public void setCharacterImage(String charecter) {
+        this.name = charecter;
+        switch (charecter){
+            case "SpongeBob":
+                imageString.setValue("/pictures/player.png");
+                break;
+            case "Patrick":
+                imageString.setValue("/pictures/patricPlayer.png");
+                break;
+            case "Gary":
+                imageString.setValue("/pictures/garyPlayer.png");
+                break;
+            case "MrKrabs":
+                imageString.setValue("/pictures/mrkrabPlayer.png");
+                break;
+        }
+        myViewModel.model.setCharacter(name,imageString.getValue());
+    }
+
+
+    public String getCharacterName() {
+        return name;
+    }
+
+    public String getCharacterPicPath() {
+        return imageString.getValue();
+    }
+
+
+
 }

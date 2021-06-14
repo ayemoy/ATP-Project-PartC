@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
+import java.net.URISyntaxException;
 import java.util.Observer;
 import ViewModel.MyViewModel;
 import javafx.fxml.FXMLLoader;
@@ -29,25 +30,11 @@ public abstract class Controller implements IView, Observer {
 
 
     MyViewModel viewModel = MyViewModel.getInstance();
-    public static Stage primaryStage;
-    public static Scene mainScene;
-    public static Scene thisScene;
-    private Parent root;
+    private boolean sound=true;//natasha
+
 
     public static FileChooser SaveFileChooser = new FileChooser();
     public static FileChooser LoadFileChooser = new FileChooser();
-
-    @Override
-    //in every scene we want be able show alert to user so we do it here
-    //in every scene we can choose later what to write to the user
-    public void showErrorAlert(String titleWindow, String ErrorToShow)
-    {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titleWindow);
-        alert.setContentText(ErrorToShow);
-        alert.show();
-    }
-
 
 
 
@@ -63,97 +50,39 @@ public abstract class Controller implements IView, Observer {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            //e.printStackTrace(); //check?
+            //e.printStackTrace(); // todo check?
         }
     }
 
 
-
-//    public void switchAboutScene(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("AboutScene.fxml"));
-//        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        mainScene = new Scene(root);
-//        primaryStage.setScene(mainScene);
-//        primaryStage.show();
-//    }
-
-/*
-    public void switchHelpScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("HelpScene.fxml"));
-        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        primaryStage.setScene(mainScene);
-        primaryStage.show();
-    }
-
-    public void switchPropertiesScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("PropertiesScene.fxml"));
-        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        primaryStage.setScene(mainScene);
-        primaryStage.show();
-    }
-
-    public void handleExit(ActionEvent actionEvent) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) { //want to exit the game
-            viewModel.exit();
-            Window stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            ((Stage)stage).close();
-        }
-    }
-
-    public void SaveMenuBarButton(ActionEvent actionEvent)
+    public void turnMusicOn(String path) throws URISyntaxException// natasha
     {
-        SaveFileChooser.setInitialDirectory(new File("Resources/LoadAndSaveMazes"));
-        Window stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        //Window stage = solve.getScene().getWindow();
-        SaveFileChooser.setTitle("Save Your Maze");
-        SaveFileChooser.setInitialFileName("MyMaze");
-        SaveFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
-        File file = SaveFileChooser.showSaveDialog(stage);
-        viewModel.saveMaze("Resources/LoadAndSaveMazes");
-
+        if(sound)
+        {
+            String str = path;
+            viewModel.playTheMusic(str);
+            this.sound=false;
+        }
+        else{
+            viewModel.stopPlayTheMusic();
+            this.sound=true;
+        }
     }
 
 
-    public void LoadMenuBarButton(ActionEvent actionEvent) {
-        LoadFileChooser.setInitialDirectory(new File("Resources/LoadAndSaveMazes"));
-        Window stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        LoadFileChooser.setTitle("Load Your Maze");
-        LoadFileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Maze (*.File)","*"));
-        File file = LoadFileChooser.showOpenDialog(stage);
-        viewModel.loadMaze("Resources/LoadAndSaveMazes");
-
-    }
-
-    public void NewMenuBarButton(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
-        primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        mainScene = new Scene(root);
-        primaryStage.setScene(mainScene);
-        primaryStage.show();
-    }
 
 
-    public void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.show();
-    }
 
-    //todo change in every class that send to the main menu the function to avoid shichpol code
-//    public void switchMainScreen(javafx.event.ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-//        primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        mainScene = new Scene(root);
-//        primaryStage.setScene(mainScene);
-//        primaryStage.show();
-//    }
 
-*/
+
+
+
+
+
+
+
+
+    //this func show to user messages
     public void showAlert(String title, String message)
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -162,7 +91,7 @@ public abstract class Controller implements IView, Observer {
         alert.show();
     }
 
-    //Alert for Confirmation
+    //this func show to the user alert so he can confirmation things
     public void showConformationAlert(String message, Stage stage)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, message);
@@ -170,4 +99,97 @@ public abstract class Controller implements IView, Observer {
         //if (result.get() == ButtonType.OK)
             //stage.getScene().close();
     }
+
+    @Override
+    //in every scene we want be able show alert to user so we do it here
+    //in every scene we can choose later what to write to the user
+    public void showErrorAlert(String titleWindow, String ErrorToShow)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titleWindow);
+        alert.setContentText(ErrorToShow);
+        alert.show();
+    }
+
+
+
+
+
+
+    //______________________________help function to thr menu bar_______________________________________________________
+
+    public void menuBarProperties()
+    {
+        Stage propStage = new Stage();
+        changeScene("../View/Properties.fxml",propStage,"Your Properties");
+
+    }
+
+    public void menuBarAbout()
+    {
+        Stage propStage = new Stage();
+        changeScene("../View/AboutScene.fxml",propStage,"About us and our game algorithms");
+
+    }
+
+    public void menuBarHelp()
+    {
+        Stage propStage = new Stage();
+        changeScene("../View/HelpScene.fxml",propStage,"We are here for you!");
+
+    }
+
+
+
+
+    public void LoadMenuBar(String loadOrSave, Stage stage, boolean changeScene)
+    {
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("maze files","*.maze");
+        fc.getExtensionFilters().add(filter);
+        if (loadOrSave.equals("Load"))
+        {
+            fc.setTitle("Load Maze");
+            File file = fc.showOpenDialog(stage);
+            if (file != null)
+            {
+                if (changeScene)
+                    changeScene("MyView.fxml",stage,"Load Maze");
+                viewModel.loadMaze(file.getPath());
+            }
+            else
+                showAlert("Load Maze","No path selected, Please try again.");
+        }
+    }
+
+
+    public void SaveMenuBar(String loadOrSave, Stage stage, boolean changeScene)
+    {
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("maze files","*.maze");
+        fc.getExtensionFilters().add(filter);
+        if (viewModel.getIntMazeArrayMVM() != null)
+        {
+            fc.setTitle("Save Maze");
+            File file = fc.showSaveDialog(stage);
+            if (file != null)
+            {
+                viewModel.saveMaze(file.getPath());
+            }
+            else
+            {
+                showAlert("Save Maze","No path selected, Please try again.");
+            }
+        }
+        else
+        {
+            showErrorAlert("Oh, No!","There is no maze to save. Please generate an new maze first.");
+        }
+
+    }
+
+
+
+
+
 }

@@ -18,6 +18,8 @@ public class PropertiesController extends Controller {
 
     @FXML
     private MenuItem patricChar;
+    @FXML
+    private MenuItem krabChar;
 
     @FXML
     private MenuItem garyChar;
@@ -70,44 +72,21 @@ public class PropertiesController extends Controller {
             String solverText = ((MenuItem)source).getText();
             chooseAlgo.setText(solverText);
         }
-        if (source == spongebobChar || source == patricChar || source == garyChar){
+        if (source == spongebobChar || source == patricChar || source == garyChar || source == krabChar){
             String solverText = ((MenuItem)source).getText();
             chooseCharacter.setText(solverText);
         }
         if (source == okButton)
         {
             Configurations.setSearchingAlgorithm(chooseAlgo.getText());
-
             showConformationAlert("The Properties have been changed, Please start a new game in order to load the chosen settings.", (Stage)okButton.getScene().getWindow());
-        }
-    }
-
-
-
-    public void setCharacterImage(String charecter) {
-        this.name = charecter;
-        switch (charecter){
-            case " Mulan ":
-                imageString.setValue("/Images/MulanI.png");
-                break;
-            case " Mushu ":
-                imageString.setValue("/Images/MushuI.png");
-                break;
-            case " General Li Shang ":
-                imageString.setValue("/Images/LiShangI.png");
-                break;
-            case " Chien Po ":
-                imageString.setValue("/Images/FattyI.png");
-                break;
+            //String charecter = chooseCharacter.getItems().toString();
+            String character = chooseCharacter.getText();
+            viewModel.setCharacterImage(character);
         }
 
-       // viewModel.model.setCharacter(name,imageString.getValue());
+
     }
-
-
-
-
-
 
     public void switchToMain() {
         changeScene("MainScreen.fxml",(Stage)backButton.getScene().getWindow(),"A little bit about us");

@@ -49,6 +49,11 @@ public class MyModel extends Observable implements IModel {
     private ArrayList<int[]> finalSolution;
     private Position currentPosition;
     public MediaPlayer playMusic;
+
+    ///\choose player
+    private CharacterChoose mainCharacter = new CharacterChoose();
+
+
     //_____________________________________________________________
 
 
@@ -148,26 +153,26 @@ public class MyModel extends Observable implements IModel {
                 if (ifCharacterCanMove(playerRow-1, playerCol))
                     playerRow--;
                 else
-                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3");
                 break;
             case 2: //if the character move down
                 if (ifCharacterCanMove(playerRow+1, playerCol))
                     playerRow++;
                 else
-                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3");
                 break;
             case 3: //if the character move left
                 if (ifCharacterCanMove(playerRow, playerCol-1))
                     playerCol--;
                 else
-                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3");
                 break;
             case 4: //if the character move right
                 if (ifCharacterCanMove(playerRow, playerCol+1))
 
                     playerCol++;
                 else
-                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3");
                 break;
             case 5: //if the character move up left
                 if (ifCharacterCanMove(playerRow-1, playerCol-1))
@@ -176,7 +181,7 @@ public class MyModel extends Observable implements IModel {
                     playerCol--;
                 }
                 else
-                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3.mp3");
                 break;
             case 6: //if the character move up right
                 if (ifCharacterCanMove(playerRow-1, playerCol+1))
@@ -185,7 +190,7 @@ public class MyModel extends Observable implements IModel {
                     playerCol++;
                 }
                 else
-                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3.mp3");
                 break;
             case 7: // if the character move down left
                 if (ifCharacterCanMove(playerRow+1, playerCol-1))
@@ -194,7 +199,7 @@ public class MyModel extends Observable implements IModel {
                     playerCol--;
                 }
                 else
-                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3.mp3");
                 break;
             case 8: // if the character move down right
                 if (ifCharacterCanMove(playerRow+1, playerCol+1))
@@ -203,7 +208,7 @@ public class MyModel extends Observable implements IModel {
                     playerCol++;
                 }
                 else
-                    playMusicWhenPlayerCantMove("resources/Music/SpongebobLaugh.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3.mp3");
                 break;
         }
         // now we check if the character get to the goal position and if the user won the game
@@ -344,7 +349,7 @@ public class MyModel extends Observable implements IModel {
                     maze.setStartPosition(currentPosition);
                     toServer.writeObject(maze);
                     toServer.flush();
-                    Solution mazeSolution = (Solution)fromServer.readObject();
+                    Solution mazeSolution = (Solution)fromServer.readObject(); //problem
                     mazeSolutionSteps = mazeSolution.getSolutionPath();
                 } catch (Exception e) {
                     //LOG.error("Exception: ", e);
@@ -390,5 +395,16 @@ public class MyModel extends Observable implements IModel {
     public int getGoalCol() { return goalCol;}
     public boolean ifWonGame() { return ifwonGame;}
     public ArrayList<int[]> getMazeSolution() { return finalSolution;}
+
+
+
+
+    //_______________________functions for choose player_____________________________________________-
+
+
+    @Override
+    public void setCharacter(String name, String url) {
+        this.mainCharacter.setCharacter(name,url);
+    }
 }
 

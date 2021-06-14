@@ -14,4 +14,8 @@ public interface IModel {
     void loadUserMaze (String filePath);
     void addObserver(MyViewModel viewModel);
 
+
+    //choose player
+    void setCharacter(String name, String url);
+
 }

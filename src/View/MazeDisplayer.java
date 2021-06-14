@@ -1,6 +1,7 @@
 package View;
 
 
+import Model.CharacterChoose;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.Canvas;
@@ -8,6 +9,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
+import javax.imageio.ImageIO;
+import javax.print.DocFlavor;
+import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -31,6 +35,12 @@ public class MazeDisplayer extends Canvas {
     private StringProperty startPosPic= new SimpleStringProperty("pictures/house.png");
     private StringProperty goalPosPic= new SimpleStringProperty("pictures/krusty.png");
     private StringProperty solPathPic= new SimpleStringProperty("pictures/burger3.png");
+
+
+    //choose player
+    private StringProperty characterImage;
+    private CharacterChoose character = CharacterChoose.getInstance();
+
 
 
     //this function draw the maze itself, the walls and the player
@@ -99,11 +109,18 @@ public class MazeDisplayer extends Canvas {
             double h_player = getPlayerRow() * cellHeight;
             double w_player = getPlayerCol() * cellWidth;
             Image playerImage = null;
-            try {
-                playerImage = new Image(new FileInputStream(getPlayerPicLeft()));
-            } catch (FileNotFoundException e) {
-                System.out.println("There is no playerPic in here");
-            }
+
+            // originallll playerImage = new Image(new FileInputStream(getPlayerPicLeft()));
+
+
+            //choose player
+            //String path = "http://developer.am/webservice/banner728x90.gif";
+            //            URL url = new URL(path);
+            //            BufferedImage image = ImageIO.read(url);
+            //            label = new JLabel(new ImageIcon(image));
+            String charURL =character.getUrl();
+            Image characterImage = new Image(charURL);
+            playerImage = characterImage;
             graphicsContext.drawImage(playerImage, w_player, h_player, cellWidth, cellHeight);
             //Target
             double h_target = getPlayerGoalRow() * cellHeight;

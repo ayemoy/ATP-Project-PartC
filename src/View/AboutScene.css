@@ -7,15 +7,17 @@
     -fx-background-image: url("/pictures/boutUs.jpeg");
     -fx-background-size: cover;
     -fx-background-position: center center;
-    -fx-opacity: 0.4;
 }
+#aboutImage{
+    -fx-opacity:0.7;
 
+}
 
 #AlgoPic{
     -fx-background-image: url("/pictures/algo.png");
     -fx-background-size: cover;
     -fx-background-position: center center;
-    -fx-opacity: 0.3;
+
 }
 
 

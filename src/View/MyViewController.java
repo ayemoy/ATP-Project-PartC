@@ -75,14 +75,18 @@ public class MyViewController extends Controller implements IView , Initializabl
     public TextField ColField;
     @FXML
     public MenuBar menuBar;
+    @FXML
+    public ImageView imageLeft;
+    @FXML
+    public ImageView imageRight;
 
 
     @FXML
-    private AnchorPane rightSide;
+    public AnchorPane rightSide;
     @FXML
-    private BorderPane borderPane;
+    public BorderPane borderPane;
     @FXML
-    private Pane pane;
+    public Pane pane;
 
 
     @FXML
@@ -117,7 +121,7 @@ public class MyViewController extends Controller implements IView , Initializabl
         }
     }
 
-
+/*
     //this func adjusts the sizes of the pane to GridPane
     private void fitDisplaySizes() {
         borderPane.widthProperty().addListener((obs, oldVal, newVal) -> {
@@ -143,6 +147,52 @@ public class MyViewController extends Controller implements IView , Initializabl
         });
 
     }
+*/
+
+
+    private void fitDisplaySizes() {
+        rightSide.widthProperty().addListener((obs, oldVal, newVal) -> {
+            pane.setMinWidth(rightSide.getWidth() - 10);
+            if (viewModel.getIntMazeArrayMVM() != null)
+                mazeDisplayer.draw();
+        });
+        rightSide.heightProperty().addListener((obs, oldVal, newVal) -> {
+            pane.setMinHeight(rightSide.getHeight());
+            if (viewModel.getIntMazeArrayMVM() != null)
+                mazeDisplayer.draw();
+        });
+        //adjusts the size of the maze displayer to pane
+        pane.widthProperty().addListener((obs, oldVal, newVal) -> {
+            mazeDisplayer.setWidth(pane.getWidth());
+            if (viewModel.getIntMazeArrayMVM() != null)
+                mazeDisplayer.draw();
+        });
+        pane.heightProperty().addListener((obs, oldVal, newVal) -> {
+            mazeDisplayer.setHeight(pane.getHeight() - 10);
+            if (viewModel.getIntMazeArrayMVM() != null)
+                mazeDisplayer.draw();
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //this function chek if the number of roes and number of columns that the uset insert to the text field is valid
@@ -230,7 +280,8 @@ public class MyViewController extends Controller implements IView , Initializabl
                     close.setText("CLOSE");
                     H.getChildren().add(close);
                     layout.spacingProperty().setValue(10);
-                    Image im = new Image("/Images/giphy.gif");
+                    //Image im = new Image("/pictures/giphy.gif"); original
+                    Image im = new Image("/pictures/burger3.png");
                     ImageView image = new ImageView((Element) im);
                     //layout.getChildren().add(image);
                     layout.getChildren().add(H);
@@ -246,7 +297,7 @@ public class MyViewController extends Controller implements IView , Initializabl
                         }
                     });
                     try{
-                        viewModel.playTheMusic("/Music/SpongeBobFlute.mp3");
+                        viewModel.playTheMusic("/pictures/ops.mp3");
                     } catch (URISyntaxException e) {
                         e.printStackTrace();
                     }
@@ -314,20 +365,10 @@ public class MyViewController extends Controller implements IView , Initializabl
     }
 
 
-
-    public void turnMusicOn() throws URISyntaxException// natasha
-    {
-        if(sound)
-        {
-            String path = "Resources/Music/remix.mp3";
-            viewModel.playTheMusic(path);
-            this.sound=false;
-        }
-        else{
-            viewModel.stopPlayTheMusic();
-            this.sound=true;
-        }
+    public void turnMusicOn() throws URISyntaxException {
+        turnMusicOn("Resources/Music/remix.mp3");
     }
+
 
 
 

@@ -2,19 +2,16 @@ package View;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.stage.Window;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.WindowEvent;
 import java.io.IOException;
@@ -56,6 +53,7 @@ public class MainScreenController extends Controller implements Initializable {
     public Button aboutButton;
     @FXML
     public Button exitButton;
+
     MyModel model = new MyModel();
     //MyViewModel viewModel = new MyViewModel();
 
@@ -64,75 +62,54 @@ public class MainScreenController extends Controller implements Initializable {
 
     public void switchToAboutScene()
     {
-        changeScene("AboutScene.fxml",(Stage)aboutButton.getScene().getWindow(),"A little bit about us");
+        changeScene("AboutScene.fxml",(Stage)aboutButton.getScene().getWindow(),"About us and our game algorithms");
     }
 
     public void switchToHelpScene()
     {
-        changeScene("HelpScene.fxml",(Stage)aboutButton.getScene().getWindow(),"A little bit about us");
+        changeScene("HelpScene.fxml",(Stage)aboutButton.getScene().getWindow(),"We are here for you!");
     }
 
     public void switchToPropertiesScene()
     {
-        changeScene("PropertiesScene.fxml",(Stage)aboutButton.getScene().getWindow(),"A little bit about us");
+        changeScene("PropertiesScene.fxml",(Stage)aboutButton.getScene().getWindow(),"Your Properties");
     }
 
     public void switchToStartScene()
     {
-        changeScene("MyView.fxml",(Stage)aboutButton.getScene().getWindow(),"A little bit about us");
+        changeScene("MyView.fxml",(Stage)aboutButton.getScene().getWindow(),"Play and have fun!! :)");
     }
 
 
 
 
-//    public void switchAboutScene(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("AboutScene.fxml"));
-//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        mainScene = new Scene(root);
-//        mainStage.setScene(mainScene);
-//        mainStage.show();
-//    }
 
 
-//    public void switchHelpScene(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("HelpScene.fxml"));
-//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        mainScene = new Scene(root);
-//        mainStage.setScene(mainScene);
-//        mainStage.show();
-//    }
-//
-//    public void switchPropertiesScene(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("PropertiesScene.fxml"));
-//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        mainScene = new Scene(root);
-//        mainStage.setScene(mainScene);
-//        mainStage.show();
-//    }
-//
-//    public void switchMazeScene(ActionEvent event) throws IOException {
-//        //Parent root = FXMLLoader.load(getClass().getResource("MyView.fxml"));
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MyView.fxml"));
-//        root = fxmlLoader.load();
-//        viewModel.addObserver(fxmlLoader.getController());
-//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        mainScene = new Scene(root);
-//        mainStage.setScene(mainScene);
-//        mainStage.show();
-//
-//    }
+
+    public void handleNewFile(ActionEvent actionEvent) {
+        changeScene("MyView.fxml",(Stage)aboutButton.getScene().getWindow(),"New Maze");
+    }
+
+    public void handleSaveFile(ActionEvent actionEvent) {
+        SaveMenuBar("save",(Stage)aboutButton.getScene().getWindow(),false);
+    }
+
+    public void handleLoadFile(ActionEvent actionEvent) {
+        LoadMenuBar("load",(Stage)aboutButton.getScene().getWindow(),false);
+    }
+
 
     public void handleExit(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) { //want to exit the game
             viewModel.exit();
-            Window welcome = exitButton.getScene().getWindow();
+            Window welcome = aboutButton.getScene().getWindow();
             ((Stage) welcome).close();
         }
     }
 
-
+/*
     public void turnMusicOn() throws URISyntaxException// natasha
     {
         if(sound)
@@ -146,7 +123,11 @@ public class MainScreenController extends Controller implements Initializable {
             this.sound=true;
         }
     }
+*/
 
+    public void turnMusicOn() throws URISyntaxException {
+        turnMusicOn("Resources/Music/mainScreenMusic.mp3");
+    }
 
 
     @Override

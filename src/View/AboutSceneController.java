@@ -6,15 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Observable;
+import java.util.Optional;
 
 public class AboutSceneController extends Controller {
 
@@ -27,21 +29,11 @@ public class AboutSceneController extends Controller {
     @FXML
     private Tab algoTab;
     @FXML
-    private TabPane tabPane;
+    public ImageView aboutImage;
 
     @FXML
     public Button backButton;
 
-
-
-
-//    public void switchMainScreen(ActionEvent event) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
-//        mainStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        aboutScene = new Scene(root);
-//        mainStage.setScene(aboutScene);
-//        mainStage.show();
-//    }
 
 
     @Override
@@ -56,46 +48,50 @@ public class AboutSceneController extends Controller {
 
 
 
-/*
-    public void handleNewFile(ActionEvent actionEvent) throws IOException
+    public void switchToAboutScene()
     {
-        NewMenuBarButton(actionEvent);
+        changeScene("AboutScene.fxml",(Stage)backButton.getScene().getWindow(),"About us and our game algorithms");
     }
 
-    public void handleSaveFile(ActionEvent actionEvent)
+    public void switchToHelpScene()
     {
-        SaveMenuBarButton(actionEvent);
+        changeScene("HelpScene.fxml",(Stage)backButton.getScene().getWindow(),"We are here for you!");
     }
 
-    public void handleLoadFile(ActionEvent actionEvent)
+    public void switchToPropertiesScene()
     {
-        LoadMenuBarButton(actionEvent);
+        changeScene("PropertiesScene.fxml",(Stage)backButton.getScene().getWindow(),"Your Properties");
     }
 
-
-
-    public void handleAbout(ActionEvent actionEvent) throws IOException
+    public void switchToStartScene()
     {
-        switchAboutScene(actionEvent);
-    }
-
-    public void handleHelp(ActionEvent actionEvent) throws IOException
-    {
-        switchHelpScene(actionEvent);
-    }
-
-    public void handleProperties(ActionEvent actionEvent) throws IOException
-    {
-        switchPropertiesScene(actionEvent);
+        changeScene("MyView.fxml",(Stage)backButton.getScene().getWindow(),"Play and have fun!! :)");
     }
 
 
-    public void handleExitController(ActionEvent actionEvent) throws IOException
-    {
-        handleExit(actionEvent);
+    public void handleNewFile(ActionEvent actionEvent) {
+        changeScene("MyView.fxml",(Stage)backButton.getScene().getWindow(),"New Maze");
     }
 
-*/
+    public void handleSaveFile(ActionEvent actionEvent) {
+        SaveMenuBar("save",(Stage)backButton.getScene().getWindow(),false);
+    }
+
+    public void handleLoadFile(ActionEvent actionEvent) {
+        LoadMenuBar("load",(Stage)backButton.getScene().getWindow(),false);
+    }
+
+
+    public void handleExit(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) { //want to exit the game
+            viewModel.exit();
+            Window welcome = backButton.getScene().getWindow();
+            ((Stage) welcome).close();
+        }
+    }
+
 
 
 
