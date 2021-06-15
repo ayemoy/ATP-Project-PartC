@@ -2,6 +2,7 @@ package View;
 
 
 import Model.CharacterChoose;
+import algorithms.mazeGenerators.Maze;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.Canvas;
@@ -19,13 +20,14 @@ import java.util.ArrayList;
 public class MazeDisplayer extends Canvas {
 
 
-    private int[][] intMazeArray;
-    private int playerRow;
-    private int playerCol;
-    private int playerGoalRow;
-    private int playerGoalCol;
-    private ArrayList<int[]> mazeSolution;
-    private boolean ifMazeSolved;
+    public int[][] intMazeArray;
+    public int playerRow;
+    public int playerCol;
+    public int playerGoalRow;
+    public int playerGoalCol;
+    public ArrayList<int[]> mazeSolution;
+    public boolean ifMazeSolved;
+
 
     // wall and player images:
 

@@ -68,6 +68,7 @@ public class MyModel extends Observable implements IModel {
         //LOG.info("Generate maze server started");
         solveServer.start();
         //LOG.info("Solve maze server started");
+
     }
 
     //singleton
@@ -85,6 +86,7 @@ public class MyModel extends Observable implements IModel {
     {
         GenerateAndCommunicateWithServer(row, col);
         initTheMaze(maze);
+
         //LOG.info("A new maze has been created. Maze dimensions - " + row + " X " + col);
         setChanged();
         notifyObservers("Generate");
@@ -104,7 +106,7 @@ public class MyModel extends Observable implements IModel {
 
         playerRow = maze.getStartPosition().getRowIndex();
         playerCol = maze.getStartPosition().getColumnIndex();
-
+        currentPosition = new Position(playerRow,playerCol);
 
         mazeSolutionSteps = null;
         finalSolution = null;
@@ -120,11 +122,12 @@ public class MyModel extends Observable implements IModel {
         // after connect to the server , we updates the solution
         for (AState state:mazeSolutionSteps) {
             int[] currPosState = new int[2];
-            int indexRow = state.getStateName().indexOf(",");
-            int indexCol = state.getStateName().indexOf(",");
+            String[] splitedIndexes = state.getStateName().replace("{","").replace("}","").split(",");
+            int indexRow = Integer.parseInt(splitedIndexes[0]);
+            int indexCol = Integer.parseInt(splitedIndexes[1]);
 
-            currPosState[0] = Integer.parseInt(state.getStateName().substring(0,indexRow));
-            currPosState[1] = Integer.parseInt(state.getStateName().substring(indexCol+1));
+            currPosState[0] = indexRow;
+            currPosState[1] = indexCol;
             finalSolution.add(currPosState);
         }
         //LOG.info("A solution for the maze was created. Solution number of steps - " + mazeSolutionSteps.size());
@@ -226,7 +229,7 @@ public class MyModel extends Observable implements IModel {
 
 
     //this function check if the player can move to any side
-    private boolean ifCharacterCanMove(int rowUserWantToMove, int colUserWantToMove) {
+    public boolean ifCharacterCanMove(int rowUserWantToMove, int colUserWantToMove) {
         if (rowUserWantToMove < 0 || rowUserWantToMove >= intMazeArray.length ||
                 colUserWantToMove < 0 || colUserWantToMove >= intMazeArray[0].length || intMazeArray[rowUserWantToMove][colUserWantToMove] == 1)
             return false;
@@ -320,7 +323,12 @@ public class MyModel extends Observable implements IModel {
                     byte[] decompressedMaze = new byte[(row * col) + 24];
                     is.read(decompressedMaze);
                     maze = new Maze(decompressedMaze);
-                } catch (Exception e) {
+
+                    setPlayerCurrentPosition();
+                    this.intMazeArray = maze.getIntMaze();
+                }
+                catch (Exception e)
+                {
                     //LOG.error("Exception: ", e);
                     e.printStackTrace();
                 }

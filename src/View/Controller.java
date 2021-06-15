@@ -40,16 +40,18 @@ public abstract class Controller implements IView, Observer {
 
     public void changeScene(String fxmlPath, Stage stage, String title)
     {
-        Parent root;
+        Parent root; //original
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
-            root = fxmlLoader.load();
-            viewModel.addObserver(fxmlLoader.getController());
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath)); //original
+            root = fxmlLoader.load(); // original
+            viewModel.addObserver(fxmlLoader.getController()); //original
             stage.setTitle(title);
             //stage.setScene(new Scene(root,500,900));
             stage.setScene(new Scene(root));
             stage.show();
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             //e.printStackTrace(); // todo check?
         }
     }

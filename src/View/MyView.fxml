@@ -14,48 +14,48 @@
 
 <?import javafx.scene.layout.Pane?>
 <SplitPane fx:id="splitPane" dividerPositions="0.3889508928571429" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MyViewMaze.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
-  <items>
-    <AnchorPane fx:id="leftSide" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <ImageView fitHeight="397.0" fitWidth="233.0" layoutX="-2.0">
-               <image>
-                  <Image url="@../../Resources/pictures/together.jpg" />
-               </image>
-            </ImageView>
-            <TextField fx:id="RowField" layoutX="102.0" layoutY="44.0" prefHeight="25.0" prefWidth="73.0" />
-            <TextField fx:id="ColField" layoutX="102.0" layoutY="69.0" prefHeight="25.0" prefWidth="73.0" />
-            <Label fx:id="labelPlayerRow" layoutX="2.0" layoutY="40.0" prefHeight="34.0" prefWidth="81.0" text="Rows:">
-               <font>
-                  <Font name="Agency FB Bold" size="28.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelPlayerCol" layoutX="2.0" layoutY="73.0" prefHeight="29.0" prefWidth="99.0" text="Columns:">
-               <font>
-                  <Font name="Agency FB Bold" size="27.0" />
-               </font>
-            </Label>
-            <Button fx:id="save" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="Save" />
-            <Button fx:id="solve" layoutX="88.0" layoutY="168.0" mnemonicParsing="false" onAction="#solveMaze" text="Solve" />
-            <Button fx:id="play" layoutX="88.0" layoutY="122.0" mnemonicParsing="false" onAction="#generateMaze" text="PLAY!" />
-            <Button fx:id="back" layoutX="2.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
-            <Button fx:id="music" layoutX="150.0" layoutY="371.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />
-            <Button fx:id="hide" layoutX="161.0" layoutY="168.0" mnemonicParsing="false" onAction="#hideSolution" text="Hide " />
-         </children></AnchorPane>
-    <AnchorPane fx:id="rightSide" minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="413.0">
-         <children>
-            <ImageView id="jellyImage" fitHeight="400.0" fitWidth="416.0" layoutX="1.0" layoutY="-2.0">
-               <image>
-                  <Image url="@../../Resources/pictures/maze3.jpg" />
-               </image>
-            </ImageView>
-            <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="3.0" onKeyPressed="#keyPressed" prefHeight="390.0" prefWidth="356.0">
-               <center>
-                  <Pane fx:id="pane" prefHeight="600.0" prefWidth="578.0" BorderPane.alignment="CENTER">
-                   <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" playerPicLeft="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png"  onKeyPressed="#keyPressed" onMouseClicked="#mouseClicked"></MazeDisplayer>
-                  </Pane>
-               </center>
-            </BorderPane>
+    <items>
+        <AnchorPane fx:id="leftSide" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <ImageView fitHeight="397.0" fitWidth="233.0" layoutX="-2.0">
+                    <image>
+                        <Image url="@../../Resources/pictures/together.jpg" />
+                    </image>
+                </ImageView>
+                <TextField fx:id="RowField" layoutX="102.0" layoutY="44.0" prefHeight="25.0" prefWidth="73.0" />
+                <TextField fx:id="ColField" layoutX="102.0" layoutY="69.0" prefHeight="25.0" prefWidth="73.0" />
+                <Label fx:id="labelPlayerRow" layoutX="2.0" layoutY="40.0" prefHeight="34.0" prefWidth="81.0" text="Rows:">
+                    <font>
+                        <Font name="Agency FB Bold" size="28.0" />
+                    </font>
+                </Label>
+                <Label fx:id="labelPlayerCol" layoutX="2.0" layoutY="73.0" prefHeight="29.0" prefWidth="99.0" text="Columns:">
+                    <font>
+                        <Font name="Agency FB Bold" size="27.0" />
+                    </font>
+                </Label>
+                <Button fx:id="save" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="Save" />
+                <Button fx:id="solve" layoutX="88.0" layoutY="168.0" mnemonicParsing="false" onAction="#solveMaze" text="Solve" />
+                <Button fx:id="play" layoutX="88.0" layoutY="122.0" mnemonicParsing="false" onAction="#generateMaze" text="PLAY!" />
+                <Button fx:id="back" layoutX="2.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
+                <Button fx:id="music" layoutX="150.0" layoutY="371.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />
+                <Button fx:id="hide" layoutX="161.0" layoutY="168.0" mnemonicParsing="false" onAction="#hideSolution" text="Hide " />
+            </children></AnchorPane>
+        <AnchorPane fx:id="rightSide" minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="413.0">
+            <children>
+                <ImageView id="jellyImage" fitHeight="400.0" fitWidth="416.0" layoutX="1.0" layoutY="-2.0">
+                    <image>
+                        <Image url="@../../Resources/pictures/maze3.jpg" />
+                    </image>
+                </ImageView>
+                <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="3.0" onKeyPressed="#keyPressed" prefHeight="390.0" prefWidth="356.0">
+                    <center>
+                        <Pane fx:id="pane" prefHeight="600.0" prefWidth="578.0" BorderPane.alignment="CENTER">
+                            <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" playerPicLeft="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png" onMouseDragged="#MoveWithDrag" onMouseReleased="#freeMouse" onKeyPressed="#keyPressed" onMouseClicked="#mouseClicked"></MazeDisplayer>
+                        </Pane>
+                    </center>
+                </BorderPane>
             </children>
-         </AnchorPane>
+        </AnchorPane>
     </items>
 </SplitPane>

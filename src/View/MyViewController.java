@@ -3,13 +3,10 @@ import ViewModel.MyViewModel;
 import algorithms.search.Solution;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -17,17 +14,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+
 import static javafx.geometry.Pos.CENTER;
-import View.*;
+
 import javax.swing.text.Element;
 import javax.swing.text.html.ImageView;
-import java.io.File;
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Observable;
@@ -41,17 +34,12 @@ public class MyViewController extends Controller implements IView , Initializabl
 
     //private MyViewModel viewModel; //save object of viewModel like we need to do in MVVM
     public boolean showSolution; //boolean that help us know in we need to show the solution
-    @FXML
     public MazeDisplayer mazeDisplayer;
     @FXML
     private Solution solution;
 
-
-    private Scene gameScene;
-    private Scene mainScene;
-    private Stage mainStage;
-    private Parent root;
     private boolean sound=true;//natasha
+
 
 
 
@@ -96,6 +84,14 @@ public class MyViewController extends Controller implements IView , Initializabl
 
     private StringProperty updatePlayerPositionRow = new SimpleStringProperty();
     private StringProperty updatePlayerPositionCol = new SimpleStringProperty();
+
+
+    //_____________function for mouse drag______________________________
+    //public MyViewController(MazeDisplayer mazeDisplayer) { //constructor
+      //  this.mazeDisplayer = mazeDisplayer;
+    //}
+
+    public Boolean CellPlayer=false;
 
 
 //________________________________________
@@ -256,7 +252,7 @@ public class MyViewController extends Controller implements IView , Initializabl
 
                 setUpdatePlayerPositionRow(viewModel.getCurrentRow() + "");
                 setUpdatePlayerPositionCol(viewModel.getCurrentCol() + "");
-                this.zoom(mazeDisplayer);
+                //this.zoom(mazeDisplayer); todo maybe we need this line for zoom func
 
                 solve.setDisable(false);
                 hide.setDisable(true);
@@ -269,22 +265,25 @@ public class MyViewController extends Controller implements IView , Initializabl
             else if (arg == "Move") {
                 if (viewModel.isIfWonTheGame())
                 {
+                    //________________________________________
+
+                    //___________________________________
                     viewModel.stopPlayTheMusic();
                     Stage stage = new Stage();
                     stage.setTitle("C O N G R A T U L A T I O N S ! ! !");
                     VBox layout = new VBox();
-                    HBox H = new HBox(5);
-                    H.setAlignment(CENTER);
+                    //HBox H = new HBox(5);
+                    //H.setAlignment(CENTER);
                     layout.setAlignment(CENTER);
                     Button close = new Button();
                     close.setText("CLOSE");
-                    H.getChildren().add(close);
+                    //H.getChildren().add(close);
                     layout.spacingProperty().setValue(10);
                     //Image im = new Image("/pictures/giphy.gif"); original
-                    Image im = new Image("/pictures/burger3.png");
+                    Image im = new Image("/pictures/win.png");
                     ImageView image = new ImageView((Element) im);
                     //layout.getChildren().add(image);
-                    layout.getChildren().add(H);
+                   // layout.getChildren().add(H);
                     Scene scene = new Scene(layout, 494, 365);
                     //scene.getStylesheets().add(getClass().getResource("/View/MainStyle.css").toExternalForm());
                     stage.setScene(scene);
@@ -320,7 +319,9 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
 
-    private void zoom(MazeDisplayer pane) {
+/*
+
+    public void zoom(MazeDisplayer pane) {
         pane.setOnScroll(
                 new EventHandler<ScrollEvent>() {
                     @Override
@@ -339,6 +340,25 @@ public class MyViewController extends Controller implements IView , Initializabl
                     }
                 });
     }
+*/
+
+    private void zoom(ScrollEvent event){
+        if(viewModel.getIntMazeArrayMVM() != null){
+            if (event.isControlDown()) {
+                double zoomFactor = 1.05;
+                double deltaY = event.getDeltaY();
+
+                if(deltaY < 0){
+                    zoomFactor = 2 - zoomFactor;
+                }
+
+                rightSide.setScaleX(rightSide.getScaleX() * zoomFactor);
+                rightSide.setScaleY(rightSide.getScaleY() * zoomFactor);
+
+            }
+        }
+    }
+
 
 
     public void solveMaze()
@@ -404,8 +424,46 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
 
-//______________________________FUNCTION FOR MENU BAR____________________________________________
+//______________________________FUNCTION FOR mouse drag____________________________________
 
+
+    public void MoveWithDrag(MouseEvent mouseEvent) {
+
+        double canvasHeight = mazeDisplayer.getHeight();
+        double canvasWidth = mazeDisplayer.getWidth();
+        int row = mazeDisplayer.intMazeArray.length;
+        int col = mazeDisplayer.intMazeArray[0].length;
+        double cellHeight = canvasHeight / row;
+        double cellWidth = canvasWidth / col;
+
+
+
+        if (mazeDisplayer.getIntMazeArray() == null) {
+            System.out.println("please create maze");
+            return;
+        }
+        if (!mazeDisplayer.ifMazeSolved) {
+            int mouseX = (int) (mouseEvent.getSceneX()/ cellWidth)/3;
+            int mouseY = (int) ((mouseEvent.getSceneY() - 30) / cellHeight);
+
+            if (mazeDisplayer.getPlayerCol() == mouseX && mazeDisplayer.getPlayerRow() == mouseY) {
+                CellPlayer = true;
+            }
+            if (CellPlayer) {
+                viewModel.movePlayerWithMouseDrag(mouseX, mouseY);
+                mazeDisplayer.setPlayerPosition(mazeDisplayer.playerRow, mazeDisplayer.playerCol);
+            }
+            //playerWonHandle();
+        }
+
+    }
+
+        public void freeMouse(MouseEvent  mouseEvent)
+        {
+            CellPlayer = false;
+        }
+
+//________________________________________-video win scene_________________________________
 
 
 

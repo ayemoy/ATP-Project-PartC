@@ -52,7 +52,9 @@ public class MainScreenController extends Controller implements Initializable {
     @FXML
     public Button aboutButton;
     @FXML
-    public Button exitButton;
+    public Button startButton;
+
+
 
     MyModel model = new MyModel();
     //MyViewModel viewModel = new MyViewModel();
@@ -77,7 +79,7 @@ public class MainScreenController extends Controller implements Initializable {
 
     public void switchToStartScene()
     {
-        changeScene("MyView.fxml",(Stage)aboutButton.getScene().getWindow(),"Play and have fun!! :)");
+        changeScene("MyView.fxml",(Stage)startButton.getScene().getWindow(),"Play and have fun!! :)");
     }
 
 

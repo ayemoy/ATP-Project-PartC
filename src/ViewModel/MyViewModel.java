@@ -255,5 +255,44 @@ public class MyViewModel extends Observable implements Observer {
     }
 
 
+//_____________________________mouse drag function_____________________________________________________
+
+    public void movePlayerWithMouseDrag(int mouseX, int mouseY){
+
+        int direction = 0;
+
+        if (model.ifCharacterCanMove(currentRow, currentCol+1))
+        {
+            direction= 4 ;
+        }
+        if(model.ifCharacterCanMove(currentRow, currentCol-1))
+        {
+            direction= 3 ;
+        }
+        if(model.ifCharacterCanMove(currentRow-1, currentCol))
+        {
+            direction= 1;
+        }
+        if(model.ifCharacterCanMove(currentRow+1, currentCol)){
+            direction= 2;
+        }
+        if(model.ifCharacterCanMove(currentRow+1, currentCol+1)){
+            direction= 8;
+        }
+        if(model.ifCharacterCanMove(currentRow-1, currentCol+1)){
+            direction= 6 ;
+        }
+        if(model.ifCharacterCanMove(currentRow+1, currentCol-1)){
+            direction= 7;
+        }
+        if(model.ifCharacterCanMove(currentRow-1, currentCol-1)){
+            direction= 5;
+        }
+        model.updateTheCharacterLocation(direction);
+        setChanged();
+        notifyObservers();
+
+
+    }
 
 }
