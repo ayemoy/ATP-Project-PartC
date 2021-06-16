@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -14,14 +15,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 
 import static javafx.geometry.Pos.CENTER;
 
 import javax.swing.text.Element;
 import javax.swing.text.html.ImageView;
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -42,7 +48,7 @@ public class MyViewController extends Controller implements IView , Initializabl
     private Solution solution;
 
     private boolean sound=true;//natasha
-
+    public String AlertClipString = new File("Resources/Music/winVideo.mp4").getAbsolutePath();
 
 
 
@@ -158,12 +164,6 @@ public class MyViewController extends Controller implements IView , Initializabl
 
     private void fitDisplaySizes()
     {
-//        back.prefHeightProperty().bind(leftSide.heightProperty());
-//        back.prefWidthProperty().bind(leftSide.widthProperty());
-//
-//        leftSide.prefHeightProperty().bind(splitPane.heightProperty());
-//        leftSide.prefWidthProperty().bind(splitPane.widthProperty());
-
         rightSide.widthProperty().addListener((obs, oldVal, newVal) -> {
             pane.setMinWidth(rightSide.getWidth() - 10);
             if (viewModel.getIntMazeArrayMVM() != null)
@@ -278,6 +278,50 @@ public class MyViewController extends Controller implements IView , Initializabl
             else if (arg == "Move") {
                 if (viewModel.isIfWonTheGame())
                 {
+                    mazeDisplayer.setPlayerPosition(viewModel.getCurrentRow(),viewModel.getCurrentCol());
+                    ButtonType newGameButtonType = new ButtonType("New Game" , ButtonBar.ButtonData.LEFT);
+                    ButtonType noButtonType = new ButtonType("No");
+                    Alert a = new Alert(Alert.AlertType.NONE,"",newGameButtonType,noButtonType);
+                    a.getDialogPane().setStyle("-fx-background-color: black;");
+                    Button newGameButton = (Button) a.getDialogPane().lookupButton(newGameButtonType);
+                    newGameButton.setAlignment(Pos.CENTER);
+                    a.setTitle("YOU WIN !!!");
+                    a.setHeaderText(null);
+                    Media vid =  new Media(new File(AlertClipString).toURI().toString());
+                    MediaPlayer player = new MediaPlayer(vid);
+                    player.setVolume(0.6);
+                    MediaView mediaView = new MediaView(player);
+                    mediaView.setFitHeight(400);
+                    mediaView.setFitWidth(600);
+                    VBox content = new VBox(0.001, mediaView);
+                    player.setOnEndOfMedia(new Runnable() {
+                        @Override
+                        public void run() {
+                            player.seek(Duration.ZERO);
+                        }
+                    });
+                    content.setAlignment(Pos.CENTER);
+                    a.getDialogPane().setContent(content);
+                    MediaPlayer.Status MusicStatus = MyViewModel.getInstance().getPlayMusic().getStatus();
+                    a.setOnShowing(e -> {MyViewModel.getInstance().getPlayMusic().pause();player.play();});
+                    a.getDialogPane().setPrefHeight(420);
+                    a.getDialogPane().setPrefWidth(610);
+                    a.getDialogPane().getScene().getWindow().setOnCloseRequest(e-> {a.close();});
+                    Optional<ButtonType> result = a.showAndWait();
+                    if(!result.isPresent()){
+                        player.stop();
+                        //MusicSwitchCase(MusicStatus);
+                    }
+                    else if(result.get() == newGameButtonType){
+                        player.stop();
+                        //MusicSwitchCase(MusicStatus);
+                        handleNewFile(new ActionEvent());
+                    }
+                    else if(result.get() == noButtonType) {
+                        player.stop();
+                        //MusicSwitchCase(MusicStatus);
+                    }
+                    /*
                     //________________________________________
 
                     //___________________________________
@@ -293,7 +337,7 @@ public class MyViewController extends Controller implements IView , Initializabl
                     //H.getChildren().add(close);
                     layout.spacingProperty().setValue(10);
                     //Image im = new Image("/pictures/giphy.gif"); original
-                    Image im = new Image("/pictures/win.png");
+                    Image im = new Image("/pictures/win.jpg");
                     ImageView image = new ImageView((Element) im);
                     //layout.getChildren().add(image);
                    // layout.getChildren().add(H);
@@ -312,7 +356,7 @@ public class MyViewController extends Controller implements IView , Initializabl
                         viewModel.playTheMusic("/pictures/ops.mp3");
                     } catch (URISyntaxException e) {
                         e.printStackTrace();
-                    }
+                    }*/
                 }
                 else {
                     mazeDisplayer.setPlayerPosition(viewModel.getCurrentRow(), viewModel.getCurrentCol());

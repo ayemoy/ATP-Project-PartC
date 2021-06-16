@@ -323,8 +323,7 @@ public class MyModel extends Observable implements IModel {
                     byte[] decompressedMaze = new byte[(row * col) + 24];
                     is.read(decompressedMaze);
                     maze = new Maze(decompressedMaze);
-
-                    setPlayerCurrentPosition();
+//                    setPlayerCurrentPosition();
                     this.intMazeArray = maze.getIntMaze();
                 }
                 catch (Exception e)
