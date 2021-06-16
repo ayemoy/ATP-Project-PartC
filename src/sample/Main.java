@@ -51,7 +51,7 @@ public class Main extends Application {
 
 //        Rectangle2D openingScene = Screen.getPrimary().getBounds();
         primaryStage.setTitle("Welcome to SpongeBob's world !");
-        primaryStage.setScene(new Scene(root,900,614));
+        primaryStage.setScene(new Scene(root,600,400));
         primaryStage.setResizable(true);
         primaryStage.show();
         setStageCloseEvent(primaryStage, (MyModel) model);

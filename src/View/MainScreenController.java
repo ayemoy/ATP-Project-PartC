@@ -79,7 +79,7 @@ public class MainScreenController extends Controller implements Initializable {
 
     public void switchToStartScene()
     {
-        changeScene("MyView.fxml",(Stage)startButton.getScene().getWindow(),"Play and have fun!! :)");
+        changeScene("MyView.fxml",(Stage)aboutButton.getScene().getWindow(),"Play and have fun!! :)");
     }
 
 

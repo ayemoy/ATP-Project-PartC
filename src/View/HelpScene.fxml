@@ -2,6 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -63,5 +66,32 @@
             <Font name="Agency FB Bold" size="40.0" />
          </font>
       </Label>
+      <MenuBar layoutX="396.0" layoutY="1.0" prefHeight="27.0" prefWidth="204.0" style="-fx-background-color: white;">
+         <menus>
+            <Menu fx:id="File" mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
+               <items>
+                  <MenuItem fx:id="New" mnemonicParsing="false" onAction="#handleNewFile" text="New" />
+                  <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#handleLoadFile" text="Load" />
+                  <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#handleSaveFile" text="Save" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Button layoutX="530.0" layoutY="304.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />
    </children>
 </AnchorPane>

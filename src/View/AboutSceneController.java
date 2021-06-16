@@ -94,5 +94,10 @@ public class AboutSceneController extends Controller {
 
 
 
+    public void turnMusicOn() throws URISyntaxException
+    {
+        turnMusicOn("Resources/Music/toallScenes1.mp3");
+    }
+
 
 }

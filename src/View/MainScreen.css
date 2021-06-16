@@ -12,3 +12,47 @@
      -fx-image: url("/pictures/rednote.png");
 
 }
+/*
+#startButton{
+  -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
+}
+
+
+
+#startButton:hover {
+    -fx-font-size: 150%;
+}
+*/
+#startButton{
+    -fx-border: 1px solid #ccc;
+    -fx-background: #eee;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 200%;
+}
+#startButton span{
+    -fx-border: 1px solid red;
+}
+
+
+#helpShell{
+    -fx-image: url("/pictures/garyyMain.png");
+}
+#propShell{
+    -fx-image: url("/pictures/garyyMain.png");
+}
+#aboutShell{
+    -fx-image: url("/pictures/garyyMain.png");
+}
+
+
+#musicButton{
+    -fx-image: url("/pictures/musicButton1.png");
+}
+#exitButton{
+    -fx-image: url("/pictures/exitbutton.png");
+}
+
+#start{
+    -fx-image: url("/pictures/start111.png");
+
+}

@@ -8,51 +8,92 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@MainScreen.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
-   <children>
-      <MenuBar style="-fx-background-color: transparent;">
-        <menus>
-          <Menu fx:id="File" mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
-            <items>
-              <MenuItem fx:id="New" mnemonicParsing="false" onAction="#handleNewFile" text="New" />
-                  <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#handleLoadFile" text="Load" />
-                  <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#handleSaveFile" text="Save" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
-               </items></Menu>
-            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
-               </items></Menu>
-            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-               </items></Menu>
-        </menus>
-      </MenuBar>
-      <AnchorPane prefHeight="377.0" prefWidth="600.0">
-         <children>
-            <ImageView fitHeight="379.0" fitWidth="600.0">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MainScreen.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainScreenController">
+    <children>
+        <MenuBar style="-fx-background-color: transparent;">
+            <menus>
+                <Menu fx:id="File" mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
+                    <items>
+                        <MenuItem fx:id="New" mnemonicParsing="false" onAction="#handleNewFile" text="New" />
+                        <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#handleLoadFile" text="Load" />
+                        <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#handleSaveFile" text="Save" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
+                    </items></Menu>
+                <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
+                    </items></Menu>
+                <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                    </items></Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane prefHeight="377.0" prefWidth="600.0">
+            <children>
+                <ImageView fitHeight="379.0" fitWidth="600.0">
+                    <image>
+                        <Image url="@../../Resources/pictures/mainScreen.jpg" />
+                    </image>
+                </ImageView>
+                <Button layoutX="14.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#turnMusicOn" style="-fx-background-color: transparent;" text="Music">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font></Button>
+                <Button layoutX="368.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#switchToHelpScene" style="-fx-background-color: transparent;" text="Help">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font></Button>
+                <Button fx:id="aboutButton" layoutX="531.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#switchToAboutScene" style="-fx-background-color: transparent;" text="About">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font></Button>
+                <Button layoutX="438.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#switchToPropertiesScene" style="-fx-background-color: transparent;" text="Properties">
+               <font>
+                  <Font name="Agency FB Bold" size="20.0" />
+               </font></Button>
+            <ImageView id="propShell" fitHeight="59.0" fitWidth="53.0" layoutX="450.0" layoutY="290.0" onMouseClicked="#switchToPropertiesScene" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Resources/pictures/mainScreen.jpg" />
+                  <Image url="@../../Resources/pictures/seashell.png" />
                </image>
             </ImageView>
-            <Button fx:id="startButton" layoutX="215.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToStartScene" prefHeight="71.0" prefWidth="118.0" text="Start" />
-            <Button layoutX="14.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#turnMusicOn" text="Music" />
-            <Button layoutX="534.0" layoutY="32.0" mnemonicParsing="false" onMouseClicked="#switchToHelpScene" text="Help" />
-            <Button fx:id="aboutButton" layoutX="535.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#switchToAboutScene" text="About" />
-            <Button layoutX="513.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#switchToPropertiesScene" text="Properties" />
-            <Button layoutX="535.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-         </children>
-      </AnchorPane>
-   </children>
+            <ImageView id="aboutShell" fitHeight="65.0" fitWidth="53.0" layoutX="532.0" layoutY="290.0" onMouseClicked="#switchToAboutScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Resources/pictures/seashell.png" />
+               </image>
+            </ImageView>
+            <ImageView id="helpShell" fitHeight="59.0" fitWidth="53.0" layoutX="368.0" layoutY="290.0" onMouseClicked="#switchToHelpScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Resources/pictures/seashell.png" />
+               </image>
+            </ImageView>
+            <ImageView id="musicButton" fitHeight="65.0" fitWidth="67.0" layoutX="8.0" layoutY="290.0" onMouseClicked="#turnMusicOn" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Resources/pictures/musicButton1.png" />
+               </image>
+            </ImageView>
+            <ImageView id="exitButton" fitHeight="53.0" fitWidth="86.0" layoutX="516.0" layoutY="-2.0" onMouseClicked="#handleExit" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Resources/pictures/exitbutton.png" />
+               </image>
+            </ImageView>
+            <ImageView id="start" fitHeight="127.0" fitWidth="149.0" layoutX="234.0" onMouseClicked="#switchToStartScene" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Resources/pictures/start111.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>

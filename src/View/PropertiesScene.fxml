@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
@@ -10,40 +12,71 @@
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="605.0" stylesheets="@PropertiesScene.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PropertiesController">
-   <children>
-      <ImageView fitHeight="410.0" fitWidth="607.0" layoutX="-1.0" layoutY="-5.0">
-         <image>
-            <Image url="@../../Resources/pictures/help.jpg" />
-         </image>
-      </ImageView>
-      <MenuButton fx:id="chooseCharacter" layoutX="82.0" layoutY="118.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="26.0" prefWidth="152.0" text="Character...">
-        <items>
-            <MenuItem fx:id="spongebobChar" mnemonicParsing="false" onAction="#mouseClicked" text="SpongeBob" />
-            <MenuItem fx:id="patricChar" mnemonicParsing="false" onAction="#mouseClicked" text="Patrick" />
-            <MenuItem fx:id="garyChar" mnemonicParsing="false" onAction="#mouseClicked" text="Gary" />
-            <MenuItem fx:id="krabChar" mnemonicParsing="false" onAction="#mouseClicked" text="MrKrabs" />
-        </items>
-      </MenuButton>
-      <MenuButton fx:id="chooseAlgo" layoutX="82.0" layoutY="212.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="25.0" prefWidth="152.0" text="Algorithm...">
-        <items>
-          <MenuItem fx:id="BFS" mnemonicParsing="false" onAction="#mouseClicked" text="BFS" />
-          <MenuItem fx:id="DFS" mnemonicParsing="false" onAction="#mouseClicked" text="DFS" />
-            <MenuItem fx:id="BestFS" mnemonicParsing="false" onAction="#mouseClicked" text="Best FS" />
-        </items>
-      </MenuButton>
-      <Button fx:id="backButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
-      <Button layoutX="534.0" layoutY="361.0" mnemonicParsing="false" text="Music" />
-      <Button fx:id="okButton" layoutX="82.0" layoutY="256.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="26.0" prefWidth="90.0" text="OK!" />
-      <Label layoutX="75.0" layoutY="73.0" prefHeight="37.0" prefWidth="165.0" text="Choose Player :">
-         <font>
-            <Font name="Agency FB Bold" size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="68.0" layoutY="160.0" prefHeight="32.0" prefWidth="180.0" text="Choose Algorithm :">
-         <font>
-            <Font name="Agency FB Bold" size="26.0" />
-         </font>
-      </Label>
-      <Button fx:id="cancelButton" layoutX="182.0" layoutY="256.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="26.0" prefWidth="55.0" text="Cancel" />
-   </children>
+    <children>
+        <ImageView fitHeight="410.0" fitWidth="607.0" layoutX="-1.0" layoutY="-5.0" pickOnBounds="true">
+            <image>
+                <Image url="@../../Resources/pictures/help.jpg" />
+            </image>
+        </ImageView>
+        <MenuButton fx:id="chooseCharacter" layoutX="82.0" layoutY="118.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="26.0" prefWidth="152.0" text="Character...">
+            <items>
+                <MenuItem fx:id="spongebobChar" mnemonicParsing="false" onAction="#mouseClicked" text="SpongeBob" />
+                <MenuItem fx:id="patricChar" mnemonicParsing="false" onAction="#mouseClicked" text="Patrick" />
+                <MenuItem fx:id="garyChar" mnemonicParsing="false" onAction="#mouseClicked" text="Gary" />
+                <MenuItem fx:id="krabChar" mnemonicParsing="false" onAction="#mouseClicked" text="MrKrabs" />
+            </items>
+        </MenuButton>
+        <MenuButton fx:id="chooseAlgo" layoutX="82.0" layoutY="212.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="25.0" prefWidth="152.0" text="Algorithm...">
+            <items>
+                <MenuItem fx:id="BFS" mnemonicParsing="false" onAction="#mouseClicked" text="BFS" />
+                <MenuItem fx:id="DFS" mnemonicParsing="false" onAction="#mouseClicked" text="DFS" />
+                <MenuItem fx:id="BestFS" mnemonicParsing="false" onAction="#mouseClicked" text="Best FS" />
+            </items>
+        </MenuButton>
+        <Button fx:id="backButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
+        <Button fx:id="Music" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />
+        <Button fx:id="okButton" layoutX="82.0" layoutY="256.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="26.0" prefWidth="90.0" text="OK!" />
+        <Label layoutX="75.0" layoutY="73.0" prefHeight="37.0" prefWidth="165.0" text="Choose Player :">
+            <font>
+                <Font name="Agency FB Bold" size="30.0" />
+            </font>
+        </Label>
+        <Label layoutX="68.0" layoutY="160.0" prefHeight="32.0" prefWidth="180.0" text="Choose Algorithm :">
+            <font>
+                <Font name="Agency FB Bold" size="26.0" />
+            </font>
+        </Label>
+        <Button fx:id="cancelButton" layoutX="182.0" layoutY="256.0" mnemonicParsing="false" onAction="#mouseClicked" prefHeight="26.0" prefWidth="55.0" text="Cancel" />
+        <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="605.0" style="-fx-background-color: transparent;">
+            <menus>
+                <Menu fx:id="File" mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
+                    <items>
+                        <MenuItem fx:id="New" mnemonicParsing="false" onAction="#handleNewFile" text="New" />
+                        <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#handleLoadFile" text="Load" />
+                        <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#handleSaveFile" text="Save" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Properties" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </children>
 </Pane>

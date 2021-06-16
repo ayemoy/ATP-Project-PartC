@@ -49,6 +49,7 @@ public abstract class Controller implements IView, Observer {
             //stage.setScene(new Scene(root,500,900));
             stage.setScene(new Scene(root));
             stage.show();
+            viewModel.stopPlayTheMusic();
         }
         catch (IOException e)
         {

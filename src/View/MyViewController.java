@@ -16,14 +16,17 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import static javafx.geometry.Pos.CENTER;
 
 import javax.swing.text.Element;
 import javax.swing.text.html.ImageView;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Observable;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -98,7 +101,8 @@ public class MyViewController extends Controller implements IView , Initializabl
 
     @Override
     //this function do all updates so when the maze window open, the function run and do all we need
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
         RowField.clear();
         ColField.clear();
 
@@ -116,6 +120,12 @@ public class MyViewController extends Controller implements IView , Initializabl
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
 
 /*
     //this func adjusts the sizes of the pane to GridPane
@@ -146,7 +156,14 @@ public class MyViewController extends Controller implements IView , Initializabl
 */
 
 
-    private void fitDisplaySizes() {
+    private void fitDisplaySizes()
+    {
+//        back.prefHeightProperty().bind(leftSide.heightProperty());
+//        back.prefWidthProperty().bind(leftSide.widthProperty());
+//
+//        leftSide.prefHeightProperty().bind(splitPane.heightProperty());
+//        leftSide.prefWidthProperty().bind(splitPane.widthProperty());
+
         rightSide.widthProperty().addListener((obs, oldVal, newVal) -> {
             pane.setMinWidth(rightSide.getWidth() - 10);
             if (viewModel.getIntMazeArrayMVM() != null)
@@ -173,14 +190,10 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
 
-
-
-
-
-
-
-
-
+    public void handleSaveFile(ActionEvent actionEvent)
+    {
+        SaveMenuBar("save", (Stage) back.getScene().getWindow(), false);
+    }
 
 
 
@@ -342,7 +355,7 @@ public class MyViewController extends Controller implements IView , Initializabl
     }
 */
 
-    private void zoom(ScrollEvent event){
+    public void zoom(ScrollEvent event){
         if(viewModel.getIntMazeArrayMVM() != null){
             if (event.isControlDown()) {
                 double zoomFactor = 1.05;
@@ -465,6 +478,57 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 //________________________________________-video win scene_________________________________
 
+
+
+
+
+
+
+
+
+
+
+    //////////////______________________///////////MENU BAR////////////////////////////////
+
+
+
+    public void handleNewFile(ActionEvent actionEvent) {
+        changeScene("MyView.fxml",(Stage)back.getScene().getWindow(),"New Maze");
+    }
+
+    public void handleSaveMenuFile(ActionEvent actionEvent) {
+        SaveMenuBar("save",(Stage)back.getScene().getWindow(),false);
+    }
+
+    public void handleLoadFile(ActionEvent actionEvent) {
+        LoadMenuBar("load",(Stage)back.getScene().getWindow(),false);
+    }
+
+
+    public void handleExit(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) { //want to exit the game
+            viewModel.exit();
+            Window welcome = back.getScene().getWindow();
+            ((Stage) welcome).close();
+        }
+    }
+    public void switchToAboutScene()
+    {
+        changeScene("AboutScene.fxml",(Stage)back.getScene().getWindow(),"About us and our game algorithms");
+    }
+
+    public void switchToHelpScene()
+    {
+        changeScene("HelpScene.fxml",(Stage)back.getScene().getWindow(),"We are here for you!");
+    }
+
+    public void switchToPropertiesScene()
+    {
+        changeScene("PropertiesScene.fxml",(Stage)back.getScene().getWindow(),"Your Properties");
+    }
+/////////////////////////////////MENUBAR///////////////////////////////////////////////
 
 
 }

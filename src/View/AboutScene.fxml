@@ -16,12 +16,12 @@
 <?import javafx.scene.text.Font?>
 
 <TabPane id="TabPane" fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" stylesheets="@AboutScene.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AboutSceneController">
-  <tabs>
-    <Tab fx:id="aboutTab" text="About US">
+   <tabs>
+      <Tab fx:id="aboutTab" text="About US">
          <content>
             <ScrollPane prefHeight="200.0" prefWidth="200.0">
-              <content>
-                <AnchorPane id="AboutPic" minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="600.0">
+               <content>
+                  <AnchorPane id="AboutPic" minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="600.0">
                      <children>
                         <ImageView id="aboutImage" fx:id="aboutImage" fitHeight="348.0" fitWidth="600.0" layoutY="-2.0" style="-fx-opacity: 0.75;">
                            <image>
@@ -36,32 +36,32 @@
                               <Font name="Agency FB Bold" size="15.0" />
                            </font></Button>
                         <MenuBar layoutX="-2.0" layoutY="-2.0" prefHeight="23.0" prefWidth="600.0" style="-fx-background-color: transparent;">
-                          <menus>
-                            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
-                              <items>
-                                <MenuItem mnemonicParsing="false" onAction="#handleNewFile" text="New" />
+                           <menus>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#handleNewFile" text="New" />
                                     <MenuItem mnemonicParsing="false" onAction="#handleSaveFile" style="-fx-background-color: transparent;" text="Save" />
                                     <MenuItem mnemonicParsing="false" onAction="#handleLoadFile" style="-fx-background-color: transparent;" text="Load" />
-                              </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
-                              <items>
-                                <MenuItem mnemonicParsing="false" text="Properties" />
-                              </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
                                  <items>
-                                    <MenuItem mnemonicParsing="false" text="Help" />
+                                    <MenuItem mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
                                  </items></Menu>
                               <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
                                  <items>
-                                    <MenuItem mnemonicParsing="false" text="About" />
+                                    <MenuItem mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
                                  </items></Menu>
                               <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
                                  <items>
                                     <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                                  </items></Menu>
-                          </menus>
+                           </menus>
                         </MenuBar>
                         <Label alignment="CENTER" layoutX="10.0" layoutY="29.0" prefHeight="53.0" prefWidth="575.0" text="Hello ! We are Ayelet Moyal and Natalia Kataev." textAlignment="CENTER">
                            <font>
@@ -95,13 +95,14 @@
                               <InnerShadow />
                            </effect>
                         </Label>
+                        <Button layoutX="537.0" layoutY="303.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />
                      </children>
                   </AnchorPane>
-              </content>
+               </content>
             </ScrollPane>
          </content>
-    </Tab>
-    <Tab fx:id="algoTab" text="Algorithms">
+      </Tab>
+      <Tab fx:id="algoTab" text="Algorithms">
          <content>
             <ScrollPane prefHeight="200.0" prefWidth="200.0">
                <content>
@@ -131,17 +132,17 @@
                               </Menu>
                               <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
                                  <items>
-                                    <MenuItem mnemonicParsing="false" text="Properties" />
+                                    <MenuItem mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
                                  </items>
                               </Menu>
                               <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
                                  <items>
-                                    <MenuItem mnemonicParsing="false" text="Help" />
+                                    <MenuItem mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
                                  </items>
                               </Menu>
                               <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
                                  <items>
-                                    <MenuItem mnemonicParsing="false" text="About" />
+                                    <MenuItem mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
                                  </items>
                               </Menu>
                               <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
@@ -191,11 +192,12 @@
                               <InnerShadow />
                            </effect>
                         </Label>
+                        <Button layoutX="534.0" layoutY="305.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />
                      </children>
                   </AnchorPane>
                </content>
             </ScrollPane>
          </content>
-    </Tab>
-  </tabs>
+      </Tab>
+   </tabs>
 </TabPane>

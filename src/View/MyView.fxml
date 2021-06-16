@@ -13,6 +13,9 @@
 <?import View.MazeDisplayer?>
 
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
 <SplitPane fx:id="splitPane" dividerPositions="0.3889508928571429" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@MyViewMaze.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
     <items>
         <AnchorPane fx:id="leftSide" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -34,12 +37,43 @@
                         <Font name="Agency FB Bold" size="27.0" />
                     </font>
                 </Label>
-                <Button fx:id="save" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" text="Save" />
+                <Button fx:id="save" layoutX="14.0" layoutY="168.0" mnemonicParsing="false" onAction="#handleSaveFile" text="Save" />
                 <Button fx:id="solve" layoutX="88.0" layoutY="168.0" mnemonicParsing="false" onAction="#solveMaze" text="Solve" />
                 <Button fx:id="play" layoutX="88.0" layoutY="122.0" mnemonicParsing="false" onAction="#generateMaze" text="PLAY!" />
                 <Button fx:id="back" layoutX="2.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
                 <Button fx:id="music" layoutX="150.0" layoutY="371.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />
                 <Button fx:id="hide" layoutX="161.0" layoutY="168.0" mnemonicParsing="false" onAction="#hideSolution" text="Hide " />
+                <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="605.0" style="-fx-background-color: transparent;">
+                    <menus>
+                        <Menu fx:id="File" mnemonicParsing="false" style="-fx-background-color: transparent;" text="File">
+                            <items>
+                                <MenuItem fx:id="New" mnemonicParsing="false" onAction="#handleNewFile" text="New" />
+                                <MenuItem fx:id="Load" mnemonicParsing="false" onAction="#handleLoadFile" text="Load" />
+                                <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#handleSaveMenuFile" text="Save" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Options">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#switchToPropertiesScene" text="Properties" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#switchToHelpScene" text="Help" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="About">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#switchToAboutScene" text="About" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" style="-fx-background-color: transparent;" text="Exit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
             </children></AnchorPane>
         <AnchorPane fx:id="rightSide" minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="413.0">
             <children>
@@ -51,7 +85,7 @@
                 <BorderPane fx:id="borderPane" layoutX="4.0" layoutY="3.0" onKeyPressed="#keyPressed" prefHeight="390.0" prefWidth="356.0">
                     <center>
                         <Pane fx:id="pane" prefHeight="600.0" prefWidth="578.0" BorderPane.alignment="CENTER">
-                            <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" playerPicLeft="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png" onMouseDragged="#MoveWithDrag" onMouseReleased="#freeMouse" onKeyPressed="#keyPressed" onMouseClicked="#mouseClicked"></MazeDisplayer>
+                            <MazeDisplayer fx:id="mazeDisplayer" height="500.0" width="500.0" playerPicLeft="./resources/pictures/player.png" solPathPic="./resources/pictures/burger3.png" goalPosPic="./resources/pictures/krusty.png" wallPic="./resources/pictures/jellyfish.png" onMouseDragged="#MoveWithDrag" onScroll="#zoom" onMouseReleased="#freeMouse" onKeyPressed="#keyPressed" onMouseClicked="#mouseClicked"></MazeDisplayer>
                         </Pane>
                     </center>
                 </BorderPane>
