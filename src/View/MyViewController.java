@@ -289,7 +289,7 @@ public class MyViewController extends Controller implements IView , Initializabl
                     a.setHeaderText(null);
                     Media vid =  new Media(new File(AlertClipString).toURI().toString());
                     MediaPlayer player = new MediaPlayer(vid);
-                    player.setVolume(0.6);
+                    player.setVolume(0.9);
                     MediaView mediaView = new MediaView(player);
                     mediaView.setFitHeight(400);
                     mediaView.setFitWidth(600);
