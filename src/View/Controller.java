@@ -33,27 +33,26 @@ public abstract class Controller implements IView, Observer {
     private boolean sound=true;//natasha
 
 
-    public static FileChooser SaveFileChooser = new FileChooser();
-    public static FileChooser LoadFileChooser = new FileChooser();
+    //public static FileChooser SaveFileChooser = new FileChooser();
+    //public static FileChooser LoadFileChooser = new FileChooser();
 
 
 
     public void changeScene(String fxmlPath, Stage stage, String title)
     {
-        Parent root; //original
+        Parent root;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath)); //original
-            root = fxmlLoader.load(); // original
-            viewModel.addObserver(fxmlLoader.getController()); //original
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            root = fxmlLoader.load();
+            viewModel.addObserver(fxmlLoader.getController());
             stage.setTitle(title);
-            //stage.setScene(new Scene(root,500,900));
             stage.setScene(new Scene(root));
             stage.show();
             viewModel.stopPlayTheMusic();
         }
         catch (IOException e)
         {
-            //e.printStackTrace(); // todo check?
+            e.printStackTrace();
         }
     }
 
@@ -73,18 +72,6 @@ public abstract class Controller implements IView, Observer {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     //this func show to user messages
     public void showAlert(String title, String message)
     {
@@ -99,8 +86,6 @@ public abstract class Controller implements IView, Observer {
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, message);
         Optional<ButtonType> result = alert.showAndWait();
-        //if (result.get() == ButtonType.OK)
-            //stage.getScene().close();
     }
 
     @Override
@@ -113,10 +98,6 @@ public abstract class Controller implements IView, Observer {
         alert.setContentText(ErrorToShow);
         alert.show();
     }
-
-
-
-
 
 
     //______________________________help function to thr menu bar_______________________________________________________
@@ -141,8 +122,6 @@ public abstract class Controller implements IView, Observer {
         changeScene("../View/HelpScene.fxml",propStage,"We are here for you!");
 
     }
-
-
 
 
     public void LoadMenuBar(String loadOrSave, Stage stage, boolean changeScene)

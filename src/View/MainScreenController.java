@@ -58,10 +58,6 @@ public class MainScreenController extends Controller implements Initializable {
 
 
     MyModel model = new MyModel();
-    //MyViewModel viewModel = new MyViewModel();
-
-
-
 
     public void switchToAboutScene()
     {
@@ -82,8 +78,6 @@ public class MainScreenController extends Controller implements Initializable {
     {
         changeScene("MyView.fxml",(Stage)aboutButton.getScene().getWindow(),"Play and have fun!! :)");
     }
-
-
 
 
 
@@ -112,21 +106,6 @@ public class MainScreenController extends Controller implements Initializable {
         }
     }
 
-/*
-    public void turnMusicOn() throws URISyntaxException// natasha
-    {
-        if(sound)
-        {
-            String path = "Resources/Music/mainScreenMusic.mp3";
-            viewModel.playTheMusic(path);
-            this.sound=false;
-        }
-        else{
-            viewModel.stopPlayTheMusic();
-            this.sound=true;
-        }
-    }
-*/
 
     public void turnMusicOn() throws URISyntaxException {
         turnMusicOn("Resources/Music/mainScreenMusic.mp3");

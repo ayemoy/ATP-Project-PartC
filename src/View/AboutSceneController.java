@@ -46,8 +46,6 @@ public class AboutSceneController extends Controller {
         changeScene("MainScreen.fxml",(Stage)backButton.getScene().getWindow(),"A little bit about us");
     }
 
-
-
     public void switchToAboutScene()
     {
         changeScene("AboutScene.fxml",(Stage)backButton.getScene().getWindow(),"About us and our game algorithms");
@@ -63,12 +61,6 @@ public class AboutSceneController extends Controller {
         changeScene("PropertiesScene.fxml",(Stage)backButton.getScene().getWindow(),"Your Properties");
     }
 
-    public void switchToStartScene()
-    {
-        changeScene("MyView.fxml",(Stage)backButton.getScene().getWindow(),"Play and have fun!! :)");
-    }
-
-
     public void handleNewFile(ActionEvent actionEvent) {
         changeScene("MyView.fxml",(Stage)backButton.getScene().getWindow(),"New Maze");
     }
@@ -83,7 +75,7 @@ public class AboutSceneController extends Controller {
 
 
     public void handleExit(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "OH, NO! do you really want to leave me?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) { //want to exit the game
             viewModel.exit();

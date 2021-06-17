@@ -1,8 +1,5 @@
 package Model;
-
-import View.MazeDisplayer;
 import ViewModel.MyViewModel;
-
 import Client.Client;
 import Client.IClientStrategy;
 import IO.MyDecompressorInputStream;
@@ -19,7 +16,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Observable;
-
 import Server.*;
 import algorithms.search.Solution;
 import javafx.scene.media.Media;
@@ -30,8 +26,6 @@ import javafx.scene.media.MediaPlayer;
 //import javafx.beans.*;
 
 //import java.util.Observable;
-
-
 
 public class MyModel extends Observable implements IModel {
 
@@ -50,7 +44,7 @@ public class MyModel extends Observable implements IModel {
     private Position currentPosition;
     public MediaPlayer playMusic;
 
-    ///\choose player
+    ///choose player
     private CharacterChoose mainCharacter = new CharacterChoose();
 
 
@@ -71,7 +65,9 @@ public class MyModel extends Observable implements IModel {
 
     }
 
-    //singleton
+
+    //singleton - create one instance of this class
+    //A class in which only a single instance can exist
     public static MyModel getInstance()
     {
         if (myModel == null) {
@@ -93,21 +89,20 @@ public class MyModel extends Observable implements IModel {
 
     }
 
+    /**
+     *
+     * @param newMaze
+     */
 
     private void initTheMaze(Maze newMaze) //get all the information about the maze and init it
     {
         ifwonGame = false;
-
         goalRow = maze.getGoalPosition().getRowIndex();
         goalCol = maze.getGoalPosition().getColumnIndex();
-
-
         intMazeArray = maze.getIntMaze();
-
         playerRow = maze.getStartPosition().getRowIndex();
         playerCol = maze.getStartPosition().getColumnIndex();
         currentPosition = new Position(playerRow,playerCol);
-
         mazeSolutionSteps = null;
         finalSolution = null;
     }
@@ -115,7 +110,7 @@ public class MyModel extends Observable implements IModel {
 
 
     @Override
-    public void solveTheGameMaze()
+    public void solveTheGameMaze() //this func responsible to solve the maze and pass the solution to myviewmodel and then to View
     {
         finalSolution = new ArrayList<>();
         SolveAndCommunicateWithServer(); //call the server that handle with maze solving and communicate with it
@@ -137,21 +132,13 @@ public class MyModel extends Observable implements IModel {
 
 
 
-    /*
-      wherePlayerMove = 1 -> Up
-       wherePlayerMove = 2 -> Down
-       wherePlayerMove = 3 -> Left
-       wherePlayerMove = 4 -> Right
-        wherePlayerMove = 5 -> Up Left
-        wherePlayerMove = 6 -> Up Right
-       wherePlayerMove = 7 -> Down Left
-       wherePlayerMove = 8 -> Down Right
-             */
     @Override
-    public void updateTheCharacterLocation(int wherePlayerMove) //this function update all the time the cuurent location of the character player and keep updating the new location that user move to
+    public void updateTheCharacterLocation(int wherePlayerMove)
+    //this function update all the time the cuurent location of the character player and keep updating the new location that user move to
     {
 
-        switch(wherePlayerMove) {
+        switch(wherePlayerMove)
+        {
             case 1: //if the character move up
                 if (ifCharacterCanMove(playerRow-1, playerCol))
                     playerRow--;
@@ -229,7 +216,8 @@ public class MyModel extends Observable implements IModel {
 
 
     //this function check if the player can move to any side
-    public boolean ifCharacterCanMove(int rowUserWantToMove, int colUserWantToMove) {
+    public boolean ifCharacterCanMove(int rowUserWantToMove, int colUserWantToMove)
+    {
         if (rowUserWantToMove < 0 || rowUserWantToMove >= intMazeArray.length ||
                 colUserWantToMove < 0 || colUserWantToMove >= intMazeArray[0].length || intMazeArray[rowUserWantToMove][colUserWantToMove] == 1)
             return false;
@@ -311,7 +299,6 @@ public class MyModel extends Observable implements IModel {
                 try {
                     //LOG.info("User info " + InetAddress.getLocalHost() + "requests to generate a maze");
                     //LOG.info("A maze creation request was accepted! Generating maze using " +
-                    //Server.getConfigurations("MazeGenerator"));
                     ObjectOutputStream toServer = new ObjectOutputStream(outToServer);
                     ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
                     toServer.flush();
@@ -323,7 +310,6 @@ public class MyModel extends Observable implements IModel {
                     byte[] decompressedMaze = new byte[(row * col) + 24];
                     is.read(decompressedMaze);
                     maze = new Maze(decompressedMaze);
-//                    setPlayerCurrentPosition();
                     this.intMazeArray = maze.getIntMaze();
                 }
                 catch (Exception e)
@@ -383,16 +369,6 @@ public class MyModel extends Observable implements IModel {
         this.currentPosition.setColIndex(this.playerCol);
     }
     public void setMaze(Maze maze) { this.maze = maze; }
-    public int[][] getInMazeArray() { return intMazeArray; }
-    public void setInMazeArray(int[][] inMazeArray) { this.intMazeArray = inMazeArray; }
-    public int getPlayerRow() { return playerRow; }
-    public void setPlayerRow(int playerRow) { this.playerRow = playerRow; }
-    public int getPlayerCol() { return playerCol; }
-    public void setPlayerCol(int playerCol) { this.playerCol = playerCol; }
-    public ArrayList<AState> getMazeSolutionSteps() { return mazeSolutionSteps; }
-    public void setMazeSolutionSteps(ArrayList<AState> mazeSolutionSteps) { this.mazeSolutionSteps = mazeSolutionSteps; }
-    public ArrayList<int[]> getFinalSolution() { return finalSolution; }
-    public void setFinalSolution(ArrayList<int[]> finalSolution) { this.finalSolution = finalSolution; }
 
     //_____________________function the MyViewModel use to communicate with model__________________________
     public int[][] getMazeArray() {return intMazeArray; }

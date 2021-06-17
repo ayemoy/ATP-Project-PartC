@@ -2,10 +2,12 @@ package Model;
 
 import java.io.Serializable;
 
+
 public class CharacterChoose implements Serializable {
+
+
     private static CharacterChoose characterChoose;
     private String characterName;
-    //private String characterDirection;
     private String url;
 
     public CharacterChoose() //constructor

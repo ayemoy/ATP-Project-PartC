@@ -4,6 +4,10 @@ import ViewModel.MyViewModel;
 import javafx.beans.Observable;
 
 
+/**
+ * in this interface we write what function MyModel need to implement
+ * this is the function of the maze..all actions that will create and func the maze
+ */
 public interface IModel {
 
     void generateMaze(int rows, int cols);
@@ -17,5 +21,6 @@ public interface IModel {
 
     //choose player
     void setCharacter(String name, String url);
+
 
 }

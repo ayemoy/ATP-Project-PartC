@@ -209,7 +209,7 @@ public class MyViewController extends Controller implements IView , Initializabl
         String regex = "\\d+";
         if (userNumStr.matches(regex)) {
             int val = Integer.valueOf(userNumStr);
-            if (val >= 3 && val <= 500)
+            if (val >= 2 && val <= 500)
                 return true;
         }
         return false;
@@ -239,7 +239,7 @@ public class MyViewController extends Controller implements IView , Initializabl
         }
         else
         {
-            showErrorAlert("Invalid Input", "Invalid Number!/n" + "Please enter numbers between 3 to 500");
+            showErrorAlert("Invalid Input", "Invalid Number!/n" + "Please enter numbers between 2 to 500");
         }
     }
 
@@ -367,8 +367,9 @@ public class MyViewController extends Controller implements IView , Initializabl
             else if (arg == "Solve") {
                 mazeDisplayer.drawSolution(viewModel.getMazeSolution());
             }
-            else if (arg == "Save") {
-               // showAlert("Save Maze", "Your maze was successfully saved");
+            else if (arg == "Save")
+            {
+                showAlert("Save Maze", "Your maze was successfully saved");
             }
 
         }
@@ -376,28 +377,6 @@ public class MyViewController extends Controller implements IView , Initializabl
 
 
 
-/*
-
-    public void zoom(MazeDisplayer pane) {
-        pane.setOnScroll(
-                new EventHandler<ScrollEvent>() {
-                    @Override
-                    public void handle(ScrollEvent event) {
-                        if (event.isControlDown()) {
-                            double zoomFactor = 1.05;
-                            double deltaY = event.getDeltaY();
-
-                            if (deltaY < 0) {
-                                zoomFactor = 0.95;
-                            }
-                            pane.setScaleX(pane.getScaleX() * zoomFactor);
-                            pane.setScaleY(pane.getScaleY() * zoomFactor);
-                            event.consume();
-                        }
-                    }
-                });
-    }
-*/
 
     public void zoom(ScrollEvent event){
         if(viewModel.getIntMazeArrayMVM() != null){
