@@ -1,5 +1,5 @@
 .root{
-    -fx-background-repeat: stretch;
+    -fx-background-size: stretch;
     -fx-background-size: cover;
     -fx-background-position: center center;
 
@@ -7,13 +7,15 @@
 
 #rightSide{
     -fx-background-image: url("/pictures/maze3.jpg" );
-    -fx-background-size: cover;
+    -fx-background-size: stretch;
+
     -fx-background-position: center center;
 }
 
 #leftSide{
     -fx-background-image: url("/pictures/together.jpg" );
-    -fx-background-size: cover;
+    -fx-background-size: stretch;
+
     -fx-background-position: center center;
 }
 

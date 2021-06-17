@@ -1,12 +1,11 @@
 .root{
-    -fx-background-repeat: stretch;
-    -fx-background-size: cover;
-    -fx-background-position: center center;
+
+    -fx-background-size: stretch;
 }
 #AboutPic{
     -fx-background-image: url("/pictures/boutUs.jpeg");
-    -fx-background-size: cover;
-    -fx-background-position: center center;
+    -fx-background-size: stretch;
+
 }
 #aboutImage{
     -fx-opacity:0.2;
@@ -15,8 +14,8 @@
 
 #AlgoPic{
     -fx-background-image: url("/pictures/algo.png");
-    -fx-background-size: cover;
-    -fx-background-position: center center;
+    -fx-background-size: stretch;
+
 
 }
 

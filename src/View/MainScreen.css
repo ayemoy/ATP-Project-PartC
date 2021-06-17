@@ -1,7 +1,6 @@
 .root{
     -fx-background-image: url("/pictures/mainScreen.jpg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: cover;
+        -fx-background-size: stretch;
     -fx-background-position: center center;
 
 }
