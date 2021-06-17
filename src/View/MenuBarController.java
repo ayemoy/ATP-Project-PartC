@@ -89,7 +89,7 @@ public class MenuBarController extends Controller {
     }
 
     public void handleLoadFile(ActionEvent actionEvent) {
-        LoadMenuBar("load",(Stage)menuBar.getScene().getWindow(),false);
+        LoadMenuBar("Load",(Stage)menuBar.getScene().getWindow(),false);
     }
 
 

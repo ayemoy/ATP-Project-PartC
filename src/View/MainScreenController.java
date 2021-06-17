@@ -3,6 +3,7 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,7 +65,7 @@ public class MainScreenController extends Controller implements Initializable {
 
     public void switchToAboutScene()
     {
-        changeScene("AboutScene.fxml",(Stage)aboutButton.getScene().getWindow(),"About us and our game algorithms");
+        changeScene("AboutScene.fxml",(Stage)aboutButton.getScene().getWindow(),"Welcome to SpongeBob's world!");
     }
 
     public void switchToHelpScene()
@@ -97,11 +98,11 @@ public class MainScreenController extends Controller implements Initializable {
     }
 
     public void handleLoadFile(ActionEvent actionEvent) {
-        LoadMenuBar("load",(Stage)aboutButton.getScene().getWindow(),false);
+        LoadMenuBar("Load",(Stage)aboutButton.getScene().getWindow(),false);
     }
 
 
-    public void handleExit(ActionEvent event) throws IOException {
+    public void handleExit(MouseEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to exit?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) { //want to exit the game

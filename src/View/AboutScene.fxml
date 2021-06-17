@@ -9,17 +9,19 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<TabPane id="TabPane" fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" stylesheets="@AboutScene.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AboutSceneController">
+<TabPane id="TabPane" fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="600.0" style="-fx-background-color: transparent;" stylesheets="@AboutScene.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AboutSceneController">
    <tabs>
       <Tab fx:id="aboutTab" text="About US">
          <content>
-            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+            <ScrollPane prefHeight="400.0" prefWidth="400.0">
                <content>
                   <AnchorPane id="AboutPic" minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="600.0">
                      <children>
@@ -152,44 +154,64 @@
                               </Menu>
                            </menus>
                         </MenuBar>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="34.0" prefHeight="34.0" prefWidth="568.0" text="We chose to generate this maze with the algorithm of Prim.">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="34.0" prefHeight="34.0" prefWidth="568.0" style="-fx-text-fill: black;" text="We chose to generate this maze with the algorithm of Prim.">
                            <font>
                               <Font name="Agency FB Bold" size="28.0" />
                            </font>
                            <effect>
-                              <InnerShadow />
+                              <DropShadow height="72.4" radius="37.675" spread="0.8" width="80.3">
+                                 <color>
+                                    <Color red="0.9666666388511658" green="1.0" />
+                                 </color>
+                              </DropShadow>
                            </effect>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="79.0" prefHeight="37.0" prefWidth="575.0" text="The player can choose the algorithm that will solve the">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="79.0" prefHeight="37.0" prefWidth="575.0" style="-fx-text-fill: black;" text="The player can choose the algorithm that will solve the">
                            <font>
                               <Font name="Agency FB Bold" size="30.0" />
                            </font>
                            <effect>
-                              <InnerShadow />
+                              <DropShadow height="72.4" radius="37.675" spread="0.8" width="80.3">
+                                 <color>
+                                    <Color red="0.949999988079071" green="1.0" />
+                                 </color>
+                              </DropShadow>
                            </effect>
                         </Label>
-                        <Label alignment="CENTER" layoutX="35.0" layoutY="127.0" prefHeight="37.0" prefWidth="545.0" text="maze ( BFS / DFS / BestFS ) in the options page.">
+                        <Label alignment="CENTER" layoutX="35.0" layoutY="127.0" prefHeight="37.0" prefWidth="545.0" style="-fx-text-fill: black;" text="maze ( BFS / DFS / BestFS ) in the options page.">
                            <font>
                               <Font name="Agency FB Bold" size="30.0" />
                            </font>
                            <effect>
-                              <InnerShadow />
+                              <DropShadow height="72.4" radius="37.675" spread="0.8" width="80.3">
+                                 <color>
+                                    <Color red="0.9833333492279053" green="1.0" />
+                                 </color>
+                              </DropShadow>
                            </effect>
                         </Label>
-                        <Label alignment="CENTER" layoutX="13.0" layoutY="180.0" prefHeight="37.0" prefWidth="567.0" text="Check out the algorithms and see which will give the best ">
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="180.0" prefHeight="37.0" prefWidth="567.0" style="-fx-text-fill: black;" text="Check out the algorithms and see which will give the best ">
                            <font>
                               <Font name="Agency FB Bold" size="28.0" />
                            </font>
                            <effect>
-                              <InnerShadow />
+                              <DropShadow height="72.4" radius="37.675" spread="0.8" width="80.3">
+                                 <color>
+                                    <Color red="0.9298245906829834" green="0.9144709706306458" blue="0.008609486743807793" />
+                                 </color>
+                              </DropShadow>
                            </effect>
                         </Label>
-                        <Label alignment="CENTER" layoutX="14.0" layoutY="236.0" prefHeight="37.0" prefWidth="561.0" text=" best result and get Spongebob to Krusty Krab!">
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="236.0" prefHeight="37.0" prefWidth="561.0" style="-fx-text-fill: black;" text=" best result and get Spongebob to Krusty Krab!">
                            <font>
                               <Font name="Agency FB Bold" size="30.0" />
                            </font>
                            <effect>
-                              <InnerShadow />
+                              <DropShadow height="72.4" radius="37.675" spread="0.81" width="80.3">
+                                 <color>
+                                    <Color red="0.9912280440330505" green="0.9747076034545898" />
+                                 </color>
+                              </DropShadow>
                            </effect>
                         </Label>
                         <Button layoutX="534.0" layoutY="305.0" mnemonicParsing="false" onAction="#turnMusicOn" text="Music" />

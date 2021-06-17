@@ -184,7 +184,7 @@ public class MyModel extends Observable implements IModel {
                     playerCol--;
                 }
                 else
-                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3");
                 break;
             case 6: //if the character move up right
                 if (ifCharacterCanMove(playerRow-1, playerCol+1))
@@ -193,7 +193,7 @@ public class MyModel extends Observable implements IModel {
                     playerCol++;
                 }
                 else
-                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3");
                 break;
             case 7: // if the character move down left
                 if (ifCharacterCanMove(playerRow+1, playerCol-1))
@@ -202,7 +202,7 @@ public class MyModel extends Observable implements IModel {
                     playerCol--;
                 }
                 else
-                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3");
                 break;
             case 8: // if the character move down right
                 if (ifCharacterCanMove(playerRow+1, playerCol+1))
@@ -211,7 +211,7 @@ public class MyModel extends Observable implements IModel {
                     playerCol++;
                 }
                 else
-                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3.mp3");
+                    playMusicWhenPlayerCantMove("Resources/Music/ops.mp3");
                 break;
         }
         // now we check if the character get to the goal position and if the user won the game

@@ -500,8 +500,8 @@ public class MyViewController extends Controller implements IView , Initializabl
             return;
         }
         if (!mazeDisplayer.ifMazeSolved) {
-            int mouseX = (int) (mouseEvent.getSceneX()/ cellWidth)/3;
-            int mouseY = (int) ((mouseEvent.getSceneY() - 30) / cellHeight);
+            int mouseX = (int) ((mouseEvent.getSceneX()-233)/ cellWidth);
+            int mouseY = (int) ((mouseEvent.getSceneY()) / cellHeight);
 
             if (mazeDisplayer.getPlayerCol() == mouseX && mazeDisplayer.getPlayerRow() == mouseY) {
                 CellPlayer = true;
@@ -545,7 +545,7 @@ public class MyViewController extends Controller implements IView , Initializabl
     }
 
     public void handleLoadFile(ActionEvent actionEvent) {
-        LoadMenuBar("load",(Stage)back.getScene().getWindow(),false);
+        LoadMenuBar("Load",(Stage)back.getScene().getWindow(),false);
     }
 
 

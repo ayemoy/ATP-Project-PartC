@@ -120,7 +120,7 @@ public class PropertiesController extends Controller {
     }
 
     public void handleLoadFile(ActionEvent actionEvent) {
-        LoadMenuBar("load",(Stage)backButton.getScene().getWindow(),false);
+        LoadMenuBar("Load",(Stage)backButton.getScene().getWindow(),false);
     }
 
 
